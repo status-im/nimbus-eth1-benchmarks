@@ -18,7 +18,7 @@ L3 Cache: 16 MiB (1 instance)
 /dev/nvme1n1 : 1.9T total, 733G free
 ==========================
 === Nimbus-ETH1 Benchmarking Report ===
->>> Total time spent in benchmarking is 0 days, 0 hours, 0 minutes, 0 seconds
+>>> Total time spent in benchmarking is 7 hours 6 minutes 38 seconds
 >>> End block number is 20565249
 >>> Start block number is 20008193
 >>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \

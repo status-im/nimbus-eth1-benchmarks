@@ -1,5 +1,4 @@
 === System Information Report ===
->>> Generated on: Tue Dec  3 09:01:39 AM UTC 2024
 ==========================
 >>> CPU Architecture: x86_64
 >>> CPU Byte Order: Little Endian
@@ -18,8 +17,8 @@ L3 Cache: 16 MiB (1 instance)
 /dev/nvme1n1 : 1.9T total, 733G free
 ==========================
 === Nimbus-ETH1 Benchmarking Report ===
->>> Total time spent in benchmarking is 0 days, 0 hours, 0 minutes, 0 seconds
->>> End block number is 20008193
+>>> Total time spent in benchmarking is 10 hours 16 minutes 44 seconds
+>>> End block number is 21005282
 >>> Start block number is 20008193
 >>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
     --network=mainnet \
