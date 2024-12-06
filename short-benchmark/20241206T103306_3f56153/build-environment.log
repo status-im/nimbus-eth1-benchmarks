@@ -1,0 +1,38 @@
+=== System Information Report ===
+>>> Generated on: Fri Dec  6 10:33:08 AM UTC 2024
+==========================
+>>> CPU Architecture: x86_64
+>>> CPU Byte Order: Little Endian
+>>> CPU Cores: 16
+>>> CPU Model: AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
+>>> CPU Cache Information:
+L1d Cache: 256 KiB (8 instances)
+L1i Cache: 256 KiB (8 instances)
+L2 Cache: 8 MiB (8 instances)
+L3 Cache: 16 MiB (1 instance)
+>>> RAM Size: 61Gi
+>>> Hard Disk Information:
+/dev/md2 : 437G total, 314G free
+/dev/md1 : 989M total, 693M free
+/dev/nvme2n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 740G free
+==========================
+=== Nimbus-ETH1 Benchmarking Report ===
+>>> Total time spent in benchmarking (nanoseconds): 7131560143114
+>>> Total time spent in benchmarking (human readable format): 1 hours 58 minutes 51 seconds
+>>> Start block number is 20000001
+>>> End block number is 20098305
+>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --max-blocks=1000000 \
+    --data-dir='/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+==========================
+=== Comparison of last two benchmarks ===
+Traceback (most recent call last):
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py", line 80, in <module>
+    baseline = baseline.loc[baseline.index >= start and baseline.index <= end]
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+==========================
