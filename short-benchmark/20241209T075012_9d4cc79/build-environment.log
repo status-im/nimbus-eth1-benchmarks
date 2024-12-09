@@ -1,0 +1,155 @@
++ fetchHostInformation
++ echo '=== System Information Report ==='
+=== System Information Report ===
+++ date
++ echo '>>> Generated on: Mon Dec  9 07:50:13 AM UTC 2024'
+>>> Generated on: Mon Dec  9 07:50:13 AM UTC 2024
++ echo ==========================
+==========================
++ echo -n '>>> CPU Architecture: '
+>>> CPU Architecture: + lscpu
++ grep Architecture
++ awk '{print $2}'
+x86_64
++ echo -n '>>> CPU Byte Order: '
+>>> CPU Byte Order: + lscpu
++ sed 's/^[ \t]*//'
++ grep 'Byte Order'
++ sed 's/Byte Order://'
+Little Endian
++ echo -n '>>> CPU Cores: '
+>>> CPU Cores: + nproc
+16
++ echo -n '>>> CPU Model: '
+>>> CPU Model: + lscpu
++ grep 'Model name'
++ sed 's/^[ \t]*//'
++ sed 's/Model name://'
+AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
++ echo '>>> CPU Cache Information:'
+>>> CPU Cache Information:
++ echo -n 'L1d Cache: '
+L1d Cache: + lscpu
++ grep L1d
++ sed 's/L1d cache://'
++ sed 's/^[ \t]*//'
+256 KiB (8 instances)
++ echo -n 'L1i Cache: '
+L1i Cache: + lscpu
++ grep L1i
++ sed 's/L1i cache://'
++ sed 's/^[ \t]*//'
+256 KiB (8 instances)
++ echo -n 'L2 Cache: '
+L2 Cache: + lscpu
++ grep L2
++ sed 's/L2 cache://'
++ sed 's/^[ \t]*//'
+8 MiB (8 instances)
++ echo -n 'L3 Cache: '
+L3 Cache: + lscpu
++ grep L3
++ sed 's/L3 cache://'
++ sed 's/^[ \t]*//'
+16 MiB (1 instance)
++ echo -n '>>> RAM Size: '
+>>> RAM Size: + free -h
++ grep Mem:
++ awk '{print $2}'
+61Gi
++ echo '>>> Hard Disk Information:'
+>>> Hard Disk Information:
++ df -h
++ grep '^/dev/'
++ awk '{print $1 " : " $2 " total, " $4 " free"}'
+/dev/md2 : 437G total, 313G free
+/dev/md1 : 989M total, 693M free
+/dev/nvme2n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 740G free
++ echo ==========================
+==========================
++ fetchBenchmarkingJobSummary
++ local total_time
+++ awk -F, '
+      NR>1 { # Skip header row
+          sum += $6
+      }
+      END {
+          print sum
+      }' /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
++ total_time=75459538926243
++ '[' -z 75459538926243 ']'
++ echo '=== Nimbus-ETH1 Benchmarking Report ==='
+=== Nimbus-ETH1 Benchmarking Report ===
++ echo '>>> Total time spent in benchmarking (nanoseconds): 75459538926243'
+>>> Total time spent in benchmarking (nanoseconds): 75459538926243
+++ convert_to_human_readable 75459538926243
+++ local total_ns=75459538926243
++++ awk 'BEGIN {printf "%.2f", 75459538926243/1000000000}'
+++ local total_seconds=75459.54
+++ local seconds_int=75459
+++ local days=0
+++ local hours=20
+++ local minutes=57
+++ local seconds=39
+++ local result=
+++ [[ 0 -gt 0 ]]
+++ [[ 20 -gt 0 ]]
+++ result+='20 hours '
+++ [[ 57 -gt 0 ]]
+++ result+='57 minutes '
+++ [[ 39 -gt 0 ]]
+++ result+='39 seconds'
+++ result='20 hours 57 minutes 39 seconds'
+++ [[ -z 20 hours 57 minutes 39 seconds ]]
+++ echo '20 hours 57 minutes 39 seconds'
++ echo '>>> Total time spent in benchmarking (human readable format): 20 hours 57 minutes 39 seconds'
+>>> Total time spent in benchmarking (human readable format): 20 hours 57 minutes 39 seconds
+++ tail -n +2 /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+++ head -1
+++ awk -F, '{print $1 - $2}'
++ START_BLOCK_NUMBER=20000001
++ echo '>>> Start block number is 20000001'
+>>> Start block number is 20000001
+++ tail -1 /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+++ cut -d, -f1
++ END_BLOCK_NUMBER=20139265
++ echo '>>> End block number is 20139265'
+>>> End block number is 20139265
+++ systemctl cat nimbus-eth1-mainnet-master-short-benchmark.service
+++ sed -n '/^ExecStart=/,/[^\\]$/p'
+++ sed 's/^ExecStart=//'
++ BENCHMARK_RUN_COMMAND='/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --max-blocks=1000000 \
+    --data-dir='\''/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0'\'' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv'
++ echo '>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --max-blocks=1000000 \
+    --data-dir='\''/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0'\'' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv'
+>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --max-blocks=1000000 \
+    --data-dir='/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
++ echo ==========================
+==========================
++ compareBenchmarkWithPrevious
++ echo '=== Comparison of last two benchmarks ==='
+=== Comparison of last two benchmarks ===
++ python /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T052435_d774054/blocks-import-benchmark.csv
+Traceback (most recent call last):
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py", line 87, in <module>
+    baseline = baseline.loc[baseline.index >= start and baseline.index <= end]
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
++ true
++ echo ==========================
+==========================
