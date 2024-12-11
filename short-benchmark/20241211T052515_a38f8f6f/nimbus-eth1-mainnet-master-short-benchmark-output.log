@@ -1,0 +1,95 @@
+[master 83127f0] debug: publish metrics and report for 5000 blocks
+ 3 files changed, 99 insertions(+)
+ create mode 100644 short-benchmark/20241211T050634_73a683b6/blocks-import-benchmark.csv
+ create mode 100644 short-benchmark/20241211T050634_73a683b6/build-environment.log
+ create mode 100644 short-benchmark/20241211T050634_73a683b6/nimbus-eth1-mainnet-master-short-benchmark-output.log
+To github.com:status-im/nimbus-eth1-benchmarks.git
+   4b1dbfa..83127f0  master -> master
+2024-12-11 05:07:36 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
+2024-12-11 05:07:36 - >>> Fetching latest changes...
+From https://github.com/status-im/nimbus-eth1
+   73a683b6..a38f8f6f  master     -> origin/master
+HEAD is now at a38f8f6f evmstate tool: disable chronicles output (#2924)
+2024-12-11 05:07:36 - >>> completed cloneOrFetchRepo()
+2024-12-11 05:07:36 - >>> starting buildBinaries()
+2024-12-11 05:07:36 - >>> Building binaries...
+make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
+$DEBUG_LEVEL is 0, $LIB_MODE is static
+[92mBuilding:[39m install/usr/lib/libbacktracenim.a
+make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
+Cleaning up RocksDb build artifacts.
+find: ‘./zstd-1.5.5’: No such file or directory
+make[1]: *** [Makefile:1253: clean-rocks] Error 1
+Building RocksDb static libraries.
+    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
+
+                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
+
+    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  345k  100  345k    0     0   560k      0 --:--:-- --:--:-- --:--:-- 1148k
+100 2330k  100 2330k    0     0  3096k      0 --:--:-- --:--:-- --:--:-- 5432k
+/usr/bin/ar: creating unity.a
+[92mBuilding:[39m build/nimbus_execution_client
+/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
+/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
+The nimbus target is deprecated and will soon change meaning, use 'nimbus_execution_client' instead
+2024-12-11 05:13:12 - >>> buildBinaries() complete
+2024-12-11 05:13:12 - >>> starting cleanBenchmarkDir() inside database-generation-and-cleanup.sh
+Removing blocks-import-benchmark.csv
+/
+2024-12-11 05:13:12 - >>> completed cleanBenchmarkDir()
+2024-12-11 05:13:12 - >>> starting regenerateNimbusDatabaseFromTemplate()
+2024-12-11 05:13:12 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/nimbus/aristo/*
+2024-12-11 05:13:12 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/nimbus/aristo with permissions
+2024-12-11 05:13:12 - >>> Copying template db into nimbus data directory
+2024-12-11 05:16:43 - >>> Template db copied
+2024-12-11 05:16:43 - >>> completed regenerateNimbusDatabaseFromTemplate()
+2024-12-11 05:16:43 - >>> starting cloneOrFetchRepo() inside fetch-benchmarks.sh
+2024-12-11 05:16:43 - >>> creating directory /home/data/nimbus-eth1-benchmarks
+2024-12-11 05:16:43 - >>> Fetching latest benchmarks from github
+HEAD is now at 83127f0 debug: publish metrics and report for 5000 blocks
+2024-12-11 05:16:45 - >>> completed cloneOrFetchRepo()
+INF 2024-12-11 05:16:45.134+00:00 Launching execution client                 version=v0.1.0-a38f8f6f conf="(dataDir: /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/keystore, chainDbMode: Aristo, importKey: , verifyFrom: none(uint64), evm: \"\", trustedSetupFile: none(string), extraData: \"nimbus-eth1/v0.1.0-a38f8f6f\", network: \"mainnet\", customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: INFO, logFile: none(OutFile), logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: @[], bootstrapFile: , bootstrapEnrs: @[], staticPeers: @[], staticPeersFile: , staticPeersEnrs: @[], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: V4, netKey: \"random\", agentString: \"nimbus-eth1/v0.1.0-a38f8f6f/linux-amd64/Nim-2.0.12/nimvm\", beaconChunkSize: 0, rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2684354560, rdbKeyCacheSize: 268435456, rdbVtxCacheSize: 805306368, rdbPrintStats: false, cmd: import, maxBlocks: 5000, chunkSize: 8192, csvStats: some(\"/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv\"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
+INF 2024-12-11 05:16:54.414+00:00 Database initialized                       base="(0x9eb1f8eb278c0a5db7c78dee870626f15d9b5679fd5c19334524072ef8fba585, 20010000)" finalized="(0x9eb1f8eb278c0a5db7c78dee870626f15d9b5679fd5c19334524072ef8fba585, 20010000)" head="(0x9eb1f8eb278c0a5db7c78dee870626f15d9b5679fd5c19334524072ef8fba585, 20010000)"
+NTC 2024-12-11 05:16:54.414+00:00 Importing era archive                      blockNumber=20010001 dataDir=/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 eraDir=/data/era
+NTC 2024-12-11 05:16:56.014+00:00 Resuming import from                       importedSlot=9214836
+WRN 2024-12-11 05:17:01.190+00:00 LedgerRef getCode()                        codeHash=0xdfcbac6f376de67ac09e2e0a0315e39042b4feff4c5d740ffdb7960fb1746e8a error="KvtNotFound(Kvt, ctx=get, error=GetNotFound)"
+ERR 2024-12-11 05:17:01.945+00:00 Failed to persist blocks                   error="Error processing tx with index 19:invalid tx: account nonce mismatch. txNonce=143, accNonce=141"
+2024-12-11 05:17:03 - >>> starting moveBenchmarkingFileToRepo() inside publish-metrics-github.sh
+2024-12-11 05:17:03 - >>> creating directory /home/data/nimbus-eth1-benchmarks/short-benchmark/20241211T051703_a38f8f6f
+2024-12-11 05:17:03 - >>> copying debug-csv generated by nimbus to benchmarks repo
+2024-12-11 05:17:03 - cp /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241211T051703_a38f8f6f/blocks-import-benchmark.csv
+2024-12-11 05:17:03 - >>> completed moveBenchmarkingFileToRepo()
+2024-12-11 05:18:03 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
+2024-12-11 05:18:03 - >>> Fetching latest changes...
+HEAD is now at a38f8f6f evmstate tool: disable chronicles output (#2924)
+2024-12-11 05:18:04 - >>> completed cloneOrFetchRepo()
+2024-12-11 05:18:04 - >>> starting buildBinaries()
+2024-12-11 05:18:04 - >>> Binaries already exist for commit a38f8f6f, no need to build a new nimbus binary!
+2024-12-11 05:18:04 - >>> starting cleanBenchmarkDir() inside database-generation-and-cleanup.sh
+Removing blocks-import-benchmark.csv
+Removing short-benchmark/20241211T051703_a38f8f6f/
+/
+2024-12-11 05:18:04 - >>> completed cleanBenchmarkDir()
+2024-12-11 05:18:04 - >>> starting regenerateNimbusDatabaseFromTemplate()
+2024-12-11 05:18:04 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/nimbus/aristo/*
+2024-12-11 05:18:04 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/nimbus/aristo with permissions
+2024-12-11 05:18:04 - >>> Copying template db into nimbus data directory
+2024-12-11 05:21:04 - >>> Template db copied
+2024-12-11 05:21:04 - >>> completed regenerateNimbusDatabaseFromTemplate()
+2024-12-11 05:21:04 - >>> starting cloneOrFetchRepo() inside fetch-benchmarks.sh
+2024-12-11 05:21:04 - >>> creating directory /home/data/nimbus-eth1-benchmarks
+2024-12-11 05:21:04 - >>> Fetching latest benchmarks from github
+HEAD is now at 83127f0 debug: publish metrics and report for 5000 blocks
+2024-12-11 05:21:05 - >>> completed cloneOrFetchRepo()
+INF 2024-12-11 05:21:05.577+00:00 Launching execution client                 version=v0.1.0-a38f8f6f conf="(dataDir: /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/keystore, chainDbMode: Aristo, importKey: , verifyFrom: none(uint64), evm: \"\", trustedSetupFile: none(string), extraData: \"nimbus-eth1/v0.1.0-a38f8f6f\", network: \"mainnet\", customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: INFO, logFile: none(OutFile), logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: @[], bootstrapFile: , bootstrapEnrs: @[], staticPeers: @[], staticPeersFile: , staticPeersEnrs: @[], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: V4, netKey: \"random\", agentString: \"nimbus-eth1/v0.1.0-a38f8f6f/linux-amd64/Nim-2.0.12/nimvm\", beaconChunkSize: 0, rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2684354560, rdbKeyCacheSize: 268435456, rdbVtxCacheSize: 805306368, rdbPrintStats: false, cmd: import, maxBlocks: 5000, chunkSize: 8192, csvStats: some(\"/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv\"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
+INF 2024-12-11 05:21:08.093+00:00 Database initialized                       base="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" finalized="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" head="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)"
+NTC 2024-12-11 05:21:08.093+00:00 Importing era archive                      blockNumber=20000001 dataDir=/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 eraDir=/data/era
+NTC 2024-12-11 05:21:09.665+00:00 Resuming import from                       importedSlot=9204783
+INF 2024-12-11 05:25:14.852+00:00 Imported blocks                            blockNumber=20005001 blocks=5000 importedSlot=9209812 txs=736412 mgas=75927.329 bps=20.766 tps=3058.440 mgps=315.339 avgBps=20.274 avgTps=2986.008 avgMGps=307.871 elapsed=4m6s620ms
+2024-12-11 05:25:15 - >>> starting moveBenchmarkingFileToRepo() inside publish-metrics-github.sh
+2024-12-11 05:25:15 - >>> creating directory /home/data/nimbus-eth1-benchmarks/short-benchmark/20241211T052515_a38f8f6f
+2024-12-11 05:25:15 - >>> copying debug-csv generated by nimbus to benchmarks repo
+2024-12-11 05:25:15 - cp /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241211T052515_a38f8f6f/blocks-import-benchmark.csv
+2024-12-11 05:25:15 - >>> completed moveBenchmarkingFileToRepo()
