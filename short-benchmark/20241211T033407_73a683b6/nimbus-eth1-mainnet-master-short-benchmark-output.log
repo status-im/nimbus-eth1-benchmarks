@@ -1,0 +1,32 @@
+2024-12-11 03:26:12 - >>> completed moveBenchmarkingFileToRepo()
+2024-12-11 03:27:12 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
+2024-12-11 03:27:12 - >>> Fetching latest changes...
+From https://github.com/status-im/nimbus-eth1
+   0993c65c..1b308e7e  evmstate   -> origin/evmstate
+HEAD is now at 73a683b6 Faster local testing with `Dockerfile.debug` (#2869)
+2024-12-11 03:27:13 -  >>> completed cloneOrFetchRepo()
+2024-12-11 03:27:13 - >>> starting buildBinaries()
+2024-12-11 03:27:13 - >>> Binaries already exist, no need to build!
+2024-12-11 03:27:13 - >>> starting cleanBenchmarkDir() inside database-generation-and-cleanup.sh
+Removing blocks-import-benchmark.csv
+Removing short-benchmark/20241211T032612_73a683b6/
+/
+2024-12-11 03:27:13 - >>> completed cleanBenchmarkDir()
+2024-12-11 03:27:13 - >>> starting regenerateNimbusDatabaseFromTemplate()
+2024-12-11 03:27:13 - >>> Cleaning up existing database files if any
+2024-12-11 03:27:13 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/nimbus/aristo with permissions
+2024-12-11 03:27:13 - >>> Copying template db, This might take a while ...
+2024-12-11 03:29:56 - >>> Template db copied
+2024-12-11 03:29:56 -  >>> completed regenerateNimbusDatabaseFromTemplate()
+2024-12-11 03:29:56 -  >>> starting cloneOrFetchRepo() inside fetch-benchmarks.sh
+2024-12-11 03:29:56 - >>> Fetching latest changes...
+HEAD is now at ab4d261 debug: publish metrics and report for 5000 blocks
+2024-12-11 03:29:58 - >>> completed cloneOrFetchRepo()
+INF 2024-12-11 03:29:58.278+00:00 Launching execution client                 version=v0.1.0-73a683b6 conf="(dataDir: /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/keystore, chainDbMode: Aristo, importKey: , verifyFrom: none(uint64), evm: \"\", trustedSetupFile: none(string), extraData: \"nimbus-eth1/v0.1.0-73a683b6\", network: \"mainnet\", customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: INFO, logFile: none(OutFile), logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: @[], bootstrapFile: , bootstrapEnrs: @[], staticPeers: @[], staticPeersFile: , staticPeersEnrs: @[], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: V4, netKey: \"random\", agentString: \"nimbus-eth1/v0.1.0-73a683b6/linux-amd64/Nim-2.0.12/nimvm\", beaconChunkSize: 0, rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2684354560, rdbKeyCacheSize: 268435456, rdbVtxCacheSize: 805306368, rdbPrintStats: false, cmd: import, maxBlocks: 5000, chunkSize: 8192, csvStats: some(\"/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv\"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
+INF 2024-12-11 03:30:00.778+00:00 Database initialized                       base="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" finalized="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" head="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)"
+NTC 2024-12-11 03:30:00.778+00:00 Importing era archive                      blockNumber=20000001 dataDir=/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 eraDir=/data/era
+NTC 2024-12-11 03:30:02.386+00:00 Resuming import from                       importedSlot=9204783
+INF 2024-12-11 03:34:06.325+00:00 Imported blocks                            blockNumber=20005001 blocks=5000 importedSlot=9209812 txs=736412 mgas=75927.329 bps=20.871 tps=3073.968 mgps=316.940 avgBps=20.374 avgTps=3000.743 avgMGps=309.390 elapsed=4m5s409ms
+2024-12-11 03:34:07 -  >>> starting moveBenchmarkingFileToRepo() inside publish-metrics-github.sh
+2024-12-11 03:34:07 - >>> copying benchmarking file to repo
+2024-12-11 03:34:07 - >>> copying service output log file to repo
