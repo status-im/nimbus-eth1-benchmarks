@@ -1,0 +1,58 @@
+=== System Information Report ===
+>>> Generated on: Fri Dec 13 11:32:13 AM UTC 2024
+==========================
+>>> CPU Architecture: x86_64
+>>> CPU Byte Order: Little Endian
+>>> CPU Cores: 16
+>>> CPU Model: AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
+>>> CPU Cache Information:
+L1d Cache: 256 KiB (8 instances)
+L1i Cache: 256 KiB (8 instances)
+L2 Cache: 8 MiB (8 instances)
+L3 Cache: 16 MiB (1 instance)
+>>> RAM Size: 61Gi
+>>> Hard Disk Information:
+/dev/md2 : 437G total, 201G free
+/dev/md1 : 989M total, 693M free
+/dev/nvme2n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 740G free
+==========================
+=== Nimbus-ETH1 Benchmarking Report ===
+>>> Total time spent in benchmarking (nanoseconds): 255391891716
+>>> Total time spent in benchmarking (human readable format): 4 minutes 15 seconds
+>>> Start block number is 20000001
+>>> End block number is 20005001
+>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --max-blocks=5000 \
+    --log-level=INFO \
+    --data-dir='/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+==========================
+2024-12-13 11:32:13 - === Comparison of last two benchmarks ===
+2024-12-13 11:32:13 - python /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/short-benchmark/20241213T113213_650fec5a/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241213T111706_650fec5a/blocks-import-benchmark.csv 2>&1 || true
+Traceback (most recent call last):
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py", line 93, in <module>
+    df = df.interpolate(method="index").reindex(contender.index)
+  File "/usr/lib/python3/dist-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/lib/python3/dist-packages/pandas/core/frame.py", line 10712, in interpolate
+    return super().interpolate(
+  File "/usr/lib/python3/dist-packages/pandas/core/generic.py", line 6899, in interpolate
+    new_data = obj._mgr.interpolate(
+  File "/usr/lib/python3/dist-packages/pandas/core/internals/managers.py", line 377, in interpolate
+    return self.apply("interpolate", **kwargs)
+  File "/usr/lib/python3/dist-packages/pandas/core/internals/managers.py", line 327, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/usr/lib/python3/dist-packages/pandas/core/internals/blocks.py", line 1369, in interpolate
+    new_values = values.fillna(value=fill_value, method=method, limit=limit)
+  File "/usr/lib/python3/dist-packages/pandas/core/arrays/masked.py", line 152, in fillna
+    value, method = validate_fillna_kwargs(value, method)
+  File "/usr/lib/python3/dist-packages/pandas/util/_validators.py", line 372, in validate_fillna_kwargs
+    method = clean_fill_method(method)
+  File "/usr/lib/python3/dist-packages/pandas/core/missing.py", line 120, in clean_fill_method
+    raise ValueError(f"Invalid fill method. Expecting {expecting}. Got {method}")
+ValueError: Invalid fill method. Expecting pad (ffill) or backfill (bfill). Got index
+2024-12-13 11:32:14 - ==========================
