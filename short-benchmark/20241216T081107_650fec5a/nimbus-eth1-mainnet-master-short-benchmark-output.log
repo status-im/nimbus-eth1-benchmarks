@@ -1,0 +1,136 @@
+2024-12-16 02:41:18 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
+Removing blocks-import-benchmark.csv
+/
+2024-12-16 02:41:18 - >>> completed cleanBenchmarkDir()
+2024-12-16 02:41:18 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
+2024-12-16 02:41:18 - >>> cleaning repo
+2024-12-16 02:41:18 - git clean -fdx > /dev/null 2>&1
+2024-12-16 02:41:18 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
+2024-12-16 02:41:26 - >>> Fetching latest changes...
+HEAD is now at 650fec5a Wire ForkedChainRef to graphql and rpc_utils (#2936)
+2024-12-16 02:41:27 - >>> completed cloneOrFetchRepo()
+2024-12-16 02:41:27 - >>> starting buildBinaries()
+2024-12-16 02:41:27 - >>> Building binaries...
+2024-12-16 02:41:27 - >>> make -j16 update
+[92mBuilding:[39m Nim compiler
+2024-12-16 02:43:08 - >>> make -j16 nimbus_execution_client LOG_LEVEL=DEBUG NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
+[92mBuilding:[39m install/usr/lib/libbacktrace.a
+make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
+$DEBUG_LEVEL is 0, $LIB_MODE is static
+make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
+Cleaning up RocksDb build artifacts.
+/bin/sh: 1: javac: not found
+Building RocksDb static libraries.
+[92mBuilding:[39m install/usr/lib/libbacktracenim.a
+    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
+
+                                                                 D lDolaoda d  U pUlpoad l o aTdo t a l T o tSaple n t  S p e nLte f t    LSepfeetd 
+ S p e0e d 
+     00        0  0        00        0  0        00           00            00   - - : - -0: ---- :----::----: ---- :----::----: ---- : - - : -0-     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  345k  100  345k    0     0   581k      0 --:--:-- --:--:-- --:--:-- 2289k
+100 2330k    0 2330k    0     0  2875k      0 --:--:-- --:--:-- --:--:-- 6402k
+/usr/bin/ar: creating unity.a
+[92mBuilding:[39m build/nimbus_execution_client
+/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
+/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
+/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
+/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(325, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
+2024-12-16 02:48:08 - >>> renaming binaries to match commit they were built from
+2024-12-16 02:48:08 - mv build/nimbus_execution_client build/nimbus_execution_client_650fec5a
+2024-12-16 02:48:08 - creating a symbolic link to the latest version
+2024-12-16 02:48:08 - ln -frs build/nimbus_execution_client_650fec5a build/nimbus_execution_client
+2024-12-16 02:48:08 - deleting copies that are older than N days
+2024-12-16 02:48:08 - find build -mtime +3 -exec rm '{}' \+
+2024-12-16 02:48:08 - >>> buildBinaries() complete
+2024-12-16 02:48:08 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 650fec5a
+2024-12-16 02:48:08 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type d -name *650fec5a* 2>/dev/null | wc -l
+2024-12-16 02:48:08 - BENCHMARK_EXISTS=19
+2024-12-16 02:48:08 - >>> starting copyTemplateDatabase()
+2024-12-16 02:48:08 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
+2024-12-16 02:48:08 - >>> Copying template db into nimbus data directory
+2024-12-16 02:48:08 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
+2024-12-16 02:49:48 - >>> Template db copied
+2024-12-16 02:49:48 - chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
+2024-12-16 02:49:48 - >>> completed copyTemplateDatabase()
+2024-12-16 02:49:48 - >>> starting cloneOrFetchRepo() inside fetch-benchmarks.sh
+2024-12-16 02:49:48 - >>> creating directory /home/data/nimbus-eth1-benchmarks
+2024-12-16 02:49:48 - >>> Fetching latest benchmarks from github
+HEAD is now at a70aa58 benchmark: publish metrics and report
+2024-12-16 02:49:50 - >>> completed cloneOrFetchRepo()
+INF 2024-12-16 02:49:50.883+00:00 Launching execution client                 version=v0.1.0-650fec5a conf="(dataDir: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/keystore, chainDbMode: Aristo, importKey: , evm: \"\", trustedSetupFile: none(string), extraData: \"nimbus-eth1/v0.1.0-650fec5a\", gasLimit: 30000000, network: \"mainnet\", customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: INFO, logFile: none(OutFile), logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: @[], bootstrapFile: , bootstrapEnrs: @[], staticPeers: @[], staticPeersFile: , staticPeersEnrs: @[], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: V4, netKey: \"random\", agentString: \"nimbus-eth1/v0.1.0-650fec5a/linux-amd64/Nim-2.0.12/nimvm\", numThreads: 0, beaconChunkSize: 0, rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2684354560, rdbVtxCacheSize: 536870912, rdbKeyCacheSize: 268435456, rdbBranchCacheSize: 1073741824, rdbPrintStats: false, cmd: import, maxBlocks: 1000000, chunkSize: 8192, csvStats: some(\"/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv\"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
+INF 2024-12-16 02:49:53.315+00:00 Threadpool started                         numThreads=16
+INF 2024-12-16 02:49:53.399+00:00 Database initialized                       base="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" finalized="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" head="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)"
+NTC 2024-12-16 02:49:53.399+00:00 Importing era archive                      blockNumber=20000001 dataDir=/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0 eraDir=/data/era
+NTC 2024-12-16 02:49:55.031+00:00 Resuming import from                       importedSlot=9204783
+INF 2024-12-16 02:56:36.503+00:00 Imported blocks                            blockNumber=20008193 blocks=8192 importedSlot=9213020 txs=1226966 mgas=124237.538 bps=20.785 tps=3113.109 mgps=315.221 avgBps=20.342 avgTps=3046.750 avgMGps=308.501 elapsed=6m42s713ms
+INF 2024-12-16 03:02:56.540+00:00 Imported blocks                            blockNumber=20016385 blocks=16384 importedSlot=9221256 txs=2540380 mgas=248071.121 bps=21.991 tps=3525.732 mgps=332.419 avgBps=20.932 avgTps=3245.569 avgMGps=316.934 elapsed=13m2s722ms
+INF 2024-12-16 03:09:20.185+00:00 Imported blocks                            blockNumber=20024577 blocks=24576 importedSlot=9229485 txs=3869398 mgas=372018.870 bps=21.795 tps=3535.811 mgps=329.759 avgBps=21.071 avgTps=3317.478 avgMGps=318.955 elapsed=19m26s367ms
+INF 2024-12-16 03:14:58.046+00:00 Imported blocks                            blockNumber=20032769 blocks=32768 importedSlot=9237722 txs=5222766 mgas=495797.661 bps=24.822 tps=4100.813 mgps=375.060 avgBps=21.783 avgTps=3471.952 avgMGps=329.593 elapsed=25m4s273ms
+INF 2024-12-16 03:20:35.860+00:00 Imported blocks                            blockNumber=20040961 blocks=40960 importedSlot=9245957 txs=6566802 mgas=619586.154 bps=24.825 tps=4072.881 mgps=375.121 avgBps=22.236 avgTps=3564.919 avgMGps=336.355 elapsed=30m42s61ms
+INF 2024-12-16 03:26:30.330+00:00 Imported blocks                            blockNumber=20049153 blocks=49152 importedSlot=9254196 txs=7904746 mgas=743522.989 bps=23.643 tps=3861.452 mgps=357.695 avgBps=22.378 avgTps=3598.861 avgMGps=338.510 elapsed=36m36s457ms
+INF 2024-12-16 03:32:26.495+00:00 Imported blocks                            blockNumber=20057345 blocks=57344 importedSlot=9262435 txs=9212009 mgas=867360.393 bps=23.523 tps=3753.808 mgps=355.599 avgBps=22.465 avgTps=3608.879 avgMGps=339.795 elapsed=42m32s595ms
+INF 2024-12-16 03:37:55.817+00:00 Imported blocks                            blockNumber=20065537 blocks=65536 importedSlot=9270674 txs=10559018 mgas=991371.020 bps=25.500 tps=4192.909 mgps=386.015 avgBps=22.740 avgTps=3663.781 avgMGps=343.987 elapsed=48m2s165us
+INF 2024-12-16 03:43:17.015+00:00 Imported blocks                            blockNumber=20073729 blocks=73728 importedSlot=9278910 txs=11898676 mgas=1115111.252 bps=26.164 tps=4278.671 mgps=395.208 avgBps=23.017 avgTps=3714.594 avgMGps=348.122 elapsed=53m23s223ms
+INF 2024-12-16 03:48:23.353+00:00 Imported blocks                            blockNumber=20081921 blocks=81920 importedSlot=9287152 txs=13323263 mgas=1239150.991 bps=27.485 tps=4779.680 mgps=416.170 avgBps=23.342 avgTps=3796.302 avgMGps=353.081 elapsed=58m29s537ms
+INF 2024-12-16 03:53:32.687+00:00 Imported blocks                            blockNumber=20090113 blocks=90112 importedSlot=9295408 txs=14697082 mgas=1363113.760 bps=27.232 tps=4566.916 mgps=412.083 avgBps=23.597 avgTps=3848.603 avgMGps=356.947 elapsed=1h3m38s
+INF 2024-12-16 03:58:53.461+00:00 Imported blocks                            blockNumber=20098305 blocks=98304 importedSlot=9303658 txs=16025683 mgas=1487146.987 bps=26.201 tps=4249.299 mgps=396.699 avgBps=23.747 avgTps=3871.348 avgMGps=359.252 elapsed=1h8m59s
+INF 2024-12-16 04:04:30.371+00:00 Imported blocks                            blockNumber=20106497 blocks=106496 importedSlot=9311895 txs=17337157 mgas=1611066.441 bps=24.922 tps=3989.809 mgps=376.992 avgBps=23.790 avgTps=3872.978 avgMGps=359.899 elapsed=1h14m36s
+INF 2024-12-16 04:09:52.309+00:00 Imported blocks                            blockNumber=20114689 blocks=114688 importedSlot=9320146 txs=18632097 mgas=1735123.234 bps=26.106 tps=4126.598 mgps=395.333 avgBps=23.901 avgTps=3882.953 avgMGps=361.602 elapsed=1h19m58s
+INF 2024-12-16 04:14:55.747+00:00 Imported blocks                            blockNumber=20122881 blocks=122880 importedSlot=9328409 txs=19937418 mgas=1859249.574 bps=27.747 tps=4421.258 mgps=420.429 avgBps=24.085 avgTps=3907.822 avgMGps=364.421 elapsed=1h25m1s
+INF 2024-12-16 04:19:58.158+00:00 Imported blocks                            blockNumber=20131073 blocks=131072 importedSlot=9336660 txs=21214129 mgas=1983500.452 bps=27.837 tps=4338.388 mgps=422.217 avgBps=24.253 avgTps=3925.392 avgMGps=367.020 elapsed=1h30m4s
+INF 2024-12-16 04:24:58.452+00:00 Imported blocks                            blockNumber=20139265 blocks=139264 importedSlot=9344906 txs=22579079 mgas=2107571.538 bps=28.082 tps=4678.992 mgps=425.311 avgBps=24.413 avgTps=3958.071 avgMGps=369.453 elapsed=1h35m4s
+INF 2024-12-16 04:30:45.850+00:00 Imported blocks                            blockNumber=20147457 blocks=147456 importedSlot=9353153 txs=24133322 mgas=2231686.476 bps=24.189 tps=4589.286 mgps=366.480 avgBps=24.365 avgTps=3987.756 avgMGps=368.761 elapsed=1h40m51s
+INF 2024-12-16 04:36:25.955+00:00 Imported blocks                            blockNumber=20155649 blocks=155648 importedSlot=9361407 txs=25424015 mgas=2356018.363 bps=24.666 tps=3886.308 mgps=374.366 avgBps=24.350 avgTps=3977.480 avgMGps=368.589 elapsed=1h46m31s
+INF 2024-12-16 04:41:47.273+00:00 Imported blocks                            blockNumber=20163841 blocks=163840 importedSlot=9369652 txs=26749549 mgas=2480207.387 bps=26.169 tps=4234.283 mgps=396.709 avgBps=24.405 avgTps=3984.522 avgMGps=369.443 elapsed=1h51m53s
+INF 2024-12-16 04:47:02.683+00:00 Imported blocks                            blockNumber=20172033 blocks=172032 importedSlot=9377892 txs=28105316 mgas=2604026.756 bps=26.671 tps=4414.104 mgps=403.131 avgBps=24.475 avgTps=3998.596 avgMGps=370.480 elapsed=1h57m8s
+INF 2024-12-16 04:52:20.489+00:00 Imported blocks                            blockNumber=20180225 blocks=180224 importedSlot=9386128 txs=29524405 mgas=2728170.144 bps=26.480 tps=4587.045 mgps=401.280 avgBps=24.532 avgTps=4018.798 avgMGps=371.353 elapsed=2h2m26s
+INF 2024-12-16 04:57:21.408+00:00 Imported blocks                            blockNumber=20188417 blocks=188416 importedSlot=9394365 txs=30849021 mgas=2852023.183 bps=27.988 tps=4525.504 mgps=423.140 avgBps=24.637 avgTps=4033.835 avgMGps=372.932 elapsed=2h7m27s
+INF 2024-12-16 05:02:49.222+00:00 Imported blocks                            blockNumber=20196609 blocks=196608 importedSlot=9402602 txs=32174755 mgas=2976155.585 bps=25.634 tps=4148.371 mgps=388.424 avgBps=24.652 avgTps=4034.301 avgMGps=373.172 elapsed=2h12m55s
+INF 2024-12-16 05:08:23.699+00:00 Imported blocks                            blockNumber=20204801 blocks=204800 importedSlot=9410840 txs=33475942 mgas=3100410.813 bps=25.096 tps=3986.210 mgps=380.658 avgBps=24.646 avgTps=4028.526 avgMGps=373.106 elapsed=2h18m29s
+INF 2024-12-16 05:13:39.414+00:00 Imported blocks                            blockNumber=20212993 blocks=212992 importedSlot=9419071 txs=34798508 mgas=3224370.277 bps=26.630 tps=4299.298 mgps=402.958 avgBps=24.693 avgTps=4034.367 avgMGps=373.818 elapsed=2h23m45s
+INF 2024-12-16 05:18:59.260+00:00 Imported blocks                            blockNumber=20221185 blocks=221184 importedSlot=9427313 txs=36114045 mgas=3348169.849 bps=26.282 tps=4220.576 mgps=397.180 avgBps=24.726 avgTps=4037.180 avgMGps=374.291 elapsed=2h29m5s
+INF 2024-12-16 05:23:45.766+00:00 Imported blocks                            blockNumber=20229377 blocks=229376 importedSlot=9435549 txs=37421794 mgas=3472031.135 bps=29.417 tps=4696.116 mgps=444.785 avgBps=24.846 avgTps=4053.510 avgMGps=376.089 elapsed=2h33m51s
+INF 2024-12-16 05:28:31.697+00:00 Imported blocks                            blockNumber=20237569 blocks=237568 importedSlot=9443788 txs=38842064 mgas=3596351.688 bps=29.548 tps=5122.845 mgps=448.418 avgBps=24.960 avgTps=4080.988 avgMGps=377.855 elapsed=2h38m37s
+INF 2024-12-16 05:33:41.711+00:00 Imported blocks                            blockNumber=20245761 blocks=245760 importedSlot=9452021 txs=40225739 mgas=3720100.604 bps=27.179 tps=4590.685 mgps=410.568 avgBps=25.007 avgTps=4093.084 avgMGps=378.531 elapsed=2h43m47s
+INF 2024-12-16 05:39:21.341+00:00 Imported blocks                            blockNumber=20253953 blocks=253952 importedSlot=9460253 txs=41454921 mgas=3844385.197 bps=24.693 tps=3705.043 mgps=374.623 avgBps=24.977 avgTps=4077.246 avgMGps=378.110 elapsed=2h49m27s
+INF 2024-12-16 05:44:43.607+00:00 Imported blocks                            blockNumber=20262145 blocks=262144 importedSlot=9468495 txs=42726051 mgas=3968623.867 bps=26.079 tps=4046.646 mgps=395.514 avgBps=24.991 avgTps=4073.150 avgMGps=378.336 elapsed=2h54m49s
+INF 2024-12-16 05:50:01.717+00:00 Imported blocks                            blockNumber=20270337 blocks=270336 importedSlot=9476748 txs=44050436 mgas=4092682.380 bps=26.450 tps=4276.078 mgps=400.551 avgBps=25.013 avgTps=4075.786 avgMGps=378.677 elapsed=3h7s837ms
+INF 2024-12-16 05:54:52.127+00:00 Imported blocks                            blockNumber=20278529 blocks=278528 importedSlot=9484981 txs=45382368 mgas=4216487.794 bps=29.026 tps=4719.320 mgps=438.669 avgBps=25.097 avgTps=4089.146 avgMGps=379.924 elapsed=3h4m58s
+INF 2024-12-16 05:59:54.385+00:00 Imported blocks                            blockNumber=20286721 blocks=286720 importedSlot=9493213 txs=46733429 mgas=4340363.416 bps=27.857 tps=4594.300 mgps=421.241 avgBps=25.150 avgTps=4099.246 avgMGps=380.717 elapsed=3h10m493ms
+INF 2024-12-16 06:05:14.823+00:00 Imported blocks                            blockNumber=20294913 blocks=294912 importedSlot=9501453 txs=48075887 mgas=4464376.490 bps=26.230 tps=4298.393 mgps=397.075 avgBps=25.161 avgTps=4101.719 avgMGps=380.890 elapsed=3h15m20s
+INF 2024-12-16 06:10:40.917+00:00 Imported blocks                            blockNumber=20303105 blocks=303104 importedSlot=9509696 txs=49379538 mgas=4588534.802 bps=25.749 tps=4097.556 mgps=390.247 avgBps=25.160 avgTps=4098.911 avgMGps=380.886 elapsed=3h20m46s
+INF 2024-12-16 06:16:12.139+00:00 Imported blocks                            blockNumber=20311297 blocks=311296 importedSlot=9517922 txs=50637672 mgas=4712596.250 bps=25.369 tps=3896.164 mgps=384.191 avgBps=25.149 avgTps=4090.859 avgMGps=380.716 elapsed=3h26m18s
+INF 2024-12-16 06:21:13.125+00:00 Imported blocks                            blockNumber=20319489 blocks=319488 importedSlot=9526159 txs=51981692 mgas=4836521.607 bps=28.003 tps=4594.265 mgps=423.614 avgBps=25.198 avgTps=4099.745 avgMGps=381.452 elapsed=3h31m19s
+INF 2024-12-16 06:25:35.953+00:00 Imported blocks                            blockNumber=20327681 blocks=327680 importedSlot=9534381 txs=53356123 mgas=4960245.131 bps=32.177 tps=5398.596 mgps=485.971 avgBps=25.319 avgTps=4122.655 avgMGps=383.262 elapsed=3h35m42s
+INF 2024-12-16 06:30:00.736+00:00 Imported blocks                            blockNumber=20335873 blocks=335872 importedSlot=9542617 txs=54719105 mgas=5084025.242 bps=31.924 tps=5311.477 mgps=482.365 avgBps=25.432 avgTps=4143.213 avgMGps=384.951 elapsed=3h40m6s
+INF 2024-12-16 06:34:43.606+00:00 Imported blocks                            blockNumber=20344065 blocks=344064 importedSlot=9550841 txs=56021853 mgas=5207843.969 bps=29.822 tps=4742.465 mgps=450.744 avgBps=25.506 avgTps=4152.926 avgMGps=386.060 elapsed=3h44m49s
+INF 2024-12-16 06:40:05.484+00:00 Imported blocks                            blockNumber=20352257 blocks=352256 importedSlot=9559072 txs=57290408 mgas=5332016.200 bps=26.089 tps=4039.936 mgps=395.448 avgBps=25.504 avgTps=4148.003 avgMGps=386.054 elapsed=3h50m11s
+INF 2024-12-16 06:45:01.199+00:00 Imported blocks                            blockNumber=20360449 blocks=360448 importedSlot=9567308 txs=58543463 mgas=5456201.466 bps=28.461 tps=4353.462 mgps=431.454 avgBps=25.550 avgTps=4149.869 avgMGps=386.764 elapsed=3h55m7s
+INF 2024-12-16 06:49:45.421+00:00 Imported blocks                            blockNumber=20368641 blocks=368640 importedSlot=9575548 txs=59874056 mgas=5580204.675 bps=29.689 tps=4822.342 mgps=449.413 avgBps=25.615 avgTps=4160.364 avgMGps=387.742 elapsed=3h59m51s
+INF 2024-12-16 06:54:43.504+00:00 Imported blocks                            blockNumber=20376833 blocks=376832 importedSlot=9583774 txs=61167066 mgas=5704396.209 bps=28.276 tps=4463.053 mgps=428.669 avgBps=25.653 avgTps=4163.970 avgMGps=388.329 elapsed=4h4m49s
+INF 2024-12-16 06:59:33.738+00:00 Imported blocks                            blockNumber=20385025 blocks=385024 importedSlot=9592009 txs=62480333 mgas=5828235.331 bps=29.068 tps=4659.881 mgps=439.420 avgBps=25.703 avgTps=4170.958 avgMGps=389.072 elapsed=4h9m39s
+INF 2024-12-16 07:04:22.109+00:00 Imported blocks                            blockNumber=20393217 blocks=393216 importedSlot=9600248 txs=63800597 mgas=5952136.643 bps=29.242 tps=4712.866 mgps=442.283 avgBps=25.754 avgTps=4178.654 avgMGps=389.838 elapsed=4h14m28s
+INF 2024-12-16 07:09:01.712+00:00 Imported blocks                            blockNumber=20401409 blocks=401408 importedSlot=9608486 txs=65021243 mgas=6076384.996 bps=30.138 tps=4490.653 mgps=457.099 avgBps=25.818 avgTps=4182.017 avgMGps=390.819 elapsed=4h19m7s
+INF 2024-12-16 07:13:48.806+00:00 Imported blocks                            blockNumber=20409601 blocks=409600 importedSlot=9616707 txs=66199016 mgas=6200666.673 bps=29.322 tps=4215.596 mgps=444.841 avgBps=25.867 avgTps=4180.580 avgMGps=391.583 elapsed=4h23m54s
+INF 2024-12-16 07:18:36.925+00:00 Imported blocks                            blockNumber=20417793 blocks=417792 importedSlot=9624941 txs=67453930 mgas=6324823.875 bps=29.244 tps=4479.810 mgps=443.218 avgBps=25.913 avgTps=4183.701 avgMGps=392.285 elapsed=4h28m43s
+INF 2024-12-16 07:22:54.428+00:00 Imported blocks                            blockNumber=20425985 blocks=425984 importedSlot=9633187 txs=68814904 mgas=6448778.385 bps=32.879 tps=5462.301 mgps=497.494 avgBps=26.005 avgTps=4200.999 avgMGps=393.684 elapsed=4h33m606ms
+INF 2024-12-16 07:27:09.959+00:00 Imported blocks                            blockNumber=20434177 blocks=434176 importedSlot=9641422 txs=70124508 mgas=6572711.201 bps=33.124 tps=5295.344 mgps=501.119 avgBps=26.098 avgTps=4215.182 avgMGps=395.086 elapsed=4h37m16s
+INF 2024-12-16 07:31:35.759+00:00 Imported blocks                            blockNumber=20442369 blocks=442368 importedSlot=9649657 txs=71403576 mgas=6696451.284 bps=31.790 tps=4963.637 mgps=480.194 avgBps=26.173 avgTps=4224.573 avgMGps=396.194 elapsed=4h41m41s
+INF 2024-12-16 07:36:25.257+00:00 Imported blocks                            blockNumber=20450561 blocks=450560 importedSlot=9657896 txs=72659905 mgas=6820521.159 bps=29.136 tps=4468.361 mgps=441.277 avgBps=26.209 avgTps=4226.535 avgMGps=396.741 elapsed=4h46m31s
+INF 2024-12-16 07:41:35.983+00:00 Imported blocks                            blockNumber=20458753 blocks=458752 importedSlot=9666114 txs=73838533 mgas=6945116.532 bps=27.038 tps=3890.105 mgps=411.232 avgBps=26.211 avgTps=4218.852 avgMGps=396.817 elapsed=4h51m42s
+INF 2024-12-16 07:46:26.874+00:00 Imported blocks                            blockNumber=20466945 blocks=466944 importedSlot=9674343 txs=75124748 mgas=7068943.504 bps=28.996 tps=4552.695 mgps=438.299 avgBps=26.243 avgTps=4222.131 avgMGps=397.286 elapsed=4h56m33s
+INF 2024-12-16 07:51:18.836+00:00 Imported blocks                            blockNumber=20475137 blocks=475136 importedSlot=9682575 txs=76420106 mgas=7192870.642 bps=28.887 tps=4567.675 mgps=436.990 avgBps=26.272 avgTps=4225.606 avgMGps=397.726 elapsed=5h1m25s
+INF 2024-12-16 07:55:56.179+00:00 Imported blocks                            blockNumber=20483329 blocks=483328 importedSlot=9690800 txs=77675422 mgas=7316939.742 bps=30.430 tps=4663.035 mgps=460.871 avgBps=26.322 avgTps=4230.145 avgMGps=398.475 elapsed=5h6m2s
+INF 2024-12-16 08:00:27.958+00:00 Imported blocks                            blockNumber=20491521 blocks=491520 importedSlot=9699019 txs=78951232 mgas=7440784.734 bps=31.074 tps=4839.442 mgps=469.773 avgBps=26.377 avgTps=4236.909 avgMGps=399.309 elapsed=5h10m34s
+INF 2024-12-16 08:05:14.033+00:00 Imported blocks                            blockNumber=20499713 blocks=499712 importedSlot=9707248 txs=80189642 mgas=7564669.568 bps=29.458 tps=4453.290 mgps=445.487 avgBps=26.412 avgTps=4238.325 avgMGps=399.821 elapsed=5h15m20s
+INF 2024-12-16 08:10:10.023+00:00 Imported blocks                            blockNumber=20507905 blocks=507904 importedSlot=9715488 txs=81317763 mgas=7689208.727 bps=28.412 tps=3912.629 mgps=431.936 avgBps=26.431 avgTps=4231.751 avgMGps=400.144 elapsed=5h20m16s
+2024-12-16 08:11:07 - >>> starting moveBenchmarkingFileToRepo() inside publish-metrics-github.sh
+2024-12-16 08:11:07 - >>> creating directory /home/data/nimbus-eth1-benchmarks/short-benchmark/20241216T081107_650fec5a
+2024-12-16 08:11:07 - >>> copying debug-csv generated by nimbus to benchmarks repo
+2024-12-16 08:11:07 - cp /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241216T081107_650fec5a/blocks-import-benchmark.csv
+2024-12-16 08:11:07 - >>> completed moveBenchmarkingFileToRepo()
+2024-12-16 08:11:16 - >>> copying import systemd service log file to benchmarks repo
+2024-12-16 08:11:16 - cp /home/data/nimbus-eth1-mainnet-master-short-benchmark-output.log /home/data/nimbus-eth1-benchmarks/short-benchmark/20241216T081107_650fec5a/nimbus-eth1-mainnet-master-short-benchmark-output.log
+2024-12-16 08:11:16 - >>> truncating import systemd service log file
+2024-12-16 08:11:16 - cat /dev/null > /home/data/nimbus-eth1-mainnet-master-short-benchmark-output.log
