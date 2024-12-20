@@ -1,31 +1,0 @@
-From https://github.com/status-im/nimbus-eth1
- * [new branch]        sort-computekey -> origin/sort-computekey
-86ed...4959e91b branch-cache      -> origin/branch-cache  (forced update)
- + 64aa6bd7...23f8ced4 smaller-nibbles   -> origin/smaller-nibbles  (forced update)
- * [new branch]        vertex-ref-object -> origin/vertex-ref-object
-€™: No such file or directory
-make[1]: *** [Makefile:1253: clean-rocks] Error 1
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  2 2330k    2 53821    0     0  90931      0  0:00:26 --:--:--  0:00:26 90931 23  345k   23 83207    0     0   134k      0  0:00:02 --:--:--  0:00:02  134k100  345k  100  345k    0     0   497k      0 --:--:-- --:--:-- --:--:-- 2938k
-100 2330k  100 2330k    0     0  3111k      0 --:--:-- --:--:-- --:--:-- 14.1M
-/usr/bin/ar: creating unity.a
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-find: â€˜./zstd-1.5.5â€™: No such file or directory
-make[1]: *** [Makefile:1253: clean-rocks] Error 1
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          0    0   0    0    0    0      0    0    0        0  0          0  0- - : - - : -0-  ----::----::----  ----::----::----  - - : - -0:--     0    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   563k      0 --:--:-- --:--:-- --:--:--  563k
-100 2330k  100 2330k    0     0  3262k      0 --:--:-- --:--:-- --:--:-- 3262k
-/usr/bin/ar: creating unity.a
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]

@@ -1,1622 +1,0 @@
-2024-12-13 03:27:32 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-Removing blocks-import-benchmark.csv
-/
-2024-12-13 03:27:32 - >>> completed cleanBenchmarkDir()
-2024-12-13 03:27:32 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 03:27:32 - >>> cleaning repo
-2024-12-13 03:27:32 - git clean -fdx > /dev/null 2>&1
-2024-12-13 03:27:32 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 03:27:33 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
-   e72d10c0..21ac186b  dev/pedro/uni -> origin/dev/pedro/uni
- * [new branch]        gaslimit      -> origin/gaslimit
-HEAD is now at cbc5ec93 Beacon sync logging updates (#2930)
-2024-12-13 03:27:34 - >>> completed cloneOrFetchRepo()
-2024-12-13 03:27:34 - >>> starting buildBinaries()
-2024-12-13 03:27:34 - >>> Building binaries...
-2024-12-13 03:27:34 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 03:29:15 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  1 2330k    1 39754    0     0  67766      0  0:00:35 --:--:--  0:00:35 67766 82  345k   82  286k    0     0   468k      0 --:--:-- --:--:-- --:--:--  468k100  345k  100  345k    0     0   538k      0 --:--:-- --:--:-- --:--:-- 2033k
-100 2330k  100 2330k    0     0  3012k      0 --:--:-- --:--:-- --:--:-- 12.0M
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 03:34:08 - >>> renaming binaries to match commit they were built from
-2024-12-13 03:34:08 - mv build/nimbus_execution_client build/nimbus_execution_client_cbc5ec93
-2024-12-13 03:34:08 - creating a symbolic link to the latest version
-2024-12-13 03:34:08 - ln -frs build/nimbus_execution_client_cbc5ec93 build/nimbus_execution_client
-2024-12-13 03:34:08 - deleting copies that are older than N days
-2024-12-13 03:34:08 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 03:34:08 - >>> buildBinaries() complete
-2024-12-13 03:34:08 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit cbc5ec93
-2024-12-13 03:34:08 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *cbc5ec93* 2>/dev/null | wc -l
-2024-12-13 03:34:08 - BENCHMARK_EXISTS=0
-2024-12-13 03:34:08 - >>> starting cleanUpDatabase()
-2024-12-13 03:34:08 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/*
-2024-12-13 03:34:08 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/*
-2024-12-13 03:34:08 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0 with permissions
-2024-12-13 03:34:08 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 03:34:08 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 03:34:08 - >>> completed cleanUpDatabase()
-2024-12-13 03:34:08 - >>> starting copyTemplateDatabase()
-2024-12-13 03:34:08 - >>> Copying template db into nimbus data directory
-2024-12-13 03:34:08 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/
-2024-12-13 03:37:28 - >>> Template db copied
-2024-12-13 03:37:28 - chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 03:37:28 - >>> completed copyTemplateDatabase()
-2024-12-13 03:38:28 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 03:38:28 - >>> completed cleanBenchmarkDir()
-2024-12-13 03:38:28 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 03:38:28 - >>> cleaning repo
-2024-12-13 03:38:28 - git clean -fdx > /dev/null 2>&1
-2024-12-13 03:38:28 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 03:38:29 - >>> Fetching latest changes...
-HEAD is now at cbc5ec93 Beacon sync logging updates (#2930)
-2024-12-13 03:38:30 - >>> completed cloneOrFetchRepo()
-2024-12-13 03:38:30 - >>> starting buildBinaries()
-2024-12-13 03:38:30 - >>> Building binaries...
-2024-12-13 03:38:30 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 03:40:08 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  345k  100  345k    0     0   574k      0 --:--:-- --:--:-- --:--:-- 1593k
-100 2330k  100 2330k    0     0  3025k      0 --:--:-- --:--:-- --:--:-- 5811k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 03:45:04 - >>> renaming binaries to match commit they were built from
-2024-12-13 03:45:04 - mv build/nimbus_execution_client build/nimbus_execution_client_cbc5ec93
-2024-12-13 03:45:04 - creating a symbolic link to the latest version
-2024-12-13 03:45:04 - ln -frs build/nimbus_execution_client_cbc5ec93 build/nimbus_execution_client
-2024-12-13 03:45:04 - deleting copies that are older than N days
-2024-12-13 03:45:04 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 03:45:04 - >>> buildBinaries() complete
-2024-12-13 03:45:04 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit cbc5ec93
-2024-12-13 03:45:04 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *cbc5ec93* 2>/dev/null | wc -l
-2024-12-13 03:45:04 - BENCHMARK_EXISTS=0
-2024-12-13 03:45:04 - >>> starting cleanUpDatabase()
-2024-12-13 03:45:04 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/*
-2024-12-13 03:45:04 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/*
-2024-12-13 03:45:04 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0 with permissions
-2024-12-13 03:45:04 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 03:45:04 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 03:45:04 - >>> completed cleanUpDatabase()
-2024-12-13 03:45:04 - >>> starting copyTemplateDatabase()
-2024-12-13 03:45:04 - >>> Copying template db into nimbus data directory
-2024-12-13 03:45:04 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/
-2024-12-13 03:50:42 - >>> Template db copied
-2024-12-13 03:50:42 - chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 03:50:42 - >>> completed copyTemplateDatabase()
-2024-12-13 03:51:42 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 03:51:42 - >>> completed cleanBenchmarkDir()
-2024-12-13 03:51:42 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 03:51:42 - >>> cleaning repo
-2024-12-13 03:51:42 - git clean -fdx > /dev/null 2>&1
-2024-12-13 03:51:42 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 03:51:43 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
-   cbc5ec93..1d5a48e1  master     -> origin/master
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 03:51:44 - >>> completed cloneOrFetchRepo()
-2024-12-13 03:51:44 - >>> starting buildBinaries()
-2024-12-13 03:51:44 - >>> Building binaries...
-2024-12-13 03:51:44 - >>> make -j16 update
-Submodule path 'vendor/nim-bncurve': checked out 'a1560b915eee5b77e55edf05b459efe5c14a812e'
-[92mBuilding:[39m Nim compiler
-2024-12-13 03:53:26 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   533k      0 --:--:-- --:--:-- --:--:--  533k
-100 2330k  100 2330k    0     0  3062k      0 --:--:-- --:--:-- --:--:-- 3062k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 03:58:24 - >>> renaming binaries to match commit they were built from
-2024-12-13 03:58:24 - mv build/nimbus_execution_client build/nimbus_execution_client_1d5a48e1
-2024-12-13 03:58:25 - creating a symbolic link to the latest version
-2024-12-13 03:58:25 - ln -frs build/nimbus_execution_client_1d5a48e1 build/nimbus_execution_client
-2024-12-13 03:58:25 - deleting copies that are older than N days
-2024-12-13 03:58:25 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 03:58:25 - >>> buildBinaries() complete
-2024-12-13 03:58:25 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 1d5a48e1
-2024-12-13 03:58:25 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *1d5a48e1* 2>/dev/null | wc -l
-2024-12-13 03:58:25 - BENCHMARK_EXISTS=0
-2024-12-13 03:58:25 - >>> starting cleanUpDatabase()
-2024-12-13 03:58:25 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/*
-2024-12-13 03:58:25 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/*
-2024-12-13 03:58:25 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0 with permissions
-2024-12-13 03:58:25 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 03:58:25 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 03:58:25 - >>> completed cleanUpDatabase()
-2024-12-13 03:58:25 - >>> starting copyTemplateDatabase()
-2024-12-13 03:58:25 - >>> Copying template db into nimbus data directory
-2024-12-13 03:58:25 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0/
-2024-12-13 04:03:00 - >>> Template db copied
-2024-12-13 04:03:00 - chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_shared_mainnet_0_0
-2024-12-13 04:03:00 - >>> completed copyTemplateDatabase()
-2024-12-13 04:04:00 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 04:04:00 - >>> completed cleanBenchmarkDir()
-2024-12-13 04:04:00 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 04:04:00 - >>> cleaning repo
-2024-12-13 04:04:00 - git clean -fdx > /dev/null 2>&1
-2024-12-13 04:04:00 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 04:04:02 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
-   f68a5d41..4235c208  tp-sigs    -> origin/tp-sigs
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 04:04:02 - >>> completed cloneOrFetchRepo()
-2024-12-13 04:04:02 - >>> starting buildBinaries()
-2024-12-13 04:04:02 - >>> Building binaries...
-2024-12-13 04:04:02 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-make[2]: *** [vendor/nimbus-build-system/makefiles/targets.mk:81: build-nim] Terminated
-make[1]: *** wait: No child processes.  Stop.
-make[1]: *** Waiting for unfinished jobs....
-make[1]: *** wait: No child processes.  Stop.
-make: *** [vendor/nimbus-build-system/makefiles/targets.mk:116: update-common] Error 2
-2024-12-13 04:07:49 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 04:07:49 - >>> completed cleanBenchmarkDir()
-2024-12-13 04:07:49 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 04:07:49 - >>> cleaning repo
-2024-12-13 04:07:49 - git clean -fdx > /dev/null 2>&1
-2024-12-13 04:07:49 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 04:07:50 - >>> Fetching latest changes...
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 04:07:51 - >>> completed cloneOrFetchRepo()
-2024-12-13 04:07:51 - >>> starting buildBinaries()
-2024-12-13 04:07:51 - >>> Building binaries...
-2024-12-13 04:07:51 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 04:09:27 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeed
-ed 
- 0    0      0    0    0    0      0    0    0    0      0    0        0    0        0   -0- :----::----: ---- :----::----: ---- :----::----: - -      0  0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  3  345k    3 12968    0     0  24508      0  0:00:14 --:--:--  0:00:14 24508100  345k  100  345k    0     0   530k      0 --:--:-- --:--:-- --:--:-- 2730k
-100 2330k  100 2330k    0     0  3022k      0 --:--:-- --:--:-- --:--:-- 7469k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 04:14:25 - >>> renaming binaries to match commit they were built from
-2024-12-13 04:14:25 - mv build/nimbus_execution_client build/nimbus_execution_client_1d5a48e1
-2024-12-13 04:14:25 - creating a symbolic link to the latest version
-2024-12-13 04:14:25 - ln -frs build/nimbus_execution_client_1d5a48e1 build/nimbus_execution_client
-2024-12-13 04:14:25 - deleting copies that are older than N days
-2024-12-13 04:14:25 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 04:14:25 - >>> buildBinaries() complete
-2024-12-13 04:14:25 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 1d5a48e1
-2024-12-13 04:14:25 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *1d5a48e1* 2>/dev/null | wc -l
-2024-12-13 04:14:25 - BENCHMARK_EXISTS=0
-2024-12-13 04:14:25 - >>> starting cleanUpDatabase()
-2024-12-13 04:14:25 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:14:25 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:14:25 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 04:14:25 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 04:14:25 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 04:15:26 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 04:15:26 - >>> completed cleanBenchmarkDir()
-2024-12-13 04:15:26 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 04:15:26 - >>> cleaning repo
-2024-12-13 04:15:26 - git clean -fdx > /dev/null 2>&1
-2024-12-13 04:15:26 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 04:15:26 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
- * [new branch]        chainref-cleanup -> origin/chainref-cleanup
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 04:15:27 - >>> completed cloneOrFetchRepo()
-2024-12-13 04:15:27 - >>> starting buildBinaries()
-2024-12-13 04:15:27 - >>> Building binaries...
-2024-12-13 04:15:27 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 04:17:05 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % Xferd    A%v eTroatgael  S p e e%d  R e cTeiimvee d   %  TXifmeer d     A vTeirmaeg e  CSuprereedn t 
-  T i m e         T i m e           T i m e     C u r r e n t 
-    D l o a d     U p l o a d       T o t a l      S p e n t        DLleofatd    SUppeleoda
-d     0T o t a l  0    S p e0n t        0L e f t  0  S p e e d0
-      0    0      0      0  0- - : - - :0- -   - -0: - - : - -0  - - : - - :0- -          00 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   480k      0 --:--:-- --:--:-- --:--:--  480k
-100 2330k  100 2330k    0     0  2851k      0 --:--:-- --:--:-- --:--:-- 2851k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 04:21:59 - >>> renaming binaries to match commit they were built from
-2024-12-13 04:21:59 - mv build/nimbus_execution_client build/nimbus_execution_client_1d5a48e1
-2024-12-13 04:21:59 - creating a symbolic link to the latest version
-2024-12-13 04:21:59 - ln -frs build/nimbus_execution_client_1d5a48e1 build/nimbus_execution_client
-2024-12-13 04:21:59 - deleting copies that are older than N days
-2024-12-13 04:21:59 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 04:21:59 - >>> buildBinaries() complete
-2024-12-13 04:21:59 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 1d5a48e1
-2024-12-13 04:21:59 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *1d5a48e1* 2>/dev/null | wc -l
-2024-12-13 04:21:59 - BENCHMARK_EXISTS=0
-2024-12-13 04:21:59 - >>> starting cleanUpDatabase()
-2024-12-13 04:21:59 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:21:59 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:21:59 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 04:21:59 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 04:21:59 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 04:22:59 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 04:22:59 - >>> completed cleanBenchmarkDir()
-2024-12-13 04:22:59 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 04:22:59 - >>> cleaning repo
-2024-12-13 04:22:59 - git clean -fdx > /dev/null 2>&1
-2024-12-13 04:22:59 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 04:23:00 - >>> Fetching latest changes...
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 04:23:01 - >>> completed cloneOrFetchRepo()
-2024-12-13 04:23:01 - >>> starting buildBinaries()
-2024-12-13 04:23:01 - >>> Building binaries...
-2024-12-13 04:23:01 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 04:24:38 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
- 44  345k   44  152k    0     0   247k      0  0:00:01 --:--:--  0:00:01  247k  3 2330k    3 86665    0     0   136k      0  0:00:17 --:--:--  0:00:17  136k100  345k  100  345k    0     0   533k      0 --:--:-- --:--:-- --:--:-- 6437k
-100 2330k  100 2330k    0     0  3116k      0 --:--:-- --:--:-- --:--:-- 17.4M
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 04:29:29 - >>> renaming binaries to match commit they were built from
-2024-12-13 04:29:29 - mv build/nimbus_execution_client build/nimbus_execution_client_1d5a48e1
-2024-12-13 04:29:29 - creating a symbolic link to the latest version
-2024-12-13 04:29:29 - ln -frs build/nimbus_execution_client_1d5a48e1 build/nimbus_execution_client
-2024-12-13 04:29:29 - deleting copies that are older than N days
-2024-12-13 04:29:29 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 04:29:29 - >>> buildBinaries() complete
-2024-12-13 04:29:29 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 1d5a48e1
-2024-12-13 04:29:29 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *1d5a48e1* 2>/dev/null | wc -l
-2024-12-13 04:29:29 - BENCHMARK_EXISTS=0
-2024-12-13 04:29:29 - >>> starting cleanUpDatabase()
-2024-12-13 04:29:29 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:29:29 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:29:29 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 04:29:29 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 04:29:29 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 04:30:29 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 04:30:29 - >>> completed cleanBenchmarkDir()
-2024-12-13 04:30:29 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 04:30:29 - >>> cleaning repo
-2024-12-13 04:30:29 - git clean -fdx > /dev/null 2>&1
-2024-12-13 04:30:29 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 04:30:30 - >>> Fetching latest changes...
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 04:30:30 - >>> completed cloneOrFetchRepo()
-2024-12-13 04:30:30 - >>> starting buildBinaries()
-2024-12-13 04:30:30 - >>> Building binaries...
-2024-12-13 04:30:30 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 04:32:06 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % X f e%r dT o tAavle r a g e%  SRpeeceedi v e dT i%m eX f e r dT i mAev e r a g eT iSmpee e dC u r rTeinmte
-        T i m e           T i m e     C u r r e n t 
-              D l o a d     U pload       T o t a l       S p e n t    D l oLaedf t  U pSlpoeaedd 
-   T o0t a l      0S p e n t0        L e0f t     S0p e e d 
- 0    0        0  0         00   - - : -0- : - -  0- - : - - :0- -   - - : -0- : - -      0   -0-:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   534k      0 --:--:-- --:--:-- --:--:--  534k
-100 2330k  100 2330k    0     0  3314k      0 --:--:-- --:--:-- --:--:-- 3314k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 04:36:58 - >>> renaming binaries to match commit they were built from
-2024-12-13 04:36:58 - mv build/nimbus_execution_client build/nimbus_execution_client_1d5a48e1
-2024-12-13 04:36:58 - creating a symbolic link to the latest version
-2024-12-13 04:36:58 - ln -frs build/nimbus_execution_client_1d5a48e1 build/nimbus_execution_client
-2024-12-13 04:36:58 - deleting copies that are older than N days
-2024-12-13 04:36:58 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 04:36:58 - >>> buildBinaries() complete
-2024-12-13 04:36:58 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 1d5a48e1
-2024-12-13 04:36:58 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *1d5a48e1* 2>/dev/null | wc -l
-2024-12-13 04:36:58 - BENCHMARK_EXISTS=0
-2024-12-13 04:36:58 - >>> starting cleanUpDatabase()
-2024-12-13 04:36:58 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:36:58 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:36:58 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 04:36:58 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 04:36:58 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 04:37:58 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 04:37:58 - >>> completed cleanBenchmarkDir()
-2024-12-13 04:37:58 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 04:37:58 - >>> cleaning repo
-2024-12-13 04:37:58 - git clean -fdx > /dev/null 2>&1
-2024-12-13 04:37:58 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 04:37:59 - >>> Fetching latest changes...
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 04:37:59 - >>> completed cloneOrFetchRepo()
-2024-12-13 04:37:59 - >>> starting buildBinaries()
-2024-12-13 04:37:59 - >>> Building binaries...
-2024-12-13 04:37:59 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 04:39:34 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % Xf e r%d  T oAtvaelr a g e  %S pReeecde i v eTdi m%e  X f e rTdi m eA v e r a gTei mSep e eCdu r r eTnitm
-e         T i m e           T i m e     C u r r e n t 
-            D l o a d     U p l o a d       T o t a l       S p e nDtl o a d  L eUfptl o aSdp e e dT
-ot a l0      S p e0n t      0  L e f t  0  S p e e0d 
-      00          0  0      0      0   -0- : - - :0- -   - - :0- - : - -   -0- : - - : - -0   - - : -0-:-- --:--:-- --:--:--     0    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   511k      0 --:--:-- --:--:-- --:--:--  511k
-100 2330k  100 2330k    0     0  3019k      0 --:--:-- --:--:-- --:--:-- 3019k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 04:44:27 - >>> renaming binaries to match commit they were built from
-2024-12-13 04:44:27 - mv build/nimbus_execution_client build/nimbus_execution_client_1d5a48e1
-2024-12-13 04:44:27 - creating a symbolic link to the latest version
-2024-12-13 04:44:27 - ln -frs build/nimbus_execution_client_1d5a48e1 build/nimbus_execution_client
-2024-12-13 04:44:27 - deleting copies that are older than N days
-2024-12-13 04:44:27 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 04:44:27 - >>> buildBinaries() complete
-2024-12-13 04:44:27 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 1d5a48e1
-2024-12-13 04:44:27 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *1d5a48e1* 2>/dev/null | wc -l
-2024-12-13 04:44:27 - BENCHMARK_EXISTS=0
-2024-12-13 04:44:27 - >>> starting cleanUpDatabase()
-2024-12-13 04:44:27 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:44:27 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:44:27 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 04:44:27 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 04:44:27 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 04:45:27 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 04:45:27 - >>> completed cleanBenchmarkDir()
-2024-12-13 04:45:27 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 04:45:27 - >>> cleaning repo
-2024-12-13 04:45:27 - git clean -fdx > /dev/null 2>&1
-2024-12-13 04:45:27 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 04:45:28 - >>> Fetching latest changes...
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 04:45:29 - >>> completed cloneOrFetchRepo()
-2024-12-13 04:45:29 - >>> starting buildBinaries()
-2024-12-13 04:45:29 - >>> Building binaries...
-2024-12-13 04:45:29 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 04:47:07 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0       0  0        0    0   -0- : - - : -0-   - - :0- - : - -  0- - : - - : -0-           00
- --:--:-- --:--:-- --:--:--     0
-  0 2330k    0 12410    0     0  23479      0  0:01:41 --:--:--  0:01:41 23479  3  345k    3 13159    0     0  23929      0  0:00:14 --:--:--  0:00:14 23929100  345k  100  345k    0     0   493k      0 --:--:-- --:--:-- --:--:-- 2204k
-100 2330k  100 2330k    0     0  3110k      0 --:--:-- --:--:-- --:--:-- 10.2M
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 04:51:58 - >>> renaming binaries to match commit they were built from
-2024-12-13 04:51:58 - mv build/nimbus_execution_client build/nimbus_execution_client_1d5a48e1
-2024-12-13 04:51:58 - creating a symbolic link to the latest version
-2024-12-13 04:51:58 - ln -frs build/nimbus_execution_client_1d5a48e1 build/nimbus_execution_client
-2024-12-13 04:51:58 - deleting copies that are older than N days
-2024-12-13 04:51:58 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 04:51:58 - >>> buildBinaries() complete
-2024-12-13 04:51:58 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 1d5a48e1
-2024-12-13 04:51:58 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *1d5a48e1* 2>/dev/null | wc -l
-2024-12-13 04:51:58 - BENCHMARK_EXISTS=0
-2024-12-13 04:51:58 - >>> starting cleanUpDatabase()
-2024-12-13 04:51:58 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:51:58 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:51:58 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 04:51:58 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 04:51:58 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 04:52:59 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 04:52:59 - >>> completed cleanBenchmarkDir()
-2024-12-13 04:52:59 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 04:52:59 - >>> cleaning repo
-2024-12-13 04:52:59 - git clean -fdx > /dev/null 2>&1
-2024-12-13 04:52:59 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 04:52:59 - >>> Fetching latest changes...
-HEAD is now at 1d5a48e1 Feature: configurable gas limit when building execution payload (#2931)
-2024-12-13 04:53:00 - >>> completed cloneOrFetchRepo()
-2024-12-13 04:53:00 - >>> starting buildBinaries()
-2024-12-13 04:53:00 - >>> Building binaries...
-2024-12-13 04:53:00 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 04:54:36 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   524k      0 --:--:-- --:--:-- --:--:--  524k
-100 2330k    0 2330k    0     0  3117k      0 --:--:-- --:--:-- --:--:-- 3117k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 04:59:28 - >>> renaming binaries to match commit they were built from
-2024-12-13 04:59:28 - mv build/nimbus_execution_client build/nimbus_execution_client_1d5a48e1
-2024-12-13 04:59:28 - creating a symbolic link to the latest version
-2024-12-13 04:59:28 - ln -frs build/nimbus_execution_client_1d5a48e1 build/nimbus_execution_client
-2024-12-13 04:59:28 - deleting copies that are older than N days
-2024-12-13 04:59:28 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 04:59:28 - >>> buildBinaries() complete
-2024-12-13 04:59:28 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 1d5a48e1
-2024-12-13 04:59:28 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *1d5a48e1* 2>/dev/null | wc -l
-2024-12-13 04:59:28 - BENCHMARK_EXISTS=0
-2024-12-13 04:59:28 - >>> starting cleanUpDatabase()
-2024-12-13 04:59:28 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:59:28 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 04:59:28 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 04:59:28 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 04:59:28 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 05:00:28 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 05:00:28 - >>> completed cleanBenchmarkDir()
-2024-12-13 05:00:28 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 05:00:28 - >>> cleaning repo
-2024-12-13 05:00:28 - git clean -fdx > /dev/null 2>&1
-2024-12-13 05:00:28 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 05:00:29 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
-   1d5a48e1..3d58393b  master     -> origin/master
- * [new branch]        txpool-fc  -> origin/txpool-fc
-HEAD is now at 3d58393b Offload signature checking to taskpools (#2927)
-2024-12-13 05:00:30 - >>> completed cloneOrFetchRepo()
-2024-12-13 05:00:30 - >>> starting buildBinaries()
-2024-12-13 05:00:30 - >>> Building binaries...
-2024-12-13 05:00:30 - >>> make -j16 update
-Submodule path 'vendor/nim-taskpools': checked out 'f0b386933ffea89098bc232359f8524393c2c1ef'
-[92mBuilding:[39m Nim compiler
-2024-12-13 05:02:08 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % Xferd  Average Speed   Time    T i m%e  T o t a lT i m e  %  CRuercreeinvte
-d   %   X f e r d     A v e r a g e   S p e e d       T i m e      D lToiamde    U p l oTaidm e    TCoutrarle n t 
-S p e n t         L e f t     S p ee d 
-      0           0        D0l o a d    0U p l o a0d       T o0t a l      0       S0p e-n-t: - - : -L-e f-t- : -S-p:e-e-d 
--- : -0- : - -    0      0 0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  3  345k    3 12412    0     0  22300      0  0:00:15 --:--:--  0:00:15 22300  0 2330k    0 12965    0     0  23106      0  0:01:43 --:--:--  0:01:43 23106100  345k  100  345k    0     0   509k      0 --:--:-- --:--:-- --:--:-- 2734k
-100 2330k  100 2330k    0     0  2988k      0 --:--:-- --:--:-- --:--:-- 10.3M
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 05:07:01 - >>> renaming binaries to match commit they were built from
-2024-12-13 05:07:01 - mv build/nimbus_execution_client build/nimbus_execution_client_3d58393b
-2024-12-13 05:07:01 - creating a symbolic link to the latest version
-2024-12-13 05:07:01 - ln -frs build/nimbus_execution_client_3d58393b build/nimbus_execution_client
-2024-12-13 05:07:01 - deleting copies that are older than N days
-2024-12-13 05:07:01 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 05:07:01 - >>> buildBinaries() complete
-2024-12-13 05:07:01 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 3d58393b
-2024-12-13 05:07:01 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *3d58393b* 2>/dev/null | wc -l
-2024-12-13 05:07:01 - BENCHMARK_EXISTS=0
-2024-12-13 05:07:01 - >>> starting cleanUpDatabase()
-2024-12-13 05:07:01 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:07:01 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:07:01 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 05:07:01 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 05:07:01 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 05:08:02 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 05:08:02 - >>> completed cleanBenchmarkDir()
-2024-12-13 05:08:02 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 05:08:02 - >>> cleaning repo
-2024-12-13 05:08:02 - git clean -fdx > /dev/null 2>&1
-2024-12-13 05:08:02 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 05:08:03 - >>> Fetching latest changes...
-HEAD is now at 3d58393b Offload signature checking to taskpools (#2927)
-2024-12-13 05:08:03 - >>> completed cloneOrFetchRepo()
-2024-12-13 05:08:03 - >>> starting buildBinaries()
-2024-12-13 05:08:03 - >>> Building binaries...
-2024-12-13 05:08:03 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 05:09:39 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----         0 0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  3  345k    3 12967    0     0  22931      0  0:00:15 --:--:--  0:00:15 22931  6 2330k    6  144k    0     0   245k      0  0:00:09 --:--:--  0:00:09  245k100  345k  100  345k    0     0   481k      0 --:--:-- --:--:-- --:--:-- 2191k
-100 2330k  100 2330k    0     0  3147k      0 --:--:-- --:--:-- --:--:-- 14.0M
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 05:14:34 - >>> renaming binaries to match commit they were built from
-2024-12-13 05:14:34 - mv build/nimbus_execution_client build/nimbus_execution_client_3d58393b
-2024-12-13 05:14:34 - creating a symbolic link to the latest version
-2024-12-13 05:14:34 - ln -frs build/nimbus_execution_client_3d58393b build/nimbus_execution_client
-2024-12-13 05:14:34 - deleting copies that are older than N days
-2024-12-13 05:14:34 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 05:14:34 - >>> buildBinaries() complete
-2024-12-13 05:14:34 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 3d58393b
-2024-12-13 05:14:34 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *3d58393b* 2>/dev/null | wc -l
-2024-12-13 05:14:34 - BENCHMARK_EXISTS=0
-2024-12-13 05:14:34 - >>> starting cleanUpDatabase()
-2024-12-13 05:14:34 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:14:34 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:14:34 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 05:14:34 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 05:14:34 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 05:15:34 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 05:15:34 - >>> completed cleanBenchmarkDir()
-2024-12-13 05:15:34 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 05:15:34 - >>> cleaning repo
-2024-12-13 05:15:34 - git clean -fdx > /dev/null 2>&1
-2024-12-13 05:15:34 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 05:15:35 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
-   3d58393b..847cc311  master     -> origin/master
-HEAD is now at 847cc311 Remove verifyFrom, vmState, and checkSeal from ChainRef (#2932)
-2024-12-13 05:15:36 - >>> completed cloneOrFetchRepo()
-2024-12-13 05:15:36 - >>> starting buildBinaries()
-2024-12-13 05:15:36 - >>> Building binaries...
-2024-12-13 05:15:36 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 05:17:13 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % R e c%e iTvoetda l%   X f e%r dR e cAevievreadg e%  SXpfeeerdd     ATviemrea g e   STpiemeed       T iTmiem e     CTuirmree n t 
-    T i m e     C u r r e n t 
-                                    D l o a d     U p l o a d      DTlootaadl    U pSlpoeandt      T oLteaflt     SSppeeendt
-      0L e f t    0S p e e d0
-       00         00         00          0  0      0      0   -0- : - - : - -0  - - : - - :0- -- --:--:--:--:-- -- - : - - :0-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  345k  100  345k    0     0   546k      0 --:--:-- --:--:-- --:--:-- 1889k
-100 2330k  100 2330k    0     0  3231k      0 --:--:-- --:--:-- --:--:-- 8264k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 05:22:09 - >>> renaming binaries to match commit they were built from
-2024-12-13 05:22:09 - mv build/nimbus_execution_client build/nimbus_execution_client_847cc311
-2024-12-13 05:22:09 - creating a symbolic link to the latest version
-2024-12-13 05:22:09 - ln -frs build/nimbus_execution_client_847cc311 build/nimbus_execution_client
-2024-12-13 05:22:09 - deleting copies that are older than N days
-2024-12-13 05:22:09 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 05:22:09 - >>> buildBinaries() complete
-2024-12-13 05:22:09 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 847cc311
-2024-12-13 05:22:09 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *847cc311* 2>/dev/null | wc -l
-2024-12-13 05:22:09 - BENCHMARK_EXISTS=0
-2024-12-13 05:22:09 - >>> starting cleanUpDatabase()
-2024-12-13 05:22:09 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:22:09 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:22:09 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 05:22:09 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 05:22:09 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 05:23:09 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 05:23:09 - >>> completed cleanBenchmarkDir()
-2024-12-13 05:23:09 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 05:23:09 - >>> cleaning repo
-2024-12-13 05:23:09 - git clean -fdx > /dev/null 2>&1
-2024-12-13 05:23:09 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 05:23:10 - >>> Fetching latest changes...
-HEAD is now at 847cc311 Remove verifyFrom, vmState, and checkSeal from ChainRef (#2932)
-2024-12-13 05:23:11 - >>> completed cloneOrFetchRepo()
-2024-12-13 05:23:11 - >>> starting buildBinaries()
-2024-12-13 05:23:11 - >>> Building binaries...
-2024-12-13 05:23:11 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 05:24:47 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   496k      0 --:--:-- --:--:-- --:--:--  496k
-100 2330k  100 2330k    0     0  3110k      0 --:--:-- --:--:-- --:--:-- 3110k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 05:29:42 - >>> renaming binaries to match commit they were built from
-2024-12-13 05:29:42 - mv build/nimbus_execution_client build/nimbus_execution_client_847cc311
-2024-12-13 05:29:42 - creating a symbolic link to the latest version
-2024-12-13 05:29:42 - ln -frs build/nimbus_execution_client_847cc311 build/nimbus_execution_client
-2024-12-13 05:29:42 - deleting copies that are older than N days
-2024-12-13 05:29:42 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 05:29:42 - >>> buildBinaries() complete
-2024-12-13 05:29:42 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 847cc311
-2024-12-13 05:29:42 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *847cc311* 2>/dev/null | wc -l
-2024-12-13 05:29:42 - BENCHMARK_EXISTS=0
-2024-12-13 05:29:42 - >>> starting cleanUpDatabase()
-2024-12-13 05:29:42 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:29:42 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:29:42 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 05:29:42 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 05:29:42 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 05:30:43 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 05:30:43 - >>> completed cleanBenchmarkDir()
-2024-12-13 05:30:43 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 05:30:43 - >>> cleaning repo
-2024-12-13 05:30:43 - git clean -fdx > /dev/null 2>&1
-2024-12-13 05:30:43 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 05:30:44 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
- * [new branch]        remove-ttdpassed -> origin/remove-ttdpassed
-   fb2208a3..ee52322a  txpool-fc        -> origin/txpool-fc
-HEAD is now at 847cc311 Remove verifyFrom, vmState, and checkSeal from ChainRef (#2932)
-2024-12-13 05:30:44 - >>> completed cloneOrFetchRepo()
-2024-12-13 05:30:44 - >>> starting buildBinaries()
-2024-12-13 05:30:44 - >>> Building binaries...
-2024-12-13 05:30:44 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 05:32:24 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   509k      0 --:--:-- --:--:-- --:--:--  509k
-100 2330k  100 2330k    0     0  3242k      0 --:--:-- --:--:-- --:--:-- 3242k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 05:37:20 - >>> renaming binaries to match commit they were built from
-2024-12-13 05:37:20 - mv build/nimbus_execution_client build/nimbus_execution_client_847cc311
-2024-12-13 05:37:20 - creating a symbolic link to the latest version
-2024-12-13 05:37:20 - ln -frs build/nimbus_execution_client_847cc311 build/nimbus_execution_client
-2024-12-13 05:37:20 - deleting copies that are older than N days
-2024-12-13 05:37:20 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 05:37:20 - >>> buildBinaries() complete
-2024-12-13 05:37:20 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 847cc311
-2024-12-13 05:37:20 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *847cc311* 2>/dev/null | wc -l
-2024-12-13 05:37:20 - BENCHMARK_EXISTS=0
-2024-12-13 05:37:20 - >>> starting cleanUpDatabase()
-2024-12-13 05:37:20 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:37:20 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:37:20 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 05:37:20 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 05:37:20 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 05:38:20 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 05:38:20 - >>> completed cleanBenchmarkDir()
-2024-12-13 05:38:20 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 05:38:20 - >>> cleaning repo
-2024-12-13 05:38:20 - git clean -fdx > /dev/null 2>&1
-2024-12-13 05:38:20 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 05:38:21 - >>> Fetching latest changes...
-HEAD is now at 847cc311 Remove verifyFrom, vmState, and checkSeal from ChainRef (#2932)
-2024-12-13 05:38:22 - >>> completed cloneOrFetchRepo()
-2024-12-13 05:38:22 - >>> starting buildBinaries()
-2024-12-13 05:38:22 - >>> Building binaries...
-2024-12-13 05:38:22 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 05:40:00 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   545k      0 --:--:-- --:--:-- --:--:--  545k
- 44 2330k   44 1047k    0     0  1330k      0  0:00:01 --:--:--  0:00:01 1330k100 2330k  100 2330k    0     0  2840k      0 --:--:-- --:--:-- --:--:-- 37.9M
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 05:44:54 - >>> renaming binaries to match commit they were built from
-2024-12-13 05:44:54 - mv build/nimbus_execution_client build/nimbus_execution_client_847cc311
-2024-12-13 05:44:54 - creating a symbolic link to the latest version
-2024-12-13 05:44:54 - ln -frs build/nimbus_execution_client_847cc311 build/nimbus_execution_client
-2024-12-13 05:44:54 - deleting copies that are older than N days
-2024-12-13 05:44:54 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 05:44:55 - >>> buildBinaries() complete
-2024-12-13 05:44:55 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 847cc311
-2024-12-13 05:44:55 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *847cc311* 2>/dev/null | wc -l
-2024-12-13 05:44:55 - BENCHMARK_EXISTS=0
-2024-12-13 05:44:55 - >>> starting cleanUpDatabase()
-2024-12-13 05:44:55 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:44:55 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:44:55 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 05:44:55 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 05:44:55 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-chmod: changing permissions of '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0': Operation not permitted
-2024-12-13 05:45:55 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 05:45:55 - >>> completed cleanBenchmarkDir()
-2024-12-13 05:45:55 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 05:45:55 - >>> cleaning repo
-2024-12-13 05:45:55 - git clean -fdx > /dev/null 2>&1
-2024-12-13 05:45:55 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 05:45:56 - >>> Fetching latest changes...
-HEAD is now at 847cc311 Remove verifyFrom, vmState, and checkSeal from ChainRef (#2932)
-2024-12-13 05:45:56 - >>> completed cloneOrFetchRepo()
-2024-12-13 05:45:56 - >>> starting buildBinaries()
-2024-12-13 05:45:56 - >>> Building binaries...
-2024-12-13 05:45:56 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 05:47:33 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                  %  DTlootaadl    U p l%o aRde c e iTvoetda l%   X fSepredn t  A v e rLaegfet  S pSepeede d 
- T i m0e         T0i m e    0      T i m0e     C u0r r e n t 
-0             0             0   - - : - - : - -   - - : - - : - -  D-l-o:a-d- : -U-p l o a d  0  Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0      0  0      0    0      0  0      0    0      0      0      0      0   - -0: ----::---- :----: ----::---- :----: ----::---- : - -    0 
-  0
-100  345k  100  345k    0     0   785k      0 --:--:-- --:--:-- --:--:--  785k
-100 2330k  100 2330k    0     0  3997k      0 --:--:-- --:--:-- --:--:-- 3997k
-make[1]: *** [Makefile:2569: unity.o] Terminated
-make: *** [Makefile:236: rocksdb] Terminated
-2024-12-13 05:49:45 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 05:49:45 - >>> completed cleanBenchmarkDir()
-2024-12-13 05:49:45 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 05:49:45 - >>> cleaning repo
-2024-12-13 05:49:45 - git clean -fdx > /dev/null 2>&1
-2024-12-13 05:49:45 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 05:49:46 - >>> Fetching latest changes...
-HEAD is now at 847cc311 Remove verifyFrom, vmState, and checkSeal from ChainRef (#2932)
-2024-12-13 05:49:46 - >>> completed cloneOrFetchRepo()
-2024-12-13 05:49:46 - >>> starting buildBinaries()
-2024-12-13 05:49:46 - >>> Building binaries...
-2024-12-13 05:49:46 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 05:51:23 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  3 2330k    3 79295    0     0   154k      0  0:00:15 --:--:--  0:00:15  154k100 2330k  100 2330k    0     0  3537k      0 --:--:-- --:--:-- --:--:-- 14.1M
-100  345k  100  345k    0     0   456k      0 --:--:-- --:--:-- --:--:-- 1261k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 05:56:26 - >>> renaming binaries to match commit they were built from
-2024-12-13 05:56:26 - mv build/nimbus_execution_client build/nimbus_execution_client_847cc311
-2024-12-13 05:56:26 - creating a symbolic link to the latest version
-2024-12-13 05:56:26 - ln -frs build/nimbus_execution_client_847cc311 build/nimbus_execution_client
-2024-12-13 05:56:26 - deleting copies that are older than N days
-2024-12-13 05:56:26 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 05:56:26 - >>> buildBinaries() complete
-2024-12-13 05:56:26 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit 847cc311
-2024-12-13 05:56:26 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *847cc311* 2>/dev/null | wc -l
-2024-12-13 05:56:26 - BENCHMARK_EXISTS=0
-2024-12-13 05:56:26 - >>> starting cleanUpDatabase()
-2024-12-13 05:56:26 - >>> Cleaning up existing database files with rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:56:26 - rm -rf /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/*
-2024-12-13 05:56:26 - >>> Creating /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0 with permissions
-2024-12-13 05:56:26 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 05:56:26 - chmod 0755 /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 05:56:26 - >>> completed cleanUpDatabase()
-2024-12-13 05:56:26 - >>> starting copyTemplateDatabase()
-2024-12-13 05:56:26 - >>> Copying template db into nimbus data directory
-2024-12-13 05:56:26 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/ -v
-'/data/template-db/./nimbus/aristo/007877.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/007877.sst'
-'/data/template-db/./nimbus/aristo/014069.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/014069.sst'
-'/data/template-db/./nimbus/aristo/019848.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/019848.sst'
-'/data/template-db/./nimbus/aristo/021792.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/021792.sst'
-'/data/template-db/./nimbus/aristo/022249.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/022249.sst'
-'/data/template-db/./nimbus/aristo/022954.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/022954.sst'
-'/data/template-db/./nimbus/aristo/023750.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/023750.sst'
-'/data/template-db/./nimbus/aristo/025083.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/025083.sst'
-'/data/template-db/./nimbus/aristo/026070.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/026070.sst'
-'/data/template-db/./nimbus/aristo/026071.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/026071.sst'
-'/data/template-db/./nimbus/aristo/026656.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/026656.sst'
-'/data/template-db/./nimbus/aristo/026722.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/026722.sst'
-'/data/template-db/./nimbus/aristo/027390.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/027390.sst'
-'/data/template-db/./nimbus/aristo/027817.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/027817.sst'
-'/data/template-db/./nimbus/aristo/028487.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/028487.sst'
-'/data/template-db/./nimbus/aristo/028679.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/028679.sst'
-'/data/template-db/./nimbus/aristo/028731.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/028731.sst'
-'/data/template-db/./nimbus/aristo/028855.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/028855.sst'
-'/data/template-db/./nimbus/aristo/029442.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/029442.sst'
-'/data/template-db/./nimbus/aristo/029647.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/029647.sst'
-'/data/template-db/./nimbus/aristo/030336.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/030336.sst'
-'/data/template-db/./nimbus/aristo/030459.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/030459.sst'
-'/data/template-db/./nimbus/aristo/030566.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/030566.sst'
-'/data/template-db/./nimbus/aristo/030568.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/030568.sst'
-'/data/template-db/./nimbus/aristo/030569.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/030569.sst'
-'/data/template-db/./nimbus/aristo/030774.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/030774.sst'
-'/data/template-db/./nimbus/aristo/030792.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/030792.sst'
-'/data/template-db/./nimbus/aristo/030793.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/030793.sst'
-'/data/template-db/./nimbus/aristo/031110.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/031110.sst'
-'/data/template-db/./nimbus/aristo/031258.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/031258.sst'
-'/data/template-db/./nimbus/aristo/031690.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/031690.sst'
-'/data/template-db/./nimbus/aristo/031691.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/031691.sst'
-'/data/template-db/./nimbus/aristo/032104.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032104.sst'
-'/data/template-db/./nimbus/aristo/032191.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032191.sst'
-'/data/template-db/./nimbus/aristo/032293.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032293.sst'
-'/data/template-db/./nimbus/aristo/032294.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032294.sst'
-'/data/template-db/./nimbus/aristo/032343.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032343.sst'
-'/data/template-db/./nimbus/aristo/032606.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032606.sst'
-'/data/template-db/./nimbus/aristo/032607.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032607.sst'
-'/data/template-db/./nimbus/aristo/032651.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032651.sst'
-'/data/template-db/./nimbus/aristo/032652.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032652.sst'
-'/data/template-db/./nimbus/aristo/032762.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032762.sst'
-'/data/template-db/./nimbus/aristo/032862.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032862.sst'
-'/data/template-db/./nimbus/aristo/032954.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032954.sst'
-'/data/template-db/./nimbus/aristo/032994.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/032994.sst'
-'/data/template-db/./nimbus/aristo/033026.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033026.sst'
-'/data/template-db/./nimbus/aristo/033047.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033047.sst'
-'/data/template-db/./nimbus/aristo/033048.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033048.sst'
-'/data/template-db/./nimbus/aristo/033099.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033099.sst'
-'/data/template-db/./nimbus/aristo/033128.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033128.sst'
-'/data/template-db/./nimbus/aristo/033147.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033147.sst'
-'/data/template-db/./nimbus/aristo/033148.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033148.sst'
-'/data/template-db/./nimbus/aristo/033149.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033149.sst'
-'/data/template-db/./nimbus/aristo/033223.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033223.sst'
-'/data/template-db/./nimbus/aristo/033269.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033269.sst'
-'/data/template-db/./nimbus/aristo/033270.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033270.sst'
-'/data/template-db/./nimbus/aristo/033323.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033323.sst'
-'/data/template-db/./nimbus/aristo/033324.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033324.sst'
-'/data/template-db/./nimbus/aristo/033325.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033325.sst'
-'/data/template-db/./nimbus/aristo/033348.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033348.sst'
-'/data/template-db/./nimbus/aristo/033378.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033378.sst'
-'/data/template-db/./nimbus/aristo/033379.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033379.sst'
-'/data/template-db/./nimbus/aristo/033397.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033397.sst'
-'/data/template-db/./nimbus/aristo/033463.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033463.sst'
-'/data/template-db/./nimbus/aristo/033464.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033464.sst'
-'/data/template-db/./nimbus/aristo/033484.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033484.sst'
-'/data/template-db/./nimbus/aristo/033493.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033493.sst'
-'/data/template-db/./nimbus/aristo/033494.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033494.sst'
-'/data/template-db/./nimbus/aristo/033512.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033512.sst'
-'/data/template-db/./nimbus/aristo/033513.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033513.sst'
-'/data/template-db/./nimbus/aristo/033554.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033554.sst'
-'/data/template-db/./nimbus/aristo/033555.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033555.sst'
-'/data/template-db/./nimbus/aristo/033556.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033556.sst'
-'/data/template-db/./nimbus/aristo/033557.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033557.sst'
-'/data/template-db/./nimbus/aristo/033572.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033572.sst'
-'/data/template-db/./nimbus/aristo/033573.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033573.sst'
-'/data/template-db/./nimbus/aristo/033574.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033574.sst'
-'/data/template-db/./nimbus/aristo/033575.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033575.sst'
-'/data/template-db/./nimbus/aristo/033576.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033576.sst'
-'/data/template-db/./nimbus/aristo/033598.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033598.sst'
-'/data/template-db/./nimbus/aristo/033611.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033611.sst'
-'/data/template-db/./nimbus/aristo/033612.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033612.sst'
-'/data/template-db/./nimbus/aristo/033629.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033629.sst'
-'/data/template-db/./nimbus/aristo/033630.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033630.sst'
-'/data/template-db/./nimbus/aristo/033631.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033631.sst'
-'/data/template-db/./nimbus/aristo/033633.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033633.sst'
-'/data/template-db/./nimbus/aristo/033649.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033649.sst'
-'/data/template-db/./nimbus/aristo/033650.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033650.sst'
-'/data/template-db/./nimbus/aristo/033651.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033651.sst'
-'/data/template-db/./nimbus/aristo/033666.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033666.sst'
-'/data/template-db/./nimbus/aristo/033672.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033672.sst'
-'/data/template-db/./nimbus/aristo/033673.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033673.sst'
-'/data/template-db/./nimbus/aristo/033676.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033676.sst'
-'/data/template-db/./nimbus/aristo/033677.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033677.sst'
-'/data/template-db/./nimbus/aristo/033678.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033678.sst'
-'/data/template-db/./nimbus/aristo/033679.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033679.sst'
-'/data/template-db/./nimbus/aristo/033680.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033680.sst'
-'/data/template-db/./nimbus/aristo/033681.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033681.sst'
-'/data/template-db/./nimbus/aristo/033694.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033694.sst'
-'/data/template-db/./nimbus/aristo/033695.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033695.sst'
-'/data/template-db/./nimbus/aristo/033700.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033700.sst'
-'/data/template-db/./nimbus/aristo/033701.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033701.sst'
-'/data/template-db/./nimbus/aristo/033702.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033702.sst'
-'/data/template-db/./nimbus/aristo/033703.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033703.sst'
-'/data/template-db/./nimbus/aristo/033704.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033704.sst'
-'/data/template-db/./nimbus/aristo/033705.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033705.sst'
-'/data/template-db/./nimbus/aristo/033706.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033706.sst'
-'/data/template-db/./nimbus/aristo/033707.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033707.sst'
-'/data/template-db/./nimbus/aristo/033711.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033711.sst'
-'/data/template-db/./nimbus/aristo/033713.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033713.sst'
-'/data/template-db/./nimbus/aristo/033714.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033714.sst'
-'/data/template-db/./nimbus/aristo/033715.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033715.sst'
-'/data/template-db/./nimbus/aristo/033716.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033716.sst'
-'/data/template-db/./nimbus/aristo/033717.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033717.sst'
-'/data/template-db/./nimbus/aristo/033718.log' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033718.log'
-'/data/template-db/./nimbus/aristo/033719.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033719.sst'
-'/data/template-db/./nimbus/aristo/033720.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033720.sst'
-'/data/template-db/./nimbus/aristo/033721.sst' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/033721.sst'
-'/data/template-db/./nimbus/aristo/CURRENT' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/CURRENT'
-'/data/template-db/./nimbus/aristo/IDENTITY' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/IDENTITY'
-'/data/template-db/./nimbus/aristo/LOCK' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOCK'
-'/data/template-db/./nimbus/aristo/LOG' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG'
-'/data/template-db/./nimbus/aristo/LOG.old.1732131066576677' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732131066576677'
-'/data/template-db/./nimbus/aristo/LOG.old.1732142510749617' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732142510749617'
-'/data/template-db/./nimbus/aristo/LOG.old.1732155209923154' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732155209923154'
-'/data/template-db/./nimbus/aristo/LOG.old.1732168996791054' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732168996791054'
-'/data/template-db/./nimbus/aristo/LOG.old.1732184055213132' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732184055213132'
-'/data/template-db/./nimbus/aristo/LOG.old.1732202881470457' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732202881470457'
-'/data/template-db/./nimbus/aristo/LOG.old.1732230363750706' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732230363750706'
-'/data/template-db/./nimbus/aristo/LOG.old.1732264910427166' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732264910427166'
-'/data/template-db/./nimbus/aristo/LOG.old.1732310976887887' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732310976887887'
-'/data/template-db/./nimbus/aristo/LOG.old.1732366846104110' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732366846104110'
-'/data/template-db/./nimbus/aristo/LOG.old.1732424378919074' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732424378919074'
-'/data/template-db/./nimbus/aristo/LOG.old.1732499887635981' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732499887635981'
-'/data/template-db/./nimbus/aristo/LOG.old.1732573666152180' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732573666152180'
-'/data/template-db/./nimbus/aristo/LOG.old.1732631845606419' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732631845606419'
-'/data/template-db/./nimbus/aristo/LOG.old.1732697865676379' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/LOG.old.1732697865676379'
-'/data/template-db/./nimbus/aristo/MANIFEST-030928' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/MANIFEST-030928'
-'/data/template-db/./nimbus/aristo/OPTIONS-028400' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/OPTIONS-028400'
-'/data/template-db/./nimbus/aristo/OPTIONS-030930' -> '/home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0/./nimbus/aristo/OPTIONS-030930'
-2024-12-13 06:00:14 - >>> Template db copied
-2024-12-13 06:00:14 - chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/data/shared_mainnet_0
-2024-12-13 06:00:14 - >>> completed copyTemplateDatabase()
-2024-12-13 06:01:14 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 06:01:14 - >>> completed cleanBenchmarkDir()
-2024-12-13 06:01:14 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 06:01:14 - >>> cleaning repo
-2024-12-13 06:01:14 - git clean -fdx > /dev/null 2>&1
-2024-12-13 06:01:14 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 06:01:15 - >>> Fetching latest changes...
-HEAD is now at 847cc311 Remove verifyFrom, vmState, and checkSeal from ChainRef (#2932)
-2024-12-13 06:01:16 - >>> completed cloneOrFetchRepo()
-2024-12-13 06:01:16 - >>> starting buildBinaries()
-2024-12-13 06:01:16 - >>> Building binaries...
-2024-12-13 06:01:16 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 06:02:53 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % Xfe r d%   TAovtearla g e   S%p eReedc e i vTeidm e%   X f eTridm e  A v e r aTgiem eS p eCeudr r e nTti
-m e         T i m e           T i m e     C u r r e n t 
-          D l o a d     U p l o a d       T o t a l       S p e n tD l o a dL e fUtp l oSapde e d 
-To t a0l       S p0e n t    0    L e f t0    S p e0e d 
-     00           00        0    0   - -0: - - : -0-   - - : -0- : - -   - -0: - - : - -  0   - - :0--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  345k  100  345k    0     0   789k      0 --:--:-- --:--:-- --:--:-- 1417k
-100 2330k  100 2330k    0     0  4315k      0 --:--:-- --:--:-- --:--:-- 6697k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-make: *** [Makefile:213: nimbus_execution_client] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:365: /tmp/ccxiTgAI.ltrans121.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:293: /tmp/ccxiTgAI.ltrans97.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:101: /tmp/ccxiTgAI.ltrans33.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:41: /tmp/ccxiTgAI.ltrans13.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:290: /tmp/ccxiTgAI.ltrans96.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:14: /tmp/ccxiTgAI.ltrans4.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:11: /tmp/ccxiTgAI.ltrans3.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:26: /tmp/ccxiTgAI.ltrans8.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:107: /tmp/ccxiTgAI.ltrans35.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:23: /tmp/ccxiTgAI.ltrans7.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:8: /tmp/ccxiTgAI.ltrans2.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:47: /tmp/ccxiTgAI.ltrans15.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:86: /tmp/ccxiTgAI.ltrans28.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:122: /tmp/ccxiTgAI.ltrans40.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:29: /tmp/ccxiTgAI.ltrans9.ltrans.o] Terminated
-make[1]: *** [/tmp/ccYu8TMI.mk:113: /tmp/ccxiTgAI.ltrans37.ltrans.o] Terminated
-2024-12-13 06:29:52 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 06:29:52 - >>> completed cleanBenchmarkDir()
-2024-12-13 06:29:52 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 06:29:52 - >>> cleaning repo
-2024-12-13 06:29:52 - git clean -fdx > /dev/null 2>&1
-2024-12-13 06:29:52 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 06:29:53 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
-   847cc311..a57958f7  master     -> origin/master
- * [new branch]        remove-pbt -> origin/remove-pbt
-HEAD is now at a57958f7 Remove totalTerminalDifficultyPassed (#2934)
-2024-12-13 06:29:53 - >>> completed cloneOrFetchRepo()
-2024-12-13 06:29:53 - >>> starting buildBinaries()
-2024-12-13 06:29:53 - >>> Building binaries...
-2024-12-13 06:29:53 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 06:31:30 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % Xferd   A v%e rTaogtea lS p e e d%   R eTciemiev e d   %T iXmfee r d     ATviemrea g eC uSrpreeendt 
-    T i m e         T i m e           T i m e     C u r r e n t 
-  D l o a d     U p l o a d       T o t a l       S p e n t        DLleofatd    SUppeleoda
-d     0T o t a l  0    S p e0n t        0L e f t  0  S p e e d0
-      0    0      0      0  0- - : - - :0- -   - -0: - - : - -0  - - : - - :0- -          00 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   578k      0 --:--:-- --:--:-- --:--:--  578k
-100 2330k  100 2330k    0     0  3244k      0 --:--:-- --:--:-- --:--:-- 3244k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 06:36:11 - >>> renaming binaries to match commit they were built from
-2024-12-13 06:36:11 - mv build/nimbus_execution_client build/nimbus_execution_client_a57958f7
-2024-12-13 06:36:11 - creating a symbolic link to the latest version
-2024-12-13 06:36:11 - ln -frs build/nimbus_execution_client_a57958f7 build/nimbus_execution_client
-2024-12-13 06:36:11 - deleting copies that are older than N days
-2024-12-13 06:36:11 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 06:36:11 - >>> buildBinaries() complete
-2024-12-13 06:36:11 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit a57958f7
-2024-12-13 06:36:11 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *a57958f7* 2>/dev/null | wc -l
-2024-12-13 06:36:11 - BENCHMARK_EXISTS=0
-2024-12-13 06:36:11 - >>> starting copyTemplateDatabase()
-2024-12-13 06:36:11 - >>> Copying template db into nimbus data directory
-2024-12-13 06:36:11 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
-cp: cannot create directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/': No such file or directory
-2024-12-13 06:37:11 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 06:37:11 - >>> completed cleanBenchmarkDir()
-2024-12-13 06:37:11 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 06:37:11 - >>> cleaning repo
-2024-12-13 06:37:11 - git clean -fdx > /dev/null 2>&1
-2024-12-13 06:37:11 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 06:37:12 - >>> Fetching latest changes...
-From https://github.com/status-im/nimbus-eth1
- * [new branch]        graphql-fc -> origin/graphql-fc
-HEAD is now at a57958f7 Remove totalTerminalDifficultyPassed (#2934)
-2024-12-13 06:37:13 - >>> completed cloneOrFetchRepo()
-2024-12-13 06:37:13 - >>> starting buildBinaries()
-2024-12-13 06:37:13 - >>> Building binaries...
-2024-12-13 06:37:13 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 06:38:49 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   532k      0 --:--:-- --:--:-- --:--:--  532k
-100 2330k  100 2330k    0     0  3127k      0 --:--:-- --:--:-- --:--:-- 3127k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 06:43:28 - >>> renaming binaries to match commit they were built from
-2024-12-13 06:43:28 - mv build/nimbus_execution_client build/nimbus_execution_client_a57958f7
-2024-12-13 06:43:28 - creating a symbolic link to the latest version
-2024-12-13 06:43:28 - ln -frs build/nimbus_execution_client_a57958f7 build/nimbus_execution_client
-2024-12-13 06:43:28 - deleting copies that are older than N days
-2024-12-13 06:43:28 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 06:43:28 - >>> buildBinaries() complete
-2024-12-13 06:43:28 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit a57958f7
-2024-12-13 06:43:28 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *a57958f7* 2>/dev/null | wc -l
-2024-12-13 06:43:28 - BENCHMARK_EXISTS=0
-2024-12-13 06:43:28 - >>> starting copyTemplateDatabase()
-2024-12-13 06:43:28 - >>> Copying template db into nimbus data directory
-2024-12-13 06:43:28 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
-cp: cannot create directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/': No such file or directory
-2024-12-13 06:44:29 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 06:44:29 - >>> completed cleanBenchmarkDir()
-2024-12-13 06:44:29 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 06:44:29 - >>> cleaning repo
-2024-12-13 06:44:29 - git clean -fdx > /dev/null 2>&1
-2024-12-13 06:44:29 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 06:44:30 - >>> Fetching latest changes...
-HEAD is now at a57958f7 Remove totalTerminalDifficultyPassed (#2934)
-2024-12-13 06:44:30 - >>> completed cloneOrFetchRepo()
-2024-12-13 06:44:30 - >>> starting buildBinaries()
-2024-12-13 06:44:30 - >>> Building binaries...
-2024-12-13 06:44:30 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 06:46:09 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received  %  %X fTeortda l  A v e r%a gRee cSepieveedd   %  TXifmeer d     ATviemrea g e   S pTeimee d  C u rTriemnet 
-      T im e           T i m e     C u r r e n t 
-                  D l o a d     U p l o a d       T o t a l       SDpleonatd     U pLleofatd    S pTeoetda
-l     0S p e n t  0      L e0f t     S p0e e d 
- 0    0      0    0        00           00   - - :0- - : - -  0- - : - - : -0-   - - : - -0: ---- : - - : -0- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
- 50  345k   50  176k    0     0   297k      0  0:00:01 --:--:--  0:00:01  297k  6 2330k    6  162k    0     0   273k      0  0:00:08 --:--:--  0:00:08  273k100  345k  100  345k    0     0   555k      0 --:--:-- --:--:-- --:--:-- 5652k
-100 2330k  100 2330k    0     0  3367k      0 --:--:-- --:--:-- --:--:-- 21.6M
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 06:50:48 - >>> renaming binaries to match commit they were built from
-2024-12-13 06:50:48 - mv build/nimbus_execution_client build/nimbus_execution_client_a57958f7
-2024-12-13 06:50:48 - creating a symbolic link to the latest version
-2024-12-13 06:50:48 - ln -frs build/nimbus_execution_client_a57958f7 build/nimbus_execution_client
-2024-12-13 06:50:48 - deleting copies that are older than N days
-2024-12-13 06:50:48 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 06:50:48 - >>> buildBinaries() complete
-2024-12-13 06:50:48 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit a57958f7
-2024-12-13 06:50:48 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *a57958f7* 2>/dev/null | wc -l
-2024-12-13 06:50:48 - BENCHMARK_EXISTS=0
-2024-12-13 06:50:48 - >>> starting copyTemplateDatabase()
-2024-12-13 06:50:48 - >>> Copying template db into nimbus data directory
-2024-12-13 06:50:48 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
-cp: cannot create directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/': No such file or directory
-2024-12-13 06:51:48 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 06:51:48 - >>> completed cleanBenchmarkDir()
-2024-12-13 06:51:48 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 06:51:48 - >>> cleaning repo
-2024-12-13 06:51:48 - git clean -fdx > /dev/null 2>&1
-2024-12-13 06:51:48 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 06:51:49 - >>> Fetching latest changes...
-HEAD is now at a57958f7 Remove totalTerminalDifficultyPassed (#2934)
-2024-12-13 06:51:50 - >>> completed cloneOrFetchRepo()
-2024-12-13 06:51:50 - >>> starting buildBinaries()
-2024-12-13 06:51:50 - >>> Building binaries...
-2024-12-13 06:51:50 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 06:53:24 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received % Xferd  Ave r a%g eT oStpaele d      %T iRmeec e i v eTdi m%e  X f e r dT im eA v eCruargree nStp
-e e d       T i m e         T i m e           T i m e     C u r r eDnlto
-a d     U pl o a d       T o ta l       S p e n t         L e f t    DSlpoeaedd 
- U p l0o a d      0T o t a l0       0   S p e0n t        0L e f t     S0p e e d 
-   0  0- - : - - :0- -   - -0: - - : - -0  - - : -0- : - -    0      0   0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   610k      0 --:--:-- --:--:-- --:--:--  610k
-100 2330k  100 2330k    0     0  3339k      0 --:--:-- --:--:-- --:--:-- 3339k
-make[1]: *** [Makefile:2569: unity.o] Terminated
-make: *** [Makefile:236: rocksdb] Terminated
-2024-12-13 06:55:19 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 06:55:19 - >>> completed cleanBenchmarkDir()
-2024-12-13 06:55:19 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 06:55:19 - >>> cleaning repo
-2024-12-13 06:55:19 - git clean -fdx > /dev/null 2>&1
-2024-12-13 06:55:19 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 06:55:19 - >>> Fetching latest changes...
-HEAD is now at a57958f7 Remove totalTerminalDifficultyPassed (#2934)
-2024-12-13 06:55:20 - >>> completed cloneOrFetchRepo()
-2024-12-13 06:55:20 - >>> starting buildBinaries()
-2024-12-13 06:55:20 - >>> Building binaries...
-2024-12-13 06:55:20 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 06:56:56 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveed % dX f%e rXdf e rAdv e rAavgeer aSgpee eSdp e e dT i m eT i m e  T i m eT  i m e  T i m e  T iCmuer r eCnutr
-r e n t 
-                                                          D l o a dD l oUapdl o aUdp l o aTdo t a lT o t aSlp e n tS p e n tL e f t  L eSfpte e dS
-pe e d0
-      0  0        00        0  0        00        0  0        0    0        0    0   - - :0- --:--:-- --:--:-- --:--:-- --:--:-- --:--:-- - : - -  0    0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   513k      0 --:--:-- --:--:-- --:--:--  513k
- 50 2330k   50 1169k    0     0  1584k      0  0:00:01 --:--:--  0:00:01 1584k100 2330k  100 2330k    0     0  3032k      0 --:--:-- --:--:-- --:--:-- 37.7M
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 07:01:33 - >>> renaming binaries to match commit they were built from
-2024-12-13 07:01:33 - mv build/nimbus_execution_client build/nimbus_execution_client_a57958f7
-2024-12-13 07:01:33 - creating a symbolic link to the latest version
-2024-12-13 07:01:33 - ln -frs build/nimbus_execution_client_a57958f7 build/nimbus_execution_client
-2024-12-13 07:01:33 - deleting copies that are older than N days
-2024-12-13 07:01:33 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 07:01:33 - >>> buildBinaries() complete
-2024-12-13 07:01:33 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit a57958f7
-2024-12-13 07:01:33 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *a57958f7* 2>/dev/null | wc -l
-2024-12-13 07:01:33 - BENCHMARK_EXISTS=0
-2024-12-13 07:01:33 - >>> starting copyTemplateDatabase()
-2024-12-13 07:01:33 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
-2024-12-13 07:01:33 - >>> Copying template db into nimbus data directory
-2024-12-13 07:01:33 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
-2024-12-13 07:04:09 - >>> Template db copied
-2024-12-13 07:04:09 - chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
-2024-12-13 07:04:09 - >>> completed copyTemplateDatabase()
-2024-12-13 07:05:09 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 07:05:09 - >>> completed cleanBenchmarkDir()
-2024-12-13 07:05:09 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 07:05:09 - >>> cleaning repo
-2024-12-13 07:05:09 - git clean -fdx > /dev/null 2>&1
-2024-12-13 07:05:09 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 07:05:14 - >>> Fetching latest changes...
-HEAD is now at a57958f7 Remove totalTerminalDifficultyPassed (#2934)
-2024-12-13 07:05:15 - >>> completed cloneOrFetchRepo()
-2024-12-13 07:05:15 - >>> starting buildBinaries()
-2024-12-13 07:05:15 - >>> Building binaries...
-2024-12-13 07:05:15 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 07:06:54 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Receive d  %%  TXoftearld     A v%e rRaegcee iSvpeede d%   X fTeirmde    A v eTriamgee   S p e eTdi m e  T iCmuer r e n tT
-i m e           T i m e     C u r r e n t 
-                        D l o a d     U p l o a d       T o t a l  D l oSapde n tU p l o aLde f t  T oStpaele d 
- S p e0n t        0L e f t  0  S p e e d0
-      00          00        0    0      0      0  0- - : - - :0- -   - - : -0- : - -   - -0: ----::---- : - -   -0-:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   547k      0 --:--:-- --:--:-- --:--:--  547k
-100  190k    0  190k    0     0   275k      0 --:--:-- --:--:-- --:--:--  275k100 2330k    0 2330k    0     0  2791k      0 --:--:-- --:--:-- --:--:-- 14.4M
-make: *** [Makefile:236: rocksdb] Terminated
-make[1]: *** [Makefile:2569: unity.o] Terminated
-2024-12-13 07:09:41 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-/
-2024-12-13 07:09:41 - >>> completed cleanBenchmarkDir()
-2024-12-13 07:09:41 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 07:09:41 - >>> cleaning repo
-2024-12-13 07:09:41 - git clean -fdx > /dev/null 2>&1
-2024-12-13 07:09:41 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 07:09:42 - >>> Fetching latest changes...
-HEAD is now at a57958f7 Remove totalTerminalDifficultyPassed (#2934)
-2024-12-13 07:09:43 - >>> completed cloneOrFetchRepo()
-2024-12-13 07:09:43 - >>> starting buildBinaries()
-2024-12-13 07:09:43 - >>> Building binaries...
-2024-12-13 07:09:43 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 07:11:18 - >>> make -j16 nimbus_execution_client LOG_LEVEL=TRACE NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  345k  100  345k    0     0   511k      0 --:--:-- --:--:-- --:--:-- 1477k
-100 2330k  100 2330k    0     0  3162k      0 --:--:-- --:--:-- --:--:-- 7954k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 07:16:21 - >>> renaming binaries to match commit they were built from
-2024-12-13 07:16:21 - mv build/nimbus_execution_client build/nimbus_execution_client_a57958f7
-2024-12-13 07:16:21 - creating a symbolic link to the latest version
-2024-12-13 07:16:21 - ln -frs build/nimbus_execution_client_a57958f7 build/nimbus_execution_client
-2024-12-13 07:16:21 - deleting copies that are older than N days
-2024-12-13 07:16:21 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 07:16:21 - >>> buildBinaries() complete
-2024-12-13 07:16:21 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit a57958f7
-2024-12-13 07:16:21 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *a57958f7* 2>/dev/null | wc -l
-2024-12-13 07:16:21 - BENCHMARK_EXISTS=0
-2024-12-13 07:16:21 - >>> starting copyTemplateDatabase()
-2024-12-13 07:16:21 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
-2024-12-13 07:16:21 - >>> Copying template db into nimbus data directory
-2024-12-13 07:16:21 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
-2024-12-13 07:18:34 - >>> Template db copied
-2024-12-13 07:18:34 - chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
-2024-12-13 07:18:34 - >>> completed copyTemplateDatabase()
-2024-12-13 07:18:34 - >>> starting cloneOrFetchRepo() inside fetch-benchmarks.sh
-2024-12-13 07:18:34 - >>> creating directory /home/data/nimbus-eth1-benchmarks
-2024-12-13 07:18:34 - >>> Fetching latest benchmarks from github
-HEAD is now at 49b8005 benchmark: publish metrics and report
-2024-12-13 07:18:37 - >>> completed cloneOrFetchRepo()
-INF 2024-12-13 07:18:37.141+00:00 Launching execution client                 version=v0.1.0-a57958f7 conf="(dataDir: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/keystore, chainDbMode: Aristo, importKey: , evm: \"\", trustedSetupFile: none(string), extraData: \"nimbus-eth1/v0.1.0-a57958f7\", gasLimit: 30000000, network: \"mainnet\", customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: INFO, logFile: none(OutFile), logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: @[], bootstrapFile: , bootstrapEnrs: @[], staticPeers: @[], staticPeersFile: , staticPeersEnrs: @[], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: V4, netKey: \"random\", agentString: \"nimbus-eth1/v0.1.0-a57958f7/linux-amd64/Nim-2.0.12/nimvm\", numThreads: 0, beaconChunkSize: 0, rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2684354560, rdbVtxCacheSize: 536870912, rdbKeyCacheSize: 268435456, rdbBranchCacheSize: 1073741824, rdbPrintStats: false, cmd: import, maxBlocks: 1000000, chunkSize: 8192, csvStats: some(\"/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv\"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
-INF 2024-12-13 07:18:49.413+00:00 Threadpool started                         numThreads=16
-INF 2024-12-13 07:18:49.477+00:00 Database initialized                       base="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" finalized="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" head="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)"
-NTC 2024-12-13 07:18:49.477+00:00 Importing era archive                      blockNumber=20000001 dataDir=/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0 eraDir=/data/era
-NTC 2024-12-13 07:18:51.029+00:00 Resuming import from                       importedSlot=9204783
-INF 2024-12-13 07:25:33.329+00:00 Imported blocks                            blockNumber=20008193 blocks=8192 importedSlot=9213020 txs=1226966 mgas=124237.538 bps=20.738 tps=3106.024 mgps=314.503 avgBps=20.304 avgTps=3041.129 avgMGps=307.932 elapsed=6m43s457ms
-2024-12-13 07:28:35 - >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
-Removing blocks-import-benchmark.csv
-/
-2024-12-13 07:28:35 - >>> completed cleanBenchmarkDir()
-2024-12-13 07:28:35 - >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
-2024-12-13 07:28:35 - >>> cleaning repo
-2024-12-13 07:28:35 - git clean -fdx > /dev/null 2>&1
-2024-12-13 07:28:35 - git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
-2024-12-13 07:28:41 - >>> Fetching latest changes...
-HEAD is now at a57958f7 Remove totalTerminalDifficultyPassed (#2934)
-2024-12-13 07:28:41 - >>> completed cloneOrFetchRepo()
-2024-12-13 07:28:41 - >>> starting buildBinaries()
-2024-12-13 07:28:41 - >>> Building binaries...
-2024-12-13 07:28:41 - >>> make -j16 update
-[92mBuilding:[39m Nim compiler
-2024-12-13 07:30:22 - >>> make -j16 nimbus_execution_client LOG_LEVEL=DEBUG NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
-[92mBuilding:[39m install/usr/lib/libbacktrace.a
-make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-$DEBUG_LEVEL is 0, $LIB_MODE is static
-make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
-Cleaning up RocksDb build artifacts.
-/bin/sh: 1: javac: not found
-Building RocksDb static libraries.
-[92mBuilding:[39m install/usr/lib/libbacktracenim.a
-  % Total    % Received   %%  XTfoetradl    A v e%r aRgeec eSipveeedd  %   XTfiemred     A vTeirmaeg e   S p eTeidm e    TCiumrer e n t 
-T i m e           T i m e     C u r r e n t 
-                      D l o a d     U p l o a d       T o t a l    D lSopaedn t  U p l oLaedf t    TSopteaeld 
-   S p0e n t      0  L e f t0    S p e e0d 
-     00          00         0  0        0    0   -0- : - - : -0-   - - : - -0: - -   - - :0- --:--:-- - : - -  0--:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
- 13  345k   13 47105    0     0   109k      0  0:00:03 --:--:--  0:00:03  109k  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  345k  100  345k    0     0   718k      0 --:--:-- --:--:-- --:--:-- 4914k
-100 2330k  100 2330k    0     0  3051k      0 --:--:-- --:--:-- --:--:-- 7641k
-/usr/bin/ar: creating unity.a
-[92mBuilding:[39m build/nimbus_execution_client
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(350, 26) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/evm/precompiles.nim(368, 28) Warning: toBytesBE; toBytes is deprecated [Deprecated]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-2024-12-13 07:35:24 - >>> renaming binaries to match commit they were built from
-2024-12-13 07:35:24 - mv build/nimbus_execution_client build/nimbus_execution_client_a57958f7
-2024-12-13 07:35:24 - creating a symbolic link to the latest version
-2024-12-13 07:35:24 - ln -frs build/nimbus_execution_client_a57958f7 build/nimbus_execution_client
-2024-12-13 07:35:24 - deleting copies that are older than N days
-2024-12-13 07:35:24 - find build -mtime +3 -exec rm '{}' \+
-2024-12-13 07:35:24 - >>> buildBinaries() complete
-2024-12-13 07:35:24 - skip copyTemplateDatabase() if we have already executed benchmarking for the commit a57958f7
-2024-12-13 07:35:24 - find /home/data/nimbus-eth1-benchmarks/short-benchmark -type f -name *a57958f7* 2>/dev/null | wc -l
-2024-12-13 07:35:24 - BENCHMARK_EXISTS=0
-2024-12-13 07:35:24 - >>> starting copyTemplateDatabase()
-2024-12-13 07:35:24 - mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
-2024-12-13 07:35:24 - >>> Copying template db into nimbus data directory
-2024-12-13 07:35:24 - cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
-2024-12-13 07:37:43 - >>> Template db copied
-2024-12-13 07:37:43 - chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
-2024-12-13 07:37:43 - >>> completed copyTemplateDatabase()
-2024-12-13 07:37:43 - >>> starting cloneOrFetchRepo() inside fetch-benchmarks.sh
-2024-12-13 07:37:43 - >>> creating directory /home/data/nimbus-eth1-benchmarks
-2024-12-13 07:37:43 - >>> Fetching latest benchmarks from github
-HEAD is now at 49b8005 benchmark: publish metrics and report
-2024-12-13 07:37:45 - >>> completed cloneOrFetchRepo()
-INF 2024-12-13 07:37:45.204+00:00 Launching execution client                 version=v0.1.0-a57958f7 conf="(dataDir: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/keystore, chainDbMode: Aristo, importKey: , evm: \"\", trustedSetupFile: none(string), extraData: \"nimbus-eth1/v0.1.0-a57958f7\", gasLimit: 30000000, network: \"mainnet\", customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: INFO, logFile: none(OutFile), logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: @[], bootstrapFile: , bootstrapEnrs: @[], staticPeers: @[], staticPeersFile: , staticPeersEnrs: @[], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: V4, netKey: \"random\", agentString: \"nimbus-eth1/v0.1.0-a57958f7/linux-amd64/Nim-2.0.12/nimvm\", numThreads: 0, beaconChunkSize: 0, rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2684354560, rdbVtxCacheSize: 536870912, rdbKeyCacheSize: 268435456, rdbBranchCacheSize: 1073741824, rdbPrintStats: false, cmd: import, maxBlocks: 5000, chunkSize: 8192, csvStats: some(\"/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv\"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
-INF 2024-12-13 07:37:47.460+00:00 Threadpool started                         numThreads=16
-INF 2024-12-13 07:37:47.532+00:00 Database initialized                       base="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" finalized="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" head="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)"
-NTC 2024-12-13 07:37:47.532+00:00 Importing era archive                      blockNumber=20000001 dataDir=/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0 eraDir=/data/era
-NTC 2024-12-13 07:37:49.136+00:00 Resuming import from                       importedSlot=9204783
-INF 2024-12-13 07:42:11.847+00:00 Imported blocks                            blockNumber=20005001 blocks=5000 importedSlot=9209812 txs=736412 mgas=75927.329 bps=19.353 tps=2850.360 mgps=293.885 avgBps=18.938 avgTps=2789.277 avgMGps=287.587 elapsed=4m24s15ms
-2024-12-13 07:42:12 - >>> starting moveBenchmarkingFileToRepo() inside publish-metrics-github.sh
-2024-12-13 07:42:12 - >>> creating directory /home/data/nimbus-eth1-benchmarks/short-benchmark/20241213T074212_a57958f7
-2024-12-13 07:42:12 - >>> copying debug-csv generated by nimbus to benchmarks repo
-2024-12-13 07:42:12 - cp /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241213T074212_a57958f7/blocks-import-benchmark.csv
-2024-12-13 07:42:12 - >>> completed moveBenchmarkingFileToRepo()
-2024-12-13 07:42:12 - >>> copying import systemd service log file to benchmarks repo
-2024-12-13 07:42:12 - cp /home/data/nimbus-eth1-mainnet-master-short-benchmark-output.log /home/data/nimbus-eth1-benchmarks/short-benchmark/20241213T074212_a57958f7/nimbus-eth1-mainnet-master-short-benchmark-output.log
-2024-12-13 07:42:12 - >>> truncating import systemd service log file
-2024-12-13 07:42:12 - cat /dev/null > /home/data/nimbus-eth1-mainnet-master-short-benchmark-output.log

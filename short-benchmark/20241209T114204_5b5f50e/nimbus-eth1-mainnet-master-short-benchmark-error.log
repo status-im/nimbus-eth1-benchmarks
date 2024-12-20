@@ -1,65 +1,0 @@
-To github.com:status-im/nimbus-eth1-benchmarks.git
-   dbbae2b..5b5f50e  master -> master
-/master
-chmarks
-+ ENVIRONMENT_LOG_FILE_NAME=build-environment.log
-+ BENCHMARKING_FILE_PATH=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
-++ date +%Y%m%dT%H%M%S
-+ ISO_TIMESTAMP=20241209T075012
-++ cd /home/data/nimbus-eth1-benchmarks
-++ git rev-parse --short HEAD
-+ GIT_HASH=9d4cc79
-+ BENCHMARKING_TYPE=short
-+ BENCHMARK_DESTINATION=/home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T075012_9d4cc79
-+ ENVIRONMENT_LOG_FILE_PATH=/home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T075012_9d4cc79/build-environment.log
-+ BENCHMARKING_SERVICE_LOG_FILE_NAME=nimbus-eth1-mainnet-master-short-benchmark-output.log
-+ BENCHMARKING_SERVICE_ERROR_FILE_NAME=nimbus-eth1-mainnet-master-short-benchmark-error.log
-+ BENCHMARKING_SERVICE_OUTPUT_LOG_FILE=/data/nimbus-eth1-mainnet-master-short-benchmark-output.log
-+ BENCHMARKING_SERVICE_ERROR_LOG_FILE=/data/nimbus-eth1-mainnet-master-short-benchmark-error.log
-+ NIMBUS_ETH1_BLOCKS_IMPORT_SCRIPT_PATH=/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py
-++ cut '-d ' -f2
-++ sort -nr
-++ head -n 1
-++ find /home/data/nimbus-eth1-benchmarks/short-benchmark -maxdepth 1 -type d -printf '%T@ %f\n'
-+ LATEST_BENCHMARKED_CSV_DIRECTORY=20241209T052435_d774054
-+ LATEST_BENCHMARKED_CSV_FILE_PATH=/home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T052435_d774054/blocks-import-benchmark.csv
-+ fetchChanges
-+ echo ' >>> Fetching latest changes from nimbus-eth1-benchmarks repo...'
-+ cd /home/data/nimbus-eth1-benchmarks
-+ git fetch
-+ git reset --hard origin/master
-+ cd -
-+ moveBenchmarkingFileToRepo
-+ mkdir -p /home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T075012_9d4cc79
-+ echo '>>> copying benchmarking file to repo'
-+ cp /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T075012_9d4cc79/blocks-import-benchmark.csv
-+ echo '>>> copying service output log file to repo'
-+ cp /data/nimbus-eth1-mainnet-master-short-benchmark-output.log /home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T075012_9d4cc79/nimbus-eth1-mainnet-master-short-benchmark-output.log
-+ echo '>>> copying service error log file to repo'
-+ cp /data/nimbus-eth1-mainnet-master-short-benchmark-error.log /home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T075012_9d4cc79/nimbus-eth1-mainnet-master-short-benchmark-error.log
-+ generateBenchmarkSummary
-+ touch /home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T075012_9d4cc79/build-environment.log
-+ pushChangesToRepo
-+ cd /home/data/nimbus-eth1-benchmarks/short-benchmark/20241209T075012_9d4cc79
-+ git add .
-+ git commit -m 'benchmark: publish metrics and report'
-+ git push
-To github.com:status-im/nimbus-eth1-benchmarks.git
-   9d4cc79..8920136  master -> master
-+ echo ' >>> Pushed benchmark csv to nimbus-eth1-benchmarks repo...'
-m enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
-find: ‘./lz4-1.9.4’: No such file or directory
-find: ‘./zstd-1.5.5’: No such file or directory
-make[1]: *** [Makefile:1253: clean-rocks] Error 1
-    %%  TToottaall        %%  RReecceeiivveedd  %%  XXffeerrdd    AAvveerraaggee  SSppeeeedd      TTiimmee        TTiimmee          TTiimmee    CCuurrrreenntt
-
-                                                                  DDllooaadd    UUppllooaadd      TToottaall      SSppeenntt        LLeefftt    SSppeeeedd
-
-    00          00        00          00        00          00            00            00  ----::----::----  ----::----::----  ----::----::----          00  0     0     0  0        0  0      0  0        0  0      0      0    0        0   -0- : - - : - -0  ----::----::----  ----::----::----   - - : -0-:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100  345k  100  345k    0     0   581k      0 --:--:-- --:--:-- --:--:--  581k
-100 2330k  100 2330k    0     0  2993k      0 --:--:-- --:--:-- --:--:-- 2993k
-/usr/bin/ar: creating unity.a
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
-/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(323, 14) Warning: LedgerRef does not support loading a particular state; getStateDB is deprecated [Deprecated]
