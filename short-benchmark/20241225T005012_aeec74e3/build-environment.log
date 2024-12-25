@@ -1,0 +1,54 @@
+=== System Information Report ===
+>>> Generated on: Wed Dec 25 12:50:12 AM UTC 2024
+==========================
+>>> CPU Architecture: x86_64
+>>> CPU Byte Order: Little Endian
+>>> CPU Cores: 16
+>>> CPU Model: AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
+>>> CPU Cache Information:
+L1d Cache: 256 KiB (8 instances)
+L1i Cache: 256 KiB (8 instances)
+L2 Cache: 8 MiB (8 instances)
+L3 Cache: 16 MiB (1 instance)
+>>> RAM Size: 61Gi
+>>> Hard Disk Information:
+/dev/md2 : 437G total, 197G free
+/dev/md1 : 989M total, 693M free
+/dev/nvme2n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 740G free
+==========================
+=== Nimbus-ETH1 Benchmarking Report ===
+>>> Total time spent in benchmarking (nanoseconds): 33298742533623
+>>> Total time spent in benchmarking (human readable format): 9 hours 14 minutes 58 seconds
+>>> Start block number is 20000001
+>>> End block number is 21000001
+>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --max-blocks=1000000 \
+    --log-level=INFO \
+    --data-dir='/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+==========================
+2024-12-25 00:50:13 - === Comparison of last two benchmarks ===
+2024-12-25 00:50:20 - python /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/short-benchmark/20241225T005012_aeec74e3/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241222T233000_487743fc/blocks-import-benchmark.csv 2>&1 || true
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                      bps_x  bps_y     tps_x     tps_y    time_x    time_y    bpsd    tpsd   timed
+block_number                                                                                      
+(20000001, 20111112]  25.40  25.08  4,141.68  4,093.16  1h10m15s  1h11m19s  -1.27%  -1.27%   1.48%
+(20111112, 20222223]  26.93  27.13  4,405.10  4,437.73   1h11m8s  1h10m35s   0.76%   0.76%  -0.74%
+(20222223, 20333334]  28.04  28.07  4,548.24  4,553.03   1h3m38s   1h3m34s   0.11%   0.11%  -0.11%
+(20333334, 20444445]  31.03  30.86  4,887.64  4,859.69   1h1m50s   1h2m10s  -0.54%  -0.54%   0.55%
+(20444445, 20555556]  30.82  30.19  4,747.85  4,649.29    57m40s    58m52s  -2.04%  -2.04%   2.11%
+(20555556, 20666667]  31.56  30.58  4,766.69  4,617.90   1h0m35s   1h2m32s  -3.12%  -3.12%   3.22%
+(20666667, 20777778]  32.59  31.89  5,128.08  5,017.33    54m31s    55m43s  -2.14%  -2.14%   2.21%
+(20777778, 20888889]  33.49  33.28  5,372.43  5,339.32    57m13s    57m37s  -0.66%  -0.66%   0.67%
+(20888889, 21000001]  33.10  33.22  5,457.13  5,479.12     58m4s    57m53s   0.41%   0.41%  -0.38%
+
+blocks: 991808, baseline: 9h14m58s, contender: 9h20m22s
+Time (total): 5m23s, 0.97%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
+2024-12-25 00:50:21 - ==========================
