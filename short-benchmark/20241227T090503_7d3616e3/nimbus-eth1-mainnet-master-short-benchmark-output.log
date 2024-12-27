@@ -1,0 +1,519 @@
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539285]: >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539285]: cd /home/data/nimbus-eth1-benchmarks
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539285]: git clean -df
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539285]: cd -
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539286]: Removing blocks-import-benchmark.csv
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539285]: /
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539285]: >>> completed cleanBenchmarkDir()
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539287]: >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539287]: mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539287]: chmod 775 /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539287]: >>> cleaning repo
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539287]: cd /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539287]: git clean -fdx > /dev/null 2>&1
+Dec 27 08:50:15 nimbus-eth1-mainnet-short-benchmark[539287]: git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
+Dec 27 08:50:21 nimbus-eth1-mainnet-short-benchmark[539287]: >>> Fetching latest changes...
+Dec 27 08:50:21 nimbus-eth1-mainnet-short-benchmark[539287]: git fetch
+Dec 27 08:50:21 nimbus-eth1-mainnet-short-benchmark[539287]: git reset --hard origin/master
+Dec 27 08:50:22 nimbus-eth1-mainnet-short-benchmark[539589]: HEAD is now at 7d3616e3 Refactor TxPool: leaner and simpler (#2973)
+Dec 27 08:50:22 nimbus-eth1-mainnet-short-benchmark[539287]: >>> completed cloneOrFetchRepo()
+Dec 27 08:50:22 nimbus-eth1-mainnet-short-benchmark[539287]: >>> starting buildBinaries()
+Dec 27 08:50:22 nimbus-eth1-mainnet-short-benchmark[539287]: cd /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo
+Dec 27 08:50:22 nimbus-eth1-mainnet-short-benchmark[539287]: >>> Building binaries...
+Dec 27 08:50:22 nimbus-eth1-mainnet-short-benchmark[539287]: make -j16 update
+Dec 27 08:50:57 nimbus-eth1-mainnet-short-benchmark[544923]: Building: Nim compiler
+Dec 27 08:52:03 nimbus-eth1-mainnet-short-benchmark[539287]: make -j16 nimbus_execution_client LOG_LEVEL=DEBUG NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
+Dec 27 08:52:03 nimbus-eth1-mainnet-short-benchmark[547951]: Building: install/usr/lib/libbacktrace.a
+Dec 27 08:52:03 nimbus-eth1-mainnet-short-benchmark[548129]: make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
+Dec 27 08:52:03 nimbus-eth1-mainnet-short-benchmark[548129]: $DEBUG_LEVEL is 0, $LIB_MODE is static
+Dec 27 08:52:04 nimbus-eth1-mainnet-short-benchmark[548129]: make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
+Dec 27 08:52:04 nimbus-eth1-mainnet-short-benchmark[549087]: Cleaning up RocksDb build artifacts.
+Dec 27 08:52:05 nimbus-eth1-mainnet-short-benchmark[549857]: /bin/sh: 1: javac: not found
+Dec 27 08:52:05 nimbus-eth1-mainnet-short-benchmark[547921]: Building RocksDb static libraries.
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553271]: Building: install/usr/lib/libbacktracenim.a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: %
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: %
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: o
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: o
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: l
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: l
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: %
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: %
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: R
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: R
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: c
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: c
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: i
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: i
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: v
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: v
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  %
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: %
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: X
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: X
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: f
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: fe
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: r
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: r
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: A
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: Av
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: v
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: er
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: r
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: g
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: ge
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  S
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: S
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: p
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: p
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: i
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: i
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: m
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: m
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:   
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: i
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: i
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: m
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: m
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: i
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: i
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: m
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: m
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: C
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: C
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: u
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: u
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: r
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: r
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: r
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: re
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: n
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: n
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:   
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:   
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: D
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: D
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: l
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: l
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: o
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: oad  U
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: p
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: l
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: o
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: U
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: p
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: l
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: o
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: o
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  T
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: l
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: o
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: a
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: l
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: S
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: p
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: n
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: S
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: p
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: n
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: L
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: f
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: L
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  Sp
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: f
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: t
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: d
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: Sp
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: e
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: ed
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: --
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: --:--
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: :
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: -
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]:  
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: 0
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: [82B blob data]
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553455]: [79B blob data]
+Dec 27 08:52:10 nimbus-eth1-mainnet-short-benchmark[553456]: [158B blob data]
+Dec 27 08:52:11 nimbus-eth1-mainnet-short-benchmark[553455]: [79B blob data]
+Dec 27 08:52:11 nimbus-eth1-mainnet-short-benchmark[553456]: [79B blob data]
+Dec 27 08:54:43 nimbus-eth1-mainnet-short-benchmark[554327]: /usr/bin/ar: creating unity.a
+Dec 27 08:54:45 nimbus-eth1-mainnet-short-benchmark[554334]: Building: build/nimbus_execution_client
+Dec 27 08:54:46 nimbus-eth1-mainnet-short-benchmark[554439]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/compile_info.nim(34, 10) Warning: *** Compiling with nimvm enabled [User]
+Dec 27 08:54:56 nimbus-eth1-mainnet-short-benchmark[554439]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/nimbus/graphql/ethapi.nim(325, 14) Warning: LedgerRef does not support loading a particular state; getLedger is deprecated [Deprecated]
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[539287]: >>> renaming binaries to match commit they were built from
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[539287]: mv build/nimbus_execution_client build/nimbus_execution_client_7d3616e3
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[539287]: >>> creating a symbolic link to the latest version
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[539287]: ln -frs build/nimbus_execution_client_7d3616e3 build/nimbus_execution_client
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[539287]: >>> deleting copies that are older than N days
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[539287]: find build -mtime +3 -exec rm '{}' \+
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[539287]: >>> buildBinaries() complete
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[559306]: find /home/data/nimbus-eth1-benchmarks/short-benchmark -type d -name *7d3616e3* 2>/dev/null | wc -l
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[559306]: >>> DEBUG_MODE is: true
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[559306]: >>> BENCHMARK_EXISTS is: 8
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[559311]: >>> starting copyTemplateDatabase()
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[559311]: mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[559311]: >>> Copying template db into nimbus data directory
+Dec 27 08:56:58 nimbus-eth1-mainnet-short-benchmark[559311]: cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
+Dec 27 09:00:11 nimbus-eth1-mainnet-short-benchmark[559311]: >>> Template db copied
+Dec 27 09:00:11 nimbus-eth1-mainnet-short-benchmark[559311]: chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
+Dec 27 09:00:15 nimbus-eth1-mainnet-short-benchmark[559311]: >>> completed copyTemplateDatabase()
+Dec 27 09:00:15 nimbus-eth1-mainnet-short-benchmark[559749]: >>> starting cloneOrFetchRepo() inside fetch-benchmarks.sh
+Dec 27 09:00:15 nimbus-eth1-mainnet-short-benchmark[559749]: mkdir -p /home/data/nimbus-eth1-benchmarks
+Dec 27 09:00:15 nimbus-eth1-mainnet-short-benchmark[559749]: >>> Fetching latest benchmarks from github
+Dec 27 09:00:15 nimbus-eth1-mainnet-short-benchmark[559749]: cd /home/data/nimbus-eth1-benchmarks
+Dec 27 09:00:15 nimbus-eth1-mainnet-short-benchmark[559749]: git fetch
+Dec 27 09:00:15 nimbus-eth1-mainnet-short-benchmark[559749]: git reset --hard origin/master
+Dec 27 09:00:17 nimbus-eth1-mainnet-short-benchmark[559757]: HEAD is now at 2763fb0 debug: publish short-benchmark metrics and report for 5000 blocks
+Dec 27 09:00:17 nimbus-eth1-mainnet-short-benchmark[559749]: chown -R nimbus:staff /home/data/nimbus-eth1-benchmarks
+Dec 27 09:00:18 nimbus-eth1-mainnet-short-benchmark[559749]: >>> completed cloneOrFetchRepo()
+Dec 27 09:00:38 nimbus-eth1-mainnet-short-benchmark[559760]: INF 2024-12-27 09:00:18.058+00:00 Launching execution client                 version=v0.1.0-7d3616e3 conf="(dataDir: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/keystore, chainDbMode: Aristo, importKey: , evm: \"\", trustedSetupFile: none(string), extraData: \"nimbus-eth1/v0.1.0-7d3616e3\", gasLimit: 36000000, network: \"mainnet\", customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: INFO, logFile: none(OutFile), logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: @[], bootstrapFile: , bootstrapEnrs: @[], staticPeers: @[], staticPeersFile: , staticPeersEnrs: @[], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: V4, netKey: \"random\", agentString: \"nimbus-eth1/v0.1.0-7d3616e3/linux-amd64/Nim-2.0.14/nimvm\", numThreads: 0, beaconChunkSize: 0, rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2684354560, rdbVtxCacheSize: 536870912, rdbKeyCacheSize: 268435456, rdbBranchCacheSize: 1073741824, rdbPrintStats: false, cmd: import, maxBlocks: 5000, chunkSize: 8192, csvStats: some(\"/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv\"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
+Dec 27 09:00:38 nimbus-eth1-mainnet-short-benchmark[559760]: INF 2024-12-27 09:00:38.298+00:00 Threadpool started                         numThreads=16
+Dec 27 09:00:38 nimbus-eth1-mainnet-short-benchmark[559760]: INF 2024-12-27 09:00:38.394+00:00 Database initialized                       base="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" finalized="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" head="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)"
+Dec 27 09:00:38 nimbus-eth1-mainnet-short-benchmark[559760]: NTC 2024-12-27 09:00:38.394+00:00 Importing era archive                      blockNumber=20000001 dataDir=/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0 eraDir=/data/era
+Dec 27 09:00:40 nimbus-eth1-mainnet-short-benchmark[559760]: NTC 2024-12-27 09:00:40.050+00:00 Matched block to slot number               blockNumber=20000001 slot=9204783
+Dec 27 09:05:02 nimbus-eth1-mainnet-short-benchmark[559760]: INF 2024-12-27 09:05:02.637+00:00 Imported blocks                            blockNumber=20005001 slot=9209812 blocks=5000 txs=736412 mgas=75927 bps=18.94 tps=2789 mgps=287.7 avgBps=18.94 avgTps=2789 avgMGps=287.7 elapsed=4m23s952ms
+Dec 27 09:05:02 nimbus-eth1-mainnet-short-benchmark[559760]: NTC 2024-12-27 09:05:02.637+00:00 Import complete                            blockNumber=20005001 slot=9209812 blocks=5000 txs=736412 mgas=75927
+Dec 27 09:05:03 nimbus-eth1-mainnet-short-benchmark[560411]: >>> starting moveBenchmarkingFileToRepo() inside publish-metrics-github.sh
+Dec 27 09:05:03 nimbus-eth1-mainnet-short-benchmark[560411]: >>> mkdir -p /home/data/nimbus-eth1-benchmarks/short-benchmark/20241227T090503_7d3616e3
+Dec 27 09:05:03 nimbus-eth1-mainnet-short-benchmark[560411]: >>> copying debug-csv generated by nimbus to benchmarks repo
+Dec 27 09:05:03 nimbus-eth1-mainnet-short-benchmark[560411]: cp /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241227T090503_7d3616e3/blocks-import-benchmark.csv
+Dec 27 09:05:03 nimbus-eth1-mainnet-short-benchmark[560411]: >>> completed moveBenchmarkingFileToRepo()
+Dec 27 09:05:12 nimbus-eth1-mainnet-short-benchmark[560411]: SYSTEMD_INVOCATION_ID for this service run is: 9ee7597b0fe5486cb4878b6608453db9
+Dec 27 09:05:12 nimbus-eth1-mainnet-short-benchmark[560411]: journalctl _SYSTEMD_INVOCATION_ID=9ee7597b0fe5486cb4878b6608453db9 -q --no-hostname >>/home/data/nimbus-eth1-benchmarks/short-benchmark/20241227T090503_7d3616e3/nimbus-eth1-mainnet-master-short-benchmark-output.log
