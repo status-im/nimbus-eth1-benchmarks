@@ -5,6 +5,7 @@ This repository contains various eth1 import benchmark metrics
 
 | Generated At | Type | Baseline | Contender | Time Difference | Time Difference Percentage |
   |-------------|------|-----------|------------|-----------------|---------------------------|
+  | 2025-01-06 09:26:26 | short | 0ffc17d1 | 0ffc17d1 | 0s | 0.28% |
   | 2025-01-02 17:53:16 | short | 7c347e1a | fc9077b1 | 1m32s | 0.28% |
   | 2025-01-01 00:59:39 | short | fc9077b1 | 7c0c507f | 1m41s | 0.30% |
   | 2024-12-29 15:39:34 | short | 7c0c507f | 5182a086 | 12m21s | 2.22% |
