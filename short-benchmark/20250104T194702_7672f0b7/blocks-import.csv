@@ -1,8 +1,0 @@
-block_range,bps_x,bps_y,tps_x,tps_y,time_x,time_y,bpsd,tpsd,timed
-"(20004445, 20005001]",18.02,18.13,2653.59,2669.60,4m37s,4m35s,0.60%,0.60%,-0.60%
-
-Total Blocks,0
-Baseline Time,4m37s
-Contender Time,4m35s
-Time Difference,-1s
-Time Difference %,-0.60%
