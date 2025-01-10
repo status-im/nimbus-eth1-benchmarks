@@ -31,4 +31,25 @@ L3 Cache: 16 MiB (1 instance)
     --era1-dir=/data/era1 \
     --era-dir=/data/era \
     --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+
+=== Comparison of last two benchmarks ===
+python scripts/block-import-stats.py short-benchmark/20241210T105003_57157a6f/blocks-import-benchmark.csv short-benchmark/20241212T220630_674e65f3/blocks-import-benchmark.csv
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                      bps_x  bps_y     tps_x     tps_y    time_x    time_y   bpsd   tpsd   timed
+block_number
+(20000001, 20111112]  25.56  26.50  4,167.01  4,322.20   1h9m38s   1h7m19s  3.59%  3.59%  -3.42%
+(20111112, 20222223]  25.87  27.24  4,231.90  4,455.35  1h13m59s  1h10m15s  5.30%  5.30%  -5.02%
+(20222223, 20333334]  26.36  27.72  4,274.75  4,496.34   1h7m38s   1h4m18s  5.20%  5.20%  -4.94%
+(20333334, 20444445]  29.07  30.79  4,577.47  4,849.02   1h5m55s   1h2m12s  5.96%  5.96%  -5.62%
+(20444445, 20555556]  28.92  30.86  4,453.04  4,750.27   1h1m25s    57m33s  6.70%  6.70%  -6.28%
+(20555556, 20666667]  29.73  31.47  4,488.12  4,751.78   1h4m19s   1h0m45s  5.87%  5.87%  -5.53%
+(20666667, 20777778]  30.25  32.35  4,759.04  5,087.85    58m43s    54m54s  6.94%  6.94%  -6.48%
+(20777778, 20888889]  30.91  32.94  4,958.15  5,282.81   1h1m58s     58m7s  6.61%  6.61%  -6.18%
+(20888889, 21000001]  30.67  32.46  5,056.37  5,352.49   1h2m35s    59m10s  5.86%  5.86%  -5.53%
+
+blocks: 991808, baseline: 9h46m14s, contender: 9h14m36s
+Time (total): -31m37s, -5.39%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
 ==========================

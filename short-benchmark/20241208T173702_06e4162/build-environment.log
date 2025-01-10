@@ -31,8 +31,23 @@ L3 Cache: 16 MiB (1 instance)
     --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
 ==========================
 === Comparison of last two benchmarks ===
-Traceback (most recent call last):
-  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py", line 87, in <module>
-    baseline = baseline.loc[baseline.index >= start and baseline.index <= end]
-ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+python scripts/block-import-stats.py  short-benchmark/20241208T172603_9207eaf/blocks-import-benchmark.csv short-benchmark/20241208T173702_06e4162/blocks-import-benchmark.csv
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                      bps_x  bps_y     tps_x     tps_y    time_x    time_y   bpsd   tpsd  timed
+block_number
+(20000001, 20111112]  25.62  25.62  4,176.33  4,176.33   1h9m29s   1h9m29s  0.00%  0.00%  0.00%
+(20111112, 20222223]  25.91  25.91  4,237.79  4,237.79  1h13m53s  1h13m53s  0.00%  0.00%  0.00%
+(20222223, 20333334]  26.60  26.60  4,314.13  4,314.13    1h7m0s    1h7m0s  0.00%  0.00%  0.00%
+(20333334, 20444445]  29.13  29.13  4,586.04  4,586.04   1h5m47s   1h5m47s  0.00%  0.00%  0.00%
+(20444445, 20555556]  29.12  29.12  4,483.73  4,483.73   1h0m59s   1h0m59s  0.00%  0.00%  0.00%
+(20555556, 20666667]  29.62  29.62  4,472.00  4,472.00   1h4m33s   1h4m33s  0.00%  0.00%  0.00%
+(20666667, 20777778]  30.50  30.50  4,797.46  4,797.46    58m15s    58m15s  0.00%  0.00%  0.00%
+(20777778, 20888889]  30.99  30.99  4,969.59  4,969.59   1h1m50s   1h1m50s  0.00%  0.00%  0.00%
+(20888889, 21000001]  30.81  30.81  5,080.18  5,080.18   1h2m16s   1h2m16s  0.00%  0.00%  0.00%
+
+blocks: 991808, baseline: 9h44m5s, contender: 9h44m5s
+Time (total): 0s, 0.00%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
 ==========================

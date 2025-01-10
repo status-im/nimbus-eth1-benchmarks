@@ -32,4 +32,23 @@ tail: error writing 'standard output': Broken pipe
     --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
 ==========================
 === Comparison of last two benchmarks ===
-/home/data/nimbus-eth1-benchmarks/long-benchmark does not contain 2 or more benchmark CSVs, skipping compareBenchmarkWithPrevious()
+python scripts/block-import-stats.py long-benchmark/20241227T144804_c714fa87/blocks-import-benchmark.csv long-benchmark/20250102T143637_7c0c507f/blocks-import-benchmark.csv
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                         bps_x     bps_y      tps_x      tps_y     time_x     time_y    bpsd    tpsd  timed
+block_number
+(499713, 2778109]     5,656.94  5,542.99  27,384.44  26,794.62     28m30s     29m12s  -2.16%  -2.16%  2.24%
+(2778109, 5056506]    1,755.75  1,692.26  30,719.13  29,727.11    1h33m3s   1h35m37s  -3.11%  -3.11%  3.22%
+(5056506, 7334902]      135.80    133.09  14,542.52  14,251.78    4h43m9s   4h48m47s  -1.97%  -1.97%  2.02%
+(7334902, 9613299]      113.07    110.92  12,228.02  11,996.68   5h41m18s   5h47m56s  -1.90%  -1.90%  1.94%
+(9613299, 11891695]      62.42     61.12   9,791.65   9,582.82  10h23m24s   10h37m5s  -2.12%  -2.12%  2.17%
+(11891695, 14170092]     39.72     38.81   7,799.25   7,619.98  16h10m27s  16h33m14s  -2.29%  -2.29%  2.35%
+(14170092, 16448488]     34.81     34.17   5,844.34   5,735.04   18h14m5s  18h34m30s  -1.83%  -1.83%  1.87%
+(16448488, 18726885]     29.09     28.78   4,267.18   4,221.88   22h8m56s  22h22m38s  -1.04%  -1.04%  1.05%
+(18726885, 21005282]     27.90     27.47   4,524.24   4,455.21  23h10m29s  23h30m59s  -1.49%  -1.49%  1.51%
+
+blocks: 20497377, baseline: 102h33m24s, contender: 104h20m2s
+Time (total): 1h46m38s, 1.73%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
+==========================

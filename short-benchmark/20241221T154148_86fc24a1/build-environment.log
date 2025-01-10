@@ -32,22 +32,22 @@ L3 Cache: 16 MiB (1 instance)
     --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
 ==========================
 2024-12-21 15:41:49 - === Comparison of last two benchmarks ===
-2024-12-21 15:41:56 - python /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/short-benchmark/20241221T154148_86fc24a1/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20241221T012613_036dd23e/blocks-import-benchmark.csv 2>&1 || true
+2024-12-21 15:41:56 - python scripts/block-import-stats.py short-benchmark/20241221T012613_036dd23e/blocks-import-benchmark.csv short-benchmark/20241221T154148_86fc24a1/blocks-import-benchmark.csv
 blocks-import-benchmark.csv vs blocks-import-benchmark.csv
-                      bps_x  bps_y     tps_x     tps_y    time_x    time_y    bpsd    tpsd   timed
-block_number                                                                                      
-(20000001, 20111112]  25.03  24.97  4,083.79  4,072.83  1h11m24s  1h11m33s  -0.24%  -0.24%   0.24%
-(20111112, 20222223]  26.93  26.88  4,407.08  4,397.49   1h11m5s  1h11m14s  -0.21%  -0.21%   0.21%
-(20222223, 20333334]  27.64  27.84  4,483.93  4,516.49   1h4m33s    1h4m6s   0.72%   0.72%  -0.71%
-(20333334, 20444445]  30.47  30.39  4,799.20  4,786.86   1h2m58s    1h3m7s  -0.24%  -0.24%   0.25%
-(20444445, 20555556]  29.95  29.75  4,612.98  4,581.79    59m20s    59m44s  -0.68%  -0.68%   0.69%
-(20555556, 20666667]  30.75  30.55  4,643.52  4,613.69   1h2m12s   1h2m36s  -0.63%  -0.63%   0.65%
-(20666667, 20777778]  31.50  31.77  4,955.71  4,998.67    56m26s    55m57s   0.87%   0.87%  -0.86%
-(20777778, 20888889]  32.76  32.69  5,254.45  5,243.48    58m30s    58m38s  -0.21%  -0.21%   0.22%
-(20888889, 21000001]  32.83  32.56  5,411.37  5,371.61    58m22s     59m2s  -0.75%  -0.75%   0.80%
+                    bps_x  bps_y     tps_x     tps_y    time_x    time_y    bpsd    tpsd   timed
+block_number
+(20000001, 20111112]  24.97  25.03  4,072.83  4,083.79  1h11m33s  1h11m24s   0.24%   0.24%  -0.24%
+(20111112, 20222223]  26.88  26.93  4,397.49  4,407.08  1h11m14s   1h11m5s   0.21%   0.21%  -0.21%
+(20222223, 20333334]  27.84  27.64  4,516.49  4,483.93    1h4m6s   1h4m33s  -0.71%  -0.71%   0.72%
+(20333334, 20444445]  30.39  30.47  4,786.86  4,799.20    1h3m7s   1h2m58s   0.25%   0.25%  -0.24%
+(20444445, 20555556]  29.75  29.95  4,581.79  4,612.98    59m44s    59m20s   0.69%   0.69%  -0.68%
+(20555556, 20666667]  30.55  30.75  4,613.69  4,643.52   1h2m36s   1h2m12s   0.65%   0.65%  -0.63%
+(20666667, 20777778]  31.77  31.50  4,998.67  4,955.71    55m57s    56m26s  -0.86%  -0.86%   0.87%
+(20777778, 20888889]  32.69  32.76  5,243.48  5,254.45    58m38s    58m30s   0.22%   0.22%  -0.21%
+(20888889, 21000001]  32.56  32.83  5,371.61  5,411.37     59m2s    58m22s   0.80%   0.80%  -0.75%
 
-blocks: 991808, baseline: 9h24m55s, contender: 9h26m1s
-Time (total): 1m6s, 0.20%
+blocks: 991808, baseline: 9h26m1s, contender: 9h24m55s
+Time (total): -1m6s, -0.20%
 
 bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
 + = more is better, - = less is better

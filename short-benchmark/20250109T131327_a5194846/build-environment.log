@@ -34,25 +34,25 @@ L3 Cache: 16 MiB (1 instance)
 === Comparison of last two benchmarks ===
 python -m venv /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats
 source /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/bin/activate
-pip install -r /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/requirements.txt >/dev/null 2>&1
-python /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/short-benchmark/20250109T131327_a5194846/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20250108T165201_13a58abf/blocks-import-benchmark.csv 2>&1 || true
+python scripts/block-import-stats.py short-benchmark/20250108T165201_13a58abf/blocks-import-benchmark.csv short-benchmark/20250109T131327_a5194846/blocks-import-benchmark.csv
 blocks-import-benchmark.csv vs blocks-import-benchmark.csv
                       bps_x  bps_y     tps_x     tps_y    time_x    time_y    bpsd    tpsd   timed
-block_number                                                                                      
-(20000001, 20111112]  25.41  25.43  4,147.75  4,149.17  1h10m33s  1h10m20s   0.18%   0.18%  -0.16%
-(20111112, 20222223]  27.07  26.91  4,428.03  4,403.13  1h10m44s   1h11m9s  -0.57%  -0.57%   0.57%
-(20222223, 20333334]  27.92  27.94  4,529.42  4,532.97   1h3m55s   1h3m54s   0.05%   0.05%  -0.05%
-(20333334, 20444445]  30.83  30.77  4,855.53  4,846.58   1h2m14s   1h2m22s  -0.19%  -0.19%   0.20%
-(20444445, 20555556]  30.57  30.48  4,708.44  4,695.44     58m9s    58m19s  -0.29%  -0.29%   0.30%
-(20555556, 20666667]  31.51  31.52  4,758.42  4,760.83   1h0m41s   1h0m40s   0.04%   0.04%  -0.04%
-(20666667, 20777778]  32.64  32.52  5,136.25  5,116.77    54m27s    54m39s  -0.37%  -0.37%   0.37%
-(20777778, 20888889]  33.27  33.45  5,337.24  5,365.83    57m35s    57m17s   0.54%   0.54%  -0.53%
-(20888889, 21000001]  32.78  32.85  5,403.82  5,413.31    58m24s    58m15s   0.19%   0.19%  -0.18%
+block_number
+(20000001, 20111112]  25.43  25.41  4,149.17  4,147.75  1h10m20s  1h10m33s  -0.16%  -0.16%   0.18%
+(20111112, 20222223]  26.91  27.07  4,403.13  4,428.03   1h11m9s  1h10m44s   0.57%   0.57%  -0.57%
+(20222223, 20333334]  27.94  27.92  4,532.97  4,529.42   1h3m54s   1h3m55s  -0.05%  -0.05%   0.05%
+(20333334, 20444445]  30.77  30.83  4,846.58  4,855.53   1h2m22s   1h2m14s   0.20%   0.20%  -0.19%
+(20444445, 20555556]  30.48  30.57  4,695.44  4,708.44    58m19s     58m9s   0.30%   0.30%  -0.29%
+(20555556, 20666667]  31.52  31.51  4,760.83  4,758.42   1h0m40s   1h0m41s  -0.04%  -0.04%   0.04%
+(20666667, 20777778]  32.52  32.64  5,116.77  5,136.25    54m39s    54m27s   0.37%   0.37%  -0.37%
+(20777778, 20888889]  33.45  33.27  5,365.83  5,337.24    57m17s    57m35s  -0.53%  -0.53%   0.54%
+(20888889, 21000001]  32.85  32.78  5,413.31  5,403.82    58m15s    58m24s  -0.18%  -0.18%   0.19%
 
-blocks: 991808, baseline: 9h16m46s, contender: 9h16m57s
-Time (total): 11s, 0.03%
+blocks: 991808, baseline: 9h16m57s, contender: 9h16m46s
+Time (total): -11s, -0.03%
 
 bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
 + = more is better, - = less is better
+pip install -r /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/requirements.txt >/dev/null 2>&1
 deactivate
 ==========================
