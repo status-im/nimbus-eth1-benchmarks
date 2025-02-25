@@ -5,6 +5,7 @@ This repository contains various eth1 import benchmark metrics
 
 | Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
 |--------------|--------------|---------------|---------------|----------------|------------|
+| 2025-02-25 22:20:25 | 42d25daa | b4226b66 | 9h34m22s | 9h30m35s | -3m47s, -0.66% |
 | 2025-02-25 12:36:36 | 21be0150 | 42d25daa | 9h31m55s | 9h34m22s | 2m27s, 0.43% |
 | 2025-02-25 02:50:14 | aa4770d3 | 21be0150 | 9h32m3s | 9h31m55s | -8s, -0.02% |
 | 2025-02-21 14:05:08 | 38413d25 | aa4770d3 | 9h29m54s | 9h32m3s | 2m9s, 0.38% |
