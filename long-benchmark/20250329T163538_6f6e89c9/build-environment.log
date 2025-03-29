@@ -1,0 +1,240 @@
++ fetchHostInformation
++ echo '=== System Information Report ==='
+=== System Information Report ===
+++ date
++ echo '>>> Generated on: Sat Mar 29 04:35:38 PM UTC 2025'
+>>> Generated on: Sat Mar 29 04:35:38 PM UTC 2025
++ echo ==========================
+==========================
++ echo -n '>>> CPU Architecture: '
+>>> CPU Architecture: + lscpu
++ grep Architecture
++ awk '{print $2}'
+x86_64
++ echo -n '>>> CPU Byte Order: '
+>>> CPU Byte Order: + lscpu
++ grep 'Byte Order'
++ sed 's/Byte Order://'
++ sed 's/^[ \t]*//'
+Little Endian
++ echo -n '>>> CPU Cores: '
+>>> CPU Cores: + nproc
+16
++ echo -n '>>> CPU Model: '
+>>> CPU Model: + lscpu
++ grep 'Model name'
++ sed 's/Model name://'
++ sed 's/^[ \t]*//'
+AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
++ echo '>>> CPU Cache Information:'
+>>> CPU Cache Information:
++ echo -n 'L1d Cache: '
+L1d Cache: + lscpu
++ grep L1d
++ sed 's/L1d cache://'
++ sed 's/^[ \t]*//'
+256 KiB (8 instances)
++ echo -n 'L1i Cache: '
+L1i Cache: + lscpu
++ grep L1i
++ sed 's/L1i cache://'
++ sed 's/^[ \t]*//'
+256 KiB (8 instances)
++ echo -n 'L2 Cache: '
+L2 Cache: + lscpu
++ grep L2
++ sed 's/L2 cache://'
++ sed 's/^[ \t]*//'
+8 MiB (8 instances)
++ echo -n 'L3 Cache: '
+L3 Cache: + lscpu
++ grep L3
++ sed 's/L3 cache://'
++ sed 's/^[ \t]*//'
+16 MiB (1 instance)
++ echo -n '>>> RAM Size: '
+>>> RAM Size: + free -h
++ grep Mem:
++ awk '{print $2}'
+61Gi
++ echo '>>> Hard Disk Information:'
+>>> Hard Disk Information:
++ df -h
++ grep '^/dev/'
++ awk '{print $1 " : " $2 " total, " $4 " free"}'
+/dev/md2 : 437G total, 308G free
+/dev/md1 : 989M total, 690M free
+/dev/nvme2n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 740G free
++ echo ==========================
+==========================
++ fetchBenchmarkingJobSummary
++ local total_time
+++ awk -F, '
+      NR>1 { # Skip header row
+          sum += $6
+      }
+      END {
+          print sum
+      }' /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
++ total_time=220069487467
++ '[' -z 220069487467 ']'
++ echo '=== Nimbus-ETH1 Benchmarking Report ==='
+=== Nimbus-ETH1 Benchmarking Report ===
++ echo '>>> Total time spent in benchmarking (nanoseconds): 220069487467'
+>>> Total time spent in benchmarking (nanoseconds): 220069487467
+++ convert_to_human_readable 220069487467
+++ local total_ns=220069487467
++++ awk 'BEGIN {printf "%.2f", 220069487467/1000000000}'
+++ local total_seconds=220.07
+++ local seconds_int=220
+++ local days=0
+++ local hours=0
+++ local minutes=3
+++ local seconds=40
+++ local result=
+++ [[ 0 -gt 0 ]]
+++ [[ 0 -gt 0 ]]
+++ [[ 3 -gt 0 ]]
+++ result+='3 minutes '
+++ [[ 40 -gt 0 ]]
+++ result+='40 seconds'
+++ result='3 minutes 40 seconds'
+++ [[ -z 3 minutes 40 seconds ]]
+++ echo '3 minutes 40 seconds'
++ echo '>>> Total time spent in benchmarking (human readable format): 3 minutes 40 seconds'
+>>> Total time spent in benchmarking (human readable format): 3 minutes 40 seconds
+++ tail -n +2 /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+++ head -1
+++ awk -F, '{print $1 - $2}'
++ START_BLOCK_NUMBER=1
++ echo '>>> Start block number is 1'
+>>> Start block number is 1
+++ tail -1 /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+++ cut -d, -f1
++ END_BLOCK_NUMBER=1720321
++ echo '>>> End block number is 1720321'
+>>> End block number is 1720321
+++ systemctl cat nimbus-eth1-mainnet-master-long-benchmark.service
+++ sed -n '/^ExecStart=/,/[^\\]$/p'
+++ sed 's/^ExecStart=//'
++ BENCHMARK_RUN_COMMAND='/home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --data-dir='\''/home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/data/shared_mainnet_0'\'' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --log-level=INFO \
+    --debug-rewrite-datadir-id=true \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv'
++ echo '>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --data-dir='\''/home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/data/shared_mainnet_0'\'' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --log-level=INFO \
+    --debug-rewrite-datadir-id=true \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv'
+>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --data-dir='/home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/data/shared_mainnet_0' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --log-level=INFO \
+    --debug-rewrite-datadir-id=true \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
++ echo ==========================
+==========================
++ compareBenchmarkWithPrevious
++ echo '=== Comparison of last two benchmarks ==='
+=== Comparison of last two benchmarks ===
++ VENV_PATH=/home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats
++ CURRENT_BENCHMARK_TYPE_DIR=/home/data/nimbus-eth1-benchmarks/long-benchmark
++ '[' '!' -d /home/data/nimbus-eth1-benchmarks/long-benchmark ']'
+++ find /home/data/nimbus-eth1-benchmarks/long-benchmark -mindepth 1 -maxdepth 1 -type d
+++ wc -l
++ [[ ! 8 -gt 2 ]]
+++ find /home/data/nimbus-eth1-benchmarks/long-benchmark -mindepth 1 -maxdepth 1 -type d -printf '%T@ %f\n'
+++ sort -nr
+++ head -n 1
+++ cut '-d ' -f2
++ CURRENT_BENCHMARK_DIR_NAME=20250329T163538_6f6e89c9
+++ find /home/data/nimbus-eth1-benchmarks/long-benchmark -mindepth 1 -maxdepth 1 -type d -printf '%T@ %f\n'
+++ sort -nr
+++ head -n 2
+++ tail -n 1
+++ cut '-d ' -f2
++ PREVIOUS_BENCHMARK_DIR_NAME=20250206T014654_838f8649
++ CURRENT_BENCHMARK_CSV_PATH=/home/data/nimbus-eth1-benchmarks/long-benchmark/20250329T163538_6f6e89c9/blocks-import-benchmark.csv
++ PREVIOUS_BENCHMARK_CSV_PATH=/home/data/nimbus-eth1-benchmarks/long-benchmark/20250206T014654_838f8649/blocks-import-benchmark.csv
++ '[' '!' -d /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats ']'
++ echo 'python -m venv /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats'
+python -m venv /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats
++ python -m venv /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats
++ echo 'source /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats/bin/activate'
+source /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats/bin/activate
++ source /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ '[' -n /usr/bin/bash -o -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ unset VIRTUAL_ENV_PROMPT
+++ '[' '!' nondestructive = nondestructive ']'
+++ VIRTUAL_ENV=/home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats
+++ export VIRTUAL_ENV
+++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ PATH=/home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/stats/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ PS1='(stats) '
+++ export PS1
+++ VIRTUAL_ENV_PROMPT='(stats) '
+++ export VIRTUAL_ENV_PROMPT
+++ '[' -n /usr/bin/bash -o -n '' ']'
+++ hash -r
++ '[' -f /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/scripts/requirements.txt ']'
++ echo 'pip install -r /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/scripts/requirements.txt >/dev/null 2>&1'
+pip install -r /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/scripts/requirements.txt >/dev/null 2>&1
++ pip install -r /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/scripts/requirements.txt
++ echo 'python /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/long-benchmark/20250206T014654_838f8649/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/long-benchmark/20250329T163538_6f6e89c9/blocks-import-benchmark.csv 2>&1 || true'
+python /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/long-benchmark/20250206T014654_838f8649/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/long-benchmark/20250329T163538_6f6e89c9/blocks-import-benchmark.csv 2>&1 || true
++ python /home/data/nimbus-eth1-mainnet-master-long-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/long-benchmark/20250206T014654_838f8649/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/long-benchmark/20250329T163538_6f6e89c9/blocks-import-benchmark.csv
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                        bps_x      bps_y      tps_x      tps_y time_x time_y   bpsd   tpsd   timed
+block_number                                                                                      
+(499713, 635336]    13,037.40  13,470.82  20,150.65  20,816.15    10s     9s  3.33%  3.33%  -3.22%
+(635336, 770959]     8,926.24   9,243.40  16,450.38  17,005.40    20s    19s  3.16%  3.16%  -3.04%
+(770959, 906582]     7,502.12   7,746.53  17,525.36  18,094.18    19s    18s  3.22%  3.22%  -3.12%
+(906582, 1042205]    7,436.92   7,698.47  25,066.19  25,945.93    19s    18s  3.54%  3.54%  -3.41%
+(1042205, 1177828]   6,907.21   7,100.73  31,987.41  32,850.53    19s    18s  2.76%  2.76%  -2.66%
+(1177828, 1313451]   5,675.08   5,842.72  31,240.34  32,148.27    24s    24s  2.92%  2.92%  -2.81%
+(1313451, 1449074]   6,011.45   6,178.27  34,690.26  35,637.74    21s    21s  2.74%  2.74%  -2.66%
+(1449074, 1584697]   4,961.71   5,041.38  34,216.85  34,777.78    28s    27s  1.61%  1.61%  -1.57%
+(1584697, 1720321]   4,574.62   4,682.30  32,983.58  33,756.73    35s    34s  2.34%  2.34%  -2.28%
+
+blocks: 1212416, baseline: 3m18s, contender: 3m13s
+Time (total): -5s, -2.59%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
++ echo deactivate
+deactivate
++ deactivate
++ '[' -n /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin ']'
++ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ export PATH
++ unset _OLD_VIRTUAL_PATH
++ '[' -n '' ']'
++ '[' -n /usr/bin/bash -o -n '' ']'
++ hash -r
++ '[' -n '' ']'
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ '[' '!' '' = nondestructive ']'
++ unset -f deactivate
++ echo ==========================
+==========================
