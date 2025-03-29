@@ -109,7 +109,7 @@ This repository contains various eth1 import benchmark metrics
 | 2024-12-08 17:46:05 | 06e4162 | fb3615f | 9h44m5s | 9h44m5s | 0s, 0.00% |
 | 2024-12-08 17:37:02 | 9207eaf | 06e4162 | 9h44m5s | 9h44m5s | 0s, 0.00% |
 
-## Short Benchmarking History (1 Week Run)
+## Long Benchmarking History (1 Week Run)
 
 | Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
 |--------------|--------------|---------------|---------------|----------------|------------|

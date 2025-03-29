@@ -5,6 +5,6 @@ This repository contains various eth1 import benchmark metrics
 
 ${SHORT_BENCHMARK_TABLE}
 
-## Short Benchmarking History (1 Week Run)
+## Long Benchmarking History (1 Week Run)
 
 ${LONG_BENCHMARK_TABLE}
