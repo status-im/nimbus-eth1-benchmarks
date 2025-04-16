@@ -1,0 +1,394 @@
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472044]: >>> starting cleanBenchmarkDir() inside benchmarks-cleanup.sh
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472044]: cd /home/data/nimbus-eth1-benchmarks
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472044]: git clean -df
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472044]: cd -
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472045]: Removing blocks-import-benchmark.csv
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472044]: /
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472044]: >>> completed cleanBenchmarkDir()
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> starting cloneOrFetchRepo() inside build-and-update-nimbus.sh
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472046]: mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472046]: chmod 775 /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> cleaning repo
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472046]: cd /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472046]: git clean -fdx > /dev/null 2>&1
+Apr 16 12:15:49 nimbus-eth1-mainnet-short-benchmark[1472046]: git submodule foreach --recursive git clean -fdx > /dev/null 2>&1
+Apr 16 12:15:57 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> Fetching latest changes...
+Apr 16 12:15:57 nimbus-eth1-mainnet-short-benchmark[1472046]: git fetch
+Apr 16 12:15:57 nimbus-eth1-mainnet-short-benchmark[1472046]: git reset --hard origin/master
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472350]: From https://github.com/status-im/nimbus-eth1
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472350]:    4c49d7367..9f75c89ca  master      -> origin/master
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472350]:  * [new branch]          FMp         -> origin/FMp
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472350]:    b36dba17b..bca704850  eip4444-wip -> origin/eip4444-wip
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472363]: HEAD is now at 9f75c89ca remove deprecated tester (#3219)
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> completed cloneOrFetchRepo()
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> starting buildBinaries()
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472046]: cd /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> Building binaries...
+Apr 16 12:15:58 nimbus-eth1-mainnet-short-benchmark[1472046]: make -j16 update
+Apr 16 12:16:33 nimbus-eth1-mainnet-short-benchmark[1477597]: Building: Nim compiler
+Apr 16 12:17:35 nimbus-eth1-mainnet-short-benchmark[1472046]: make -j16 nimbus_execution_client LOG_LEVEL=DEBUG NIMFLAGS=-d:chronicles_colors=none -d:disableMarchNative
+Apr 16 12:17:35 nimbus-eth1-mainnet-short-benchmark[1480579]: Building: install/usr/lib/libbacktrace.a
+Apr 16 12:17:35 nimbus-eth1-mainnet-short-benchmark[1480772]: make[1]: Entering directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
+Apr 16 12:17:35 nimbus-eth1-mainnet-short-benchmark[1480772]: $DEBUG_LEVEL is 0, $LIB_MODE is static
+Apr 16 12:17:36 nimbus-eth1-mainnet-short-benchmark[1480772]: make[1]: Leaving directory '/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-rocksdb/vendor/rocksdb'
+Apr 16 12:17:36 nimbus-eth1-mainnet-short-benchmark[1481739]: Cleaning up RocksDb build artifacts.
+Apr 16 12:17:37 nimbus-eth1-mainnet-short-benchmark[1482477]: /bin/sh: 1: javac: not found
+Apr 16 12:17:37 nimbus-eth1-mainnet-short-benchmark[1480556]: Building RocksDb static libraries.
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1485883]: Building: install/usr/lib/libbacktracenim.a
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:                                  Dload  Upload   Total   Spent    Left  Speed
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: [79B blob data]
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:                                  Dload  Upload   Total   Spent    Left  Speed
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: [79B blob data]
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:   
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:   
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: 0
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: :-
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: --
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: :
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]: -
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486092]:  
+Apr 16 12:17:42 nimbus-eth1-mainnet-short-benchmark[1486091]: 0
+Apr 16 12:17:43 nimbus-eth1-mainnet-short-benchmark[1486092]: [80B blob data]
+Apr 16 12:17:43 nimbus-eth1-mainnet-short-benchmark[1486091]: [79B blob data]
+Apr 16 12:17:43 nimbus-eth1-mainnet-short-benchmark[1486091]: [79B blob data]
+Apr 16 12:17:43 nimbus-eth1-mainnet-short-benchmark[1486092]: [79B blob data]
+Apr 16 12:20:22 nimbus-eth1-mainnet-short-benchmark[1486929]: /usr/bin/ar: creating unity.a
+Apr 16 12:20:23 nimbus-eth1-mainnet-short-benchmark[1486937]: Building: build/nimbus_execution_client
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/execution_chain/rpc/engine_api.nim(49, 9) template/generic instantiation of `rpc` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/server.nim(42, 16) template/generic instantiation of `rpc` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(318, 78) template/generic instantiation of `async` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(323, 29) template/generic instantiation of `setResult` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(285, 20) template/generic instantiation of `unpackPositional` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(154, 16) template/generic instantiation of `innerNode` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(135, 25) template/generic instantiation of `unpackArg` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(49, 22) template/generic instantiation of `decode` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization.nim(51, 15) template/generic instantiation of `readValue` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization.nim(31, 9) template/generic instantiation of `readValue` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-serialization/json_serialization/reader_impl.nim(189, 21) template/generic instantiation of `totalSerializedFields` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization/object_serialization.nim(181, 36) template/generic instantiation of `totalSerializedFieldsImpl` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization/object_serialization.nim(178, 26) template/generic instantiation of `enumAllSerializedFields` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization/object_serialization.nim(155, 32) template/generic instantiation of `enumAllSerializedFieldsImpl` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization/object_serialization.nim(131, 9) Warning: computeBlockHash; blockHash is deprecated [Deprecated]
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/execution_chain/rpc/server_api.nim(270, 9) template/generic instantiation of `rpc` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/server.nim(42, 16) template/generic instantiation of `rpc` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(318, 78) template/generic instantiation of `async` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(323, 29) template/generic instantiation of `setResult` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(285, 20) template/generic instantiation of `unpackPositional` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(154, 16) template/generic instantiation of `innerNode` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(135, 25) template/generic instantiation of `unpackArg` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-rpc/json_rpc/private/server_handler_wrapper.nim(49, 22) template/generic instantiation of `decode` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization.nim(51, 15) template/generic instantiation of `readValue` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization.nim(31, 9) template/generic instantiation of `readValue` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-json-serialization/json_serialization/reader_impl.nim(189, 21) template/generic instantiation of `totalSerializedFields` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization/object_serialization.nim(181, 36) template/generic instantiation of `totalSerializedFieldsImpl` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization/object_serialization.nim(178, 26) template/generic instantiation of `enumAllSerializedFields` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization/object_serialization.nim(155, 32) template/generic instantiation of `enumAllSerializedFieldsImpl` from here
+Apr 16 12:20:44 nimbus-eth1-mainnet-short-benchmark[1487042]: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/vendor/nim-serialization/serialization/object_serialization.nim(131, 9) Warning: computeBlockHash; blockHash is deprecated [Deprecated]
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> renaming binaries to match commit they were built from
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1472046]: mv build/nimbus_execution_client build/nimbus_execution_client_9f75c89c
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> creating a symbolic link to the latest version
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1472046]: ln -frs build/nimbus_execution_client_9f75c89c build/nimbus_execution_client
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> deleting copies that are older than N days
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1472046]: find build -mtime +3 -exec rm '{}' \+
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1472046]: >>> buildBinaries() complete
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1491751]: find /home/data/nimbus-eth1-benchmarks/short-benchmark -type d -name *9f75c89c* 2>/dev/null | wc -l
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1491751]: >>> DEBUG_MODE is: false
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1491751]: >>> BENCHMARK_EXISTS is: 0
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1491756]: >>> starting copyTemplateDatabase()
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1491756]: mkdir -p /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1491756]: >>> Copying template db into nimbus data directory
+Apr 16 12:22:43 nimbus-eth1-mainnet-short-benchmark[1491756]: cp -r /data/template-db/. /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/
+Apr 16 12:29:08 nimbus-eth1-mainnet-short-benchmark[1491756]: >>> Template db copied
+Apr 16 12:29:08 nimbus-eth1-mainnet-short-benchmark[1491756]: chown -R nimbus:staff /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1491756]: >>> completed copyTemplateDatabase()
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492402]: >>> starting cloneOrFetchRepo() inside fetch-benchmarks.sh
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492402]: mkdir -p /home/data/nimbus-eth1-benchmarks
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492402]: >>> Fetching latest benchmarks from github
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492402]: cd /home/data/nimbus-eth1-benchmarks
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492402]: git fetch
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492402]: git reset --hard origin/master
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492408]: HEAD is now at 51f3621 short-benchmark: publish metrics and report
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492402]: chown -R nimbus:staff /home/data/nimbus-eth1-benchmarks
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492402]: >>> completed cloneOrFetchRepo()
+Apr 16 12:29:10 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:29:10.523+00:00 Launching execution client                 version=v0.1.0-9f75c89c conf="(dataDir: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0/keystore, importKey: , trustedSetupFile: none(string), extraData: \"nimbus-eth1/v0.1.0-9f75c89c\", gasLimit: 36000000, network: \"mainnet\", customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: \"INFO\", logStdout: auto, logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: @[], bootstrapFile: , bootstrapEnrs: @[], staticPeers: @[], staticPeersFile: , staticPeersEnrs: @[], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: V4, netKey: \"random\", agentString: \"nimbus-eth1/v0.1.0-9f75c89c/linux-amd64/Nim-2.0.14\", numThreads: 0, beaconSyncTargetFile: none(InputFile), beaconSyncBlocksQueueHwm: 0, rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2147483648, rdbVtxCacheSize: 536870912, rdbKeyCacheSize: 1342177280, rdbBranchCacheSize: 1073741824, rdbPrintStats: false, rewriteDatadirId: true, cmd: import, maxBlocks: 1000000, chunkSize: 8192, csvStats: some(\"/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv\"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
+Apr 16 12:30:16 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:30:16.230+00:00 Writing data dir ID                        ID=0x0a036d6f6dfe59156bb6359f0243c93d5a421ed688de5aa85a62d15dca8dbd5c
+Apr 16 12:30:16 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:30:16.230+00:00 Threadpool started                         numThreads=16
+Apr 16 12:30:16 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:30:16.326+00:00 Database initialized                       base="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" finalized="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" head="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)"
+Apr 16 12:30:16 nimbus-eth1-mainnet-short-benchmark[1492410]: NTC 2025-04-16 12:30:16.326+00:00 Importing era archive                      blockNumber=20000001 dataDir=/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0 eraDir=/data/era
+Apr 16 12:30:17 nimbus-eth1-mainnet-short-benchmark[1492410]: NTC 2025-04-16 12:30:17.886+00:00 Matched block to slot number               blockNumber=20000001 slot=9204783
+Apr 16 12:36:47 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:36:47.047+00:00 Imported blocks                            blockNumber=20008193 slot=9213020 blocks=8192 txs=1226966 mgas=124237 bps=20.97 tps=3140 mgps=318.0 avgBps=20.97 avgTps=3140 avgMGps=318.0 elapsed=6m30s721ms
+Apr 16 12:42:55 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:42:55.920+00:00 Imported blocks                            blockNumber=20016385 slot=9221256 blocks=16384 txs=2540380 mgas=248071 bps=22.21 tps=3560 mgps=335.7 avgBps=21.57 avgTps=3344 avgMGps=326.6 elapsed=12m39s591ms
+Apr 16 12:48:49 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:48:49.758+00:00 Imported blocks                            blockNumber=20024577 slot=9229485 blocks=24576 txs=3869398 mgas=372018 bps=23.15 tps=3755 mgps=350.3 avgBps=22.07 avgTps=3475 avgMGps=334.1 elapsed=18m33s432ms
+Apr 16 12:54:11 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:54:11.260+00:00 Imported blocks                            blockNumber=20032769 slot=9237722 blocks=32768 txs=5222766 mgas=495797 bps=25.48 tps=4209 mgps=385.0 avgBps=22.84 avgTps=3639 avgMGps=345.5 elapsed=23m54s931ms
+Apr 16 12:59:31 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 12:59:31.622+00:00 Imported blocks                            blockNumber=20040961 slot=9245957 blocks=40960 txs=6566802 mgas=619586 bps=25.57 tps=4195 mgps=386.4 avgBps=23.34 avgTps=3741 avgMGps=353.0 elapsed=29m15s296ms
+Apr 16 13:05:12 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:05:12.505+00:00 Imported blocks                            blockNumber=20049153 slot=9254196 blocks=49152 txs=7904746 mgas=743522 bps=24.03 tps=3924 mgps=363.6 avgBps=23.45 avgTps=3771 avgMGps=354.7 elapsed=34m56s181ms
+Apr 16 13:10:56 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:10:56.342+00:00 Imported blocks                            blockNumber=20057345 slot=9262435 blocks=57344 txs=9212009 mgas=867360 bps=23.83 tps=3801 mgps=360.2 avgBps=23.50 avgTps=3775 avgMGps=355.5 elapsed=40m40s18ms
+Apr 16 13:16:12 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:16:12.009+00:00 Imported blocks                            blockNumber=20065537 slot=9270674 blocks=65536 txs=10559018 mgas=991371 bps=25.95 tps=4267 mgps=392.9 avgBps=23.78 avgTps=3831 avgMGps=359.8 elapsed=45m55s686ms
+Apr 16 13:21:24 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:21:24.215+00:00 Imported blocks                            blockNumber=20073729 slot=9278910 blocks=73728 txs=11898676 mgas=1115111 bps=26.24 tps=4291 mgps=396.3 avgBps=24.03 avgTps=3878 avgMGps=363.5 elapsed=51m7s887ms
+Apr 16 13:26:18 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:26:18.770+00:00 Imported blocks                            blockNumber=20081921 slot=9287152 blocks=81920 txs=13323263 mgas=1239150 bps=27.81 tps=4836 mgps=421.1 avgBps=24.36 avgTps=3962 avgMGps=368.5 elapsed=56m2s443ms
+Apr 16 13:31:20 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:31:20.956+00:00 Imported blocks                            blockNumber=20090113 slot=9295408 blocks=90112 txs=14697082 mgas=1363113 bps=27.11 tps=4546 mgps=410.2 avgBps=24.59 avgTps=4010 avgMGps=372.0 elapsed=1h1m4s
+Apr 16 13:36:35 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:36:35.903+00:00 Imported blocks                            blockNumber=20098305 slot=9303658 blocks=98304 txs=16025683 mgas=1487146 bps=26.01 tps=4218 mgps=393.8 avgBps=24.70 avgTps=4026 avgMGps=373.7 elapsed=1h6m19s
+Apr 16 13:42:02 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:42:02.857+00:00 Imported blocks                            blockNumber=20106497 slot=9311895 blocks=106496 txs=17337157 mgas=1611066 bps=25.06 tps=4011 mgps=379.0 avgBps=24.73 avgTps=4025 avgMGps=374.1 elapsed=1h11m46s
+Apr 16 13:47:18 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:47:18.491+00:00 Imported blocks                            blockNumber=20114689 slot=9320146 blocks=114688 txs=18632097 mgas=1735123 bps=25.95 tps=4102 mgps=393.0 avgBps=24.81 avgTps=4031 avgMGps=375.4 elapsed=1h17m2s
+Apr 16 13:52:15 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:52:15.438+00:00 Imported blocks                            blockNumber=20122881 slot=9328409 blocks=122880 txs=19937418 mgas=1859249 bps=27.59 tps=4395 mgps=418.0 avgBps=24.98 avgTps=4053 avgMGps=378.0 elapsed=1h21m59s
+Apr 16 13:57:02 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 13:57:02.213+00:00 Imported blocks                            blockNumber=20131073 slot=9336660 blocks=131072 txs=21214129 mgas=1983500 bps=28.57 tps=4451 mgps=433.3 avgBps=25.18 avgTps=4075 avgMGps=381.0 elapsed=1h26m45s
+Apr 16 14:01:55 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:01:55.223+00:00 Imported blocks                            blockNumber=20139265 slot=9344906 blocks=139264 txs=22579079 mgas=2107571 bps=27.96 tps=4658 mgps=423.4 avgBps=25.33 avgTps=4106 avgMGps=383.3 elapsed=1h31m38s
+Apr 16 14:07:30 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:07:30.909+00:00 Imported blocks                            blockNumber=20147457 slot=9353153 blocks=147456 txs=24133322 mgas=2231686 bps=24.40 tps=4629 mgps=369.7 avgBps=25.27 avgTps=4136 avgMGps=382.5 elapsed=1h37m14s
+Apr 16 14:12:59 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:12:59.407+00:00 Imported blocks                            blockNumber=20155649 slot=9361407 blocks=155648 txs=25424015 mgas=2356018 bps=24.94 tps=3929 mgps=378.5 avgBps=25.25 avgTps=4125 avgMGps=382.3 elapsed=1h42m43s
+Apr 16 14:18:04 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:18:04.766+00:00 Imported blocks                            blockNumber=20163841 slot=9369652 blocks=163840 txs=26749549 mgas=2480207 bps=26.83 tps=4340 mgps=406.7 avgBps=25.33 avgTps=4135 avgMGps=383.4 elapsed=1h47m48s
+Apr 16 14:23:01 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:23:01.396+00:00 Imported blocks                            blockNumber=20172033 slot=9377892 blocks=172032 txs=28105316 mgas=2604026 bps=27.62 tps=4570 mgps=417.4 avgBps=25.43 avgTps=4154 avgMGps=384.9 elapsed=1h52m45s
+Apr 16 14:28:03 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:28:03.491+00:00 Imported blocks                            blockNumber=20180225 slot=9386128 blocks=180224 txs=29524405 mgas=2728170 bps=27.12 tps=4697 mgps=410.9 avgBps=25.50 avgTps=4177 avgMGps=386.0 elapsed=1h57m47s
+Apr 16 14:32:50 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:32:50.506+00:00 Imported blocks                            blockNumber=20188417 slot=9394365 blocks=188416 txs=30849021 mgas=2852023 bps=28.54 tps=4615 mgps=431.5 avgBps=25.62 avgTps=4194 avgMGps=387.8 elapsed=2h2m34s
+Apr 16 14:38:02 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:38:02.288+00:00 Imported blocks                            blockNumber=20196609 slot=9402602 blocks=196608 txs=32174755 mgas=2976155 bps=26.27 tps=4252 mgps=398.1 avgBps=25.65 avgTps=4197 avgMGps=388.2 elapsed=2h7m45s
+Apr 16 14:43:21 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:43:21.742+00:00 Imported blocks                            blockNumber=20204801 slot=9410840 blocks=204800 txs=33475942 mgas=3100410 bps=25.64 tps=4073 mgps=389.0 avgBps=25.65 avgTps=4192 avgMGps=388.3 elapsed=2h13m5s
+Apr 16 14:48:19 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:48:19.797+00:00 Imported blocks                            blockNumber=20212993 slot=9419071 blocks=212992 txs=34798508 mgas=3224370 bps=27.48 tps=4437 mgps=415.9 avgBps=25.71 avgTps=4200 avgMGps=389.3 elapsed=2h18m3s
+Apr 16 14:53:20 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:53:20.331+00:00 Imported blocks                            blockNumber=20221185 slot=9427313 blocks=221184 txs=36114045 mgas=3348169 bps=27.26 tps=4377 mgps=411.9 avgBps=25.77 avgTps=4207 avgMGps=390.0 elapsed=2h23m4s
+Apr 16 14:57:45 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 14:57:45.827+00:00 Imported blocks                            blockNumber=20229377 slot=9435549 blocks=229376 txs=37421794 mgas=3472031 bps=30.86 tps=4925 mgps=466.5 avgBps=25.92 avgTps=4228 avgMGps=392.3 elapsed=2h27m29s
+Apr 16 15:02:15 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:02:15.558+00:00 Imported blocks                            blockNumber=20237569 slot=9443788 blocks=237568 txs=38842064 mgas=3596351 bps=30.37 tps=5265 mgps=460.9 avgBps=26.05 avgTps=4259 avgMGps=394.4 elapsed=2h31m59s
+Apr 16 15:07:06 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:07:06.928+00:00 Imported blocks                            blockNumber=20245761 slot=9452021 blocks=245760 txs=40225739 mgas=3720100 bps=28.12 tps=4748 mgps=424.7 avgBps=26.12 avgTps=4274 avgMGps=395.3 elapsed=2h36m50s
+Apr 16 15:12:28 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:12:28.971+00:00 Imported blocks                            blockNumber=20253953 slot=9460253 blocks=253952 txs=41454921 mgas=3844385 bps=25.44 tps=3816 mgps=385.9 avgBps=26.09 avgTps=4259 avgMGps=395.0 elapsed=2h42m12s
+Apr 16 15:17:35 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:17:35.341+00:00 Imported blocks                            blockNumber=20262145 slot=9468495 blocks=262144 txs=42726051 mgas=3968623 bps=26.74 tps=4148 mgps=405.5 avgBps=26.11 avgTps=4256 avgMGps=395.3 elapsed=2h47m19s
+Apr 16 15:22:38 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:22:38.484+00:00 Imported blocks                            blockNumber=20270337 slot=9476748 blocks=270336 txs=44050436 mgas=4092682 bps=27.02 tps=4368 mgps=409.2 avgBps=26.14 avgTps=4259 avgMGps=395.7 elapsed=2h52m22s
+Apr 16 15:27:15 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:27:15.391+00:00 Imported blocks                            blockNumber=20278529 slot=9484981 blocks=278528 txs=45382368 mgas=4216487 bps=29.58 tps=4810 mgps=447.1 avgBps=26.23 avgTps=4273 avgMGps=397.1 elapsed=2h56m59s
+Apr 16 15:32:07 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:32:07.273+00:00 Imported blocks                            blockNumber=20286721 slot=9493213 blocks=286720 txs=46733429 mgas=4340363 bps=28.07 tps=4628 mgps=424.4 avgBps=26.28 avgTps=4283 avgMGps=397.8 elapsed=3h1m50s
+Apr 16 15:37:16 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:37:16.444+00:00 Imported blocks                            blockNumber=20294913 slot=9501453 blocks=294912 txs=48075887 mgas=4464376 bps=26.50 tps=4342 mgps=401.1 avgBps=26.28 avgTps=4284 avgMGps=397.9 elapsed=3h7m118ms
+Apr 16 15:42:26 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:42:26.802+00:00 Imported blocks                            blockNumber=20303105 slot=9509696 blocks=303104 txs=49379538 mgas=4588534 bps=26.40 tps=4200 mgps=400.0 avgBps=26.29 avgTps=4282 avgMGps=397.9 elapsed=3h12m10s
+Apr 16 15:47:39 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:47:39.492+00:00 Imported blocks                            blockNumber=20311297 slot=9517922 blocks=311296 txs=50637672 mgas=4712596 bps=26.20 tps=4023 mgps=396.8 avgBps=26.28 avgTps=4275 avgMGps=397.9 elapsed=3h17m23s
+Apr 16 15:52:22 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:52:22.115+00:00 Imported blocks                            blockNumber=20319489 slot=9526159 blocks=319488 txs=51981692 mgas=4836521 bps=28.99 tps=4755 mgps=438.5 avgBps=26.35 avgTps=4286 avgMGps=398.9 elapsed=3h22m5s
+Apr 16 15:56:29 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 15:56:29.511+00:00 Imported blocks                            blockNumber=20327681 slot=9534381 blocks=327680 txs=53356123 mgas=4960245 bps=33.11 tps=5555 mgps=500.1 avgBps=26.48 avgTps=4312 avgMGps=400.9 elapsed=3h26m13s
+Apr 16 16:00:35 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:00:35.310+00:00 Imported blocks                            blockNumber=20335873 slot=9542617 blocks=335872 txs=54719105 mgas=5084025 bps=33.33 tps=5545 mgps=503.6 avgBps=26.62 avgTps=4336 avgMGps=402.9 elapsed=3h30m18s
+Apr 16 16:05:01 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:05:01.337+00:00 Imported blocks                            blockNumber=20344065 slot=9550841 blocks=344064 txs=56021853 mgas=5207843 bps=30.79 tps=4897 mgps=465.4 avgBps=26.70 avgTps=4347 avgMGps=404.2 elapsed=3h34m45s
+Apr 16 16:09:59 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:09:59.816+00:00 Imported blocks                            blockNumber=20352257 slot=9559072 blocks=352256 txs=57290408 mgas=5332016 bps=27.45 tps=4250 mgps=416.0 avgBps=26.72 avgTps=4345 avgMGps=404.4 elapsed=3h39m43s
+Apr 16 16:14:32 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:14:32.327+00:00 Imported blocks                            blockNumber=20360449 slot=9567308 blocks=360448 txs=58543463 mgas=5456201 bps=30.06 tps=4598 mgps=455.7 avgBps=26.79 avgTps=4350 avgMGps=405.5 elapsed=3h44m15s
+Apr 16 16:18:58 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:18:58.686+00:00 Imported blocks                            blockNumber=20368641 slot=9575548 blocks=368640 txs=59874056 mgas=5580204 bps=30.76 tps=4995 mgps=465.5 avgBps=26.86 avgTps=4363 avgMGps=406.7 elapsed=3h48m42s
+Apr 16 16:23:36 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:23:36.101+00:00 Imported blocks                            blockNumber=20376833 slot=9583774 blocks=376832 txs=61167066 mgas=5704396 bps=29.53 tps=4660 mgps=447.7 avgBps=26.92 avgTps=4369 avgMGps=407.5 elapsed=3h53m19s
+Apr 16 16:28:06 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:28:06.592+00:00 Imported blocks                            blockNumber=20385025 slot=9592009 blocks=385024 txs=62480333 mgas=5828235 bps=30.29 tps=4855 mgps=457.8 avgBps=26.98 avgTps=4378 avgMGps=408.4 elapsed=3h57m50s
+Apr 16 16:32:33 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:32:33.571+00:00 Imported blocks                            blockNumber=20393217 slot=9600248 blocks=393216 txs=63800597 mgas=5952136 bps=30.68 tps=4945 mgps=464.1 avgBps=27.05 avgTps=4388 avgMGps=409.4 elapsed=4h2m17s
+Apr 16 16:36:51 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:36:51.507+00:00 Imported blocks                            blockNumber=20401409 slot=9608486 blocks=401408 txs=65021243 mgas=6076384 bps=31.76 tps=4732 mgps=481.7 avgBps=27.13 avgTps=4394 avgMGps=410.7 elapsed=4h6m35s
+Apr 16 16:41:18 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:41:18.638+00:00 Imported blocks                            blockNumber=20409601 slot=9616707 blocks=409600 txs=66199016 mgas=6200666 bps=30.67 tps=4408 mgps=465.2 avgBps=27.19 avgTps=4395 avgMGps=411.7 elapsed=4h11m2s
+Apr 16 16:45:44 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:45:44.601+00:00 Imported blocks                            blockNumber=20417793 slot=9624941 blocks=417792 txs=67453930 mgas=6324823 bps=30.80 tps=4718 mgps=466.8 avgBps=27.26 avgTps=4400 avgMGps=412.6 elapsed=4h15m28s
+Apr 16 16:49:41 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:49:41.725+00:00 Imported blocks                            blockNumber=20425985 slot=9633187 blocks=425984 txs=68814904 mgas=6448778 bps=34.55 tps=5739 mgps=522.7 avgBps=27.37 avgTps=4421 avgMGps=414.3 elapsed=4h19m25s
+Apr 16 16:53:40 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:53:40.896+00:00 Imported blocks                            blockNumber=20434177 slot=9641422 blocks=434176 txs=70124508 mgas=6572711 bps=34.25 tps=5475 mgps=518.2 avgBps=27.47 avgTps=4436 avgMGps=415.9 elapsed=4h23m24s
+Apr 16 16:57:47 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 16:57:47.404+00:00 Imported blocks                            blockNumber=20442369 slot=9649657 blocks=442368 txs=71403576 mgas=6696451 bps=33.23 tps=5188 mgps=502.0 avgBps=27.56 avgTps=4448 avgMGps=417.2 elapsed=4h27m31s
+Apr 16 17:02:17 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:02:17.239+00:00 Imported blocks                            blockNumber=20450561 slot=9657896 blocks=450560 txs=72659905 mgas=6820521 bps=30.36 tps=4655 mgps=459.8 avgBps=27.61 avgTps=4451 avgMGps=417.9 elapsed=4h32m911ms
+Apr 16 17:07:01 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:07:01.314+00:00 Imported blocks                            blockNumber=20458753 slot=9666114 blocks=458752 txs=73838533 mgas=6945116 bps=28.84 tps=4148 mgps=438.6 avgBps=27.63 avgTps=4446 avgMGps=418.3 elapsed=4h36m44s
+Apr 16 17:11:31 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:11:30.997+00:00 Imported blocks                            blockNumber=20466945 slot=9674343 blocks=466944 txs=75124748 mgas=7068943 bps=30.38 tps=4769 mgps=459.2 avgBps=27.67 avgTps=4451 avgMGps=418.9 elapsed=4h41m14s
+Apr 16 17:16:01 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:16:01.912+00:00 Imported blocks                            blockNumber=20475137 slot=9682575 blocks=475136 txs=76420106 mgas=7192870 bps=30.24 tps=4781 mgps=457.4 avgBps=27.71 avgTps=4457 avgMGps=419.5 elapsed=4h45m45s
+Apr 16 17:20:18 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:20:18.507+00:00 Imported blocks                            blockNumber=20483329 slot=9690800 blocks=483328 txs=77675422 mgas=7316939 bps=31.93 tps=4892 mgps=483.5 avgBps=27.77 avgTps=4463 avgMGps=420.5 elapsed=4h50m2s
+Apr 16 17:24:33 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:24:33.595+00:00 Imported blocks                            blockNumber=20491521 slot=9699019 blocks=491520 txs=78951232 mgas=7440784 bps=32.11 tps=5001 mgps=485.5 avgBps=27.84 avgTps=4471 avgMGps=421.4 elapsed=4h54m17s
+Apr 16 17:28:57 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:28:57.662+00:00 Imported blocks                            blockNumber=20499713 slot=9707248 blocks=499712 txs=80189642 mgas=7564669 bps=31.02 tps=4689 mgps=469.1 avgBps=27.88 avgTps=4474 avgMGps=422.1 elapsed=4h58m41s
+Apr 16 17:33:25 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:33:25.937+00:00 Imported blocks                            blockNumber=20507905 slot=9715488 blocks=507904 txs=81317763 mgas=7689208 bps=30.54 tps=4205 mgps=464.2 avgBps=27.92 avgTps=4470 avgMGps=422.7 elapsed=5h3m9s
+Apr 16 17:37:33 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:37:33.289+00:00 Imported blocks                            blockNumber=20516097 slot=9723715 blocks=516096 txs=82520262 mgas=7813209 bps=33.12 tps=4861 mgps=501.3 avgBps=27.99 avgTps=4475 avgMGps=423.8 elapsed=5h7m16s
+Apr 16 17:41:52 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:41:52.956+00:00 Imported blocks                            blockNumber=20524289 slot=9731945 blocks=524288 txs=83780075 mgas=7937233 bps=31.55 tps=4851 mgps=477.6 avgBps=28.04 avgTps=4481 avgMGps=424.5 elapsed=5h11m36s
+Apr 16 17:46:21 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:46:21.271+00:00 Imported blocks                            blockNumber=20532481 slot=9740183 blocks=532480 txs=85263862 mgas=8061024 bps=30.53 tps=5529 mgps=461.4 avgBps=28.08 avgTps=4495 avgMGps=425.0 elapsed=5h16m4s
+Apr 16 17:50:48 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:50:48.894+00:00 Imported blocks                            blockNumber=20540673 slot=9748418 blocks=540672 txs=86612143 mgas=8185090 bps=30.61 tps=5037 mgps=463.6 avgBps=28.11 avgTps=4503 avgMGps=425.6 elapsed=5h20m32s
+Apr 16 17:55:23 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:55:23.301+00:00 Imported blocks                            blockNumber=20548865 slot=9756662 blocks=548864 txs=87802991 mgas=8309513 bps=29.85 tps=4339 mgps=453.4 avgBps=28.14 avgTps=4501 avgMGps=426.0 elapsed=5h25m6s
+Apr 16 17:59:58 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 17:59:58.540+00:00 Imported blocks                            blockNumber=20557057 slot=9764892 blocks=557056 txs=88964987 mgas=8433956 bps=29.76 tps=4221 mgps=452.1 avgBps=28.16 avgTps=4497 avgMGps=426.3 elapsed=5h29m42s
+Apr 16 18:04:24 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:04:24.271+00:00 Imported blocks                            blockNumber=20565249 slot=9773131 blocks=565248 txs=90186094 mgas=8558113 bps=30.83 tps=4595 mgps=467.2 avgBps=28.19 avgTps=4498 avgMGps=426.9 elapsed=5h34m7s
+Apr 16 18:08:51 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:08:51.691+00:00 Imported blocks                            blockNumber=20573441 slot=9781369 blocks=573440 txs=91404654 mgas=8682228 bps=30.63 tps=4556 mgps=464.1 avgBps=28.23 avgTps=4499 avgMGps=427.4 elapsed=5h38m35s
+Apr 16 18:13:14 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:13:14.874+00:00 Imported blocks                            blockNumber=20581633 slot=9789611 blocks=581632 txs=92628389 mgas=8806651 bps=31.13 tps=4649 mgps=472.8 avgBps=28.26 avgTps=4501 avgMGps=428.0 elapsed=5h42m58s
+Apr 16 18:17:36 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:17:36.233+00:00 Imported blocks                            blockNumber=20589825 slot=9797855 blocks=589824 txs=93887208 mgas=8931023 bps=31.34 tps=4816 mgps=475.9 avgBps=28.30 avgTps=4505 avgMGps=428.6 elapsed=5h47m19s
+Apr 16 18:22:08 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:22:08.000+00:00 Imported blocks                            blockNumber=20598017 slot=9806095 blocks=598016 txs=95163338 mgas=9055310 bps=30.14 tps=4695 mgps=457.3 avgBps=28.33 avgTps=4507 avgMGps=428.9 elapsed=5h51m51s
+Apr 16 18:26:36 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:26:36.551+00:00 Imported blocks                            blockNumber=20606209 slot=9814347 blocks=606208 txs=96334664 mgas=9179976 bps=30.50 tps=4361 mgps=464.2 avgBps=28.35 avgTps=4505 avgMGps=429.4 elapsed=5h56m20s
+Apr 16 18:30:52 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:30:52.495+00:00 Imported blocks                            blockNumber=20614401 slot=9822581 blocks=614400 txs=97573414 mgas=9304574 bps=32.01 tps=4839 mgps=486.8 avgBps=28.40 avgTps=4509 avgMGps=430.0 elapsed=6h36s169ms
+Apr 16 18:35:07 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:35:07.210+00:00 Imported blocks                            blockNumber=20622593 slot=9830821 blocks=622592 txs=98874772 mgas=9428835 bps=32.16 tps=5109 mgps=487.8 avgBps=28.44 avgTps=4516 avgMGps=430.7 elapsed=6h4m50s
+Apr 16 18:39:23 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:39:23.933+00:00 Imported blocks                            blockNumber=20630785 slot=9839058 blocks=630784 txs=100178707 mgas=9553009 bps=31.91 tps=5079 mgps=483.7 avgBps=28.48 avgTps=4523 avgMGps=431.3 elapsed=6h9m7s
+Apr 16 18:43:45 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:43:45.345+00:00 Imported blocks                            blockNumber=20638977 slot=9847313 blocks=638976 txs=101489116 mgas=9677171 bps=31.34 tps=5012 mgps=475.0 avgBps=28.51 avgTps=4528 avgMGps=431.8 elapsed=6h13m29s
+Apr 16 18:48:09 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:48:09.860+00:00 Imported blocks                            blockNumber=20647169 slot=9855549 blocks=647168 txs=102730058 mgas=9801643 bps=30.97 tps=4691 mgps=470.6 avgBps=28.54 avgTps=4530 avgMGps=432.3 elapsed=6h17m53s
+Apr 16 18:52:42 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:52:42.971+00:00 Imported blocks                            blockNumber=20655361 slot=9863778 blocks=655360 txs=103868002 mgas=9926541 bps=30.00 tps=4166 mgps=457.3 avgBps=28.56 avgTps=4526 avgMGps=432.6 elapsed=6h22m26s
+Apr 16 18:56:57 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 18:56:57.450+00:00 Imported blocks                            blockNumber=20663553 slot=9872013 blocks=663552 txs=105112198 mgas=10051274 bps=32.19 tps=4889 mgps=490.1 avgBps=28.60 avgTps=4530 avgMGps=433.2 elapsed=6h26m41s
+Apr 16 19:00:58 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:00:58.818+00:00 Imported blocks                            blockNumber=20671745 slot=9880241 blocks=671744 txs=106395904 mgas=10175177 bps=33.94 tps=5318 mgps=513.3 avgBps=28.65 avgTps=4538 avgMGps=434.0 elapsed=6h30m42s
+Apr 16 19:05:10 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:05:10.601+00:00 Imported blocks                            blockNumber=20679937 slot=9888471 blocks=679936 txs=107674271 mgas=10299404 bps=32.54 tps=5077 mgps=493.4 avgBps=28.70 avgTps=4544 avgMGps=434.7 elapsed=6h34m54s
+Apr 16 19:09:14 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:09:14.165+00:00 Imported blocks                            blockNumber=20688129 slot=9896698 blocks=688128 txs=108938536 mgas=10423298 bps=33.63 tps=5190 mgps=508.7 avgBps=28.75 avgTps=4550 avgMGps=435.4 elapsed=6h38m57s
+Apr 16 19:13:31 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:13:31.052+00:00 Imported blocks                            blockNumber=20696321 slot=9904930 blocks=696320 txs=110235786 mgas=10547469 bps=31.89 tps=5049 mgps=483.4 avgBps=28.78 avgTps=4556 avgMGps=435.9 elapsed=6h43m14s
+Apr 16 19:18:02 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:18:02.507+00:00 Imported blocks                            blockNumber=20704513 slot=9913154 blocks=704512 txs=111483759 mgas=10671677 bps=30.18 tps=4597 mgps=457.6 avgBps=28.80 avgTps=4556 avgMGps=436.2 elapsed=6h47m46s
+Apr 16 19:22:23 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:22:23.471+00:00 Imported blocks                            blockNumber=20712705 slot=9921388 blocks=712704 txs=112764170 mgas=10795980 bps=31.39 tps=4906 mgps=476.3 avgBps=28.82 avgTps=4560 avgMGps=436.6 elapsed=6h52m7s
+Apr 16 19:26:25 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:26:25.074+00:00 Imported blocks                            blockNumber=20720897 slot=9929633 blocks=720896 txs=114110517 mgas=10919926 bps=33.91 tps=5572 mgps=513.0 avgBps=28.87 avgTps=4570 avgMGps=437.3 elapsed=6h56m8s
+Apr 16 19:30:37 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:30:37.526+00:00 Imported blocks                            blockNumber=20729089 slot=9937869 blocks=729088 txs=115449431 mgas=11043768 bps=32.45 tps=5303 mgps=490.6 avgBps=28.91 avgTps=4577 avgMGps=437.9 elapsed=7h21s199ms
+Apr 16 19:34:39 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:34:39.141+00:00 Imported blocks                            blockNumber=20737281 slot=9946108 blocks=737280 txs=116784468 mgas=11167784 bps=33.90 tps=5525 mgps=513.3 avgBps=28.96 avgTps=4586 avgMGps=438.6 elapsed=7h4m22s
+Apr 16 19:38:54 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:38:54.521+00:00 Imported blocks                            blockNumber=20745473 slot=9954342 blocks=745472 txs=118101003 mgas=11291742 bps=32.08 tps=5155 mgps=485.4 avgBps=28.99 avgTps=4592 avgMGps=439.1 elapsed=7h8m38s
+Apr 16 19:43:23 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:43:23.324+00:00 Imported blocks                            blockNumber=20753665 slot=9962581 blocks=753664 txs=119337525 mgas=11415859 bps=30.48 tps=4600 mgps=461.7 avgBps=29.00 avgTps=4592 avgMGps=439.3 elapsed=7h13m6s
+Apr 16 19:47:39 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:47:39.459+00:00 Imported blocks                            blockNumber=20761857 slot=9970803 blocks=761856 txs=120564314 mgas=11540225 bps=31.98 tps=4789 mgps=485.5 avgBps=29.03 avgTps=4594 avgMGps=439.7 elapsed=7h17m23s
+Apr 16 19:51:43 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:51:43.055+00:00 Imported blocks                            blockNumber=20770049 slot=9979058 blocks=770048 txs=121858083 mgas=11663918 bps=33.63 tps=5311 mgps=507.8 avgBps=29.07 avgTps=4600 avgMGps=440.4 elapsed=7h21m26s
+Apr 16 19:55:37 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:55:37.231+00:00 Imported blocks                            blockNumber=20778241 slot=9987307 blocks=778240 txs=123161734 mgas=11787906 bps=34.98 tps=5566 mgps=529.5 avgBps=29.12 avgTps=4609 avgMGps=441.1 elapsed=7h25m20s
+Apr 16 19:59:23 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 19:59:23.126+00:00 Imported blocks                            blockNumber=20786433 slot=9995542 blocks=786432 txs=124509456 mgas=11911612 bps=36.27 tps=5966 mgps=547.6 avgBps=29.18 avgTps=4620 avgMGps=442.0 elapsed=7h29m6s
+Apr 16 20:03:20 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:03:20.874+00:00 Imported blocks                            blockNumber=20794625 slot=10003781 blocks=794624 txs=125848921 mgas=12035338 bps=34.46 tps=5633 mgps=520.4 avgBps=29.23 avgTps=4629 avgMGps=442.7 elapsed=7h33m4s
+Apr 16 20:07:21 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:07:21.450+00:00 Imported blocks                            blockNumber=20802817 slot=10012028 blocks=802816 txs=127089868 mgas=12158989 bps=34.05 tps=5158 mgps=514.0 avgBps=29.27 avgTps=4634 avgMGps=443.4 elapsed=7h37m5s
+Apr 16 20:11:29 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:11:29.797+00:00 Imported blocks                            blockNumber=20811009 slot=10020249 blocks=811008 txs=128299762 mgas=12282850 bps=32.99 tps=4871 mgps=498.7 avgBps=29.31 avgTps=4636 avgMGps=443.8 elapsed=7h41m13s
+Apr 16 20:15:25 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:15:25.337+00:00 Imported blocks                            blockNumber=20819201 slot=10028481 blocks=819200 txs=129596319 mgas=12406594 bps=34.78 tps=5504 mgps=525.4 avgBps=29.35 avgTps=4643 avgMGps=444.5 elapsed=7h45m9s
+Apr 16 20:19:18 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:19:18.845+00:00 Imported blocks                            blockNumber=20827393 slot=10036710 blocks=827392 txs=130916729 mgas=12530249 bps=35.08 tps=5654 mgps=529.6 avgBps=29.40 avgTps=4651 avgMGps=445.2 elapsed=7h49m2s
+Apr 16 20:23:08 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:23:08.909+00:00 Imported blocks                            blockNumber=20835585 slot=10044938 blocks=835584 txs=132226625 mgas=12654070 bps=35.61 tps=5693 mgps=538.2 avgBps=29.45 avgTps=4660 avgMGps=446.0 elapsed=7h52m52s
+Apr 16 20:27:18 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:27:18.760+00:00 Imported blocks                            blockNumber=20843777 slot=10053164 blocks=843776 txs=133604192 mgas=12777730 bps=32.79 tps=5513 mgps=494.9 avgBps=29.48 avgTps=4667 avgMGps=446.4 elapsed=7h57m2s
+Apr 16 20:31:49 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:31:49.755+00:00 Imported blocks                            blockNumber=20851969 slot=10061391 blocks=851968 txs=134900706 mgas=12901664 bps=30.23 tps=4784 mgps=457.3 avgBps=29.49 avgTps=4668 avgMGps=446.5 elapsed=8h1m33s
+Apr 16 20:36:15 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:36:15.258+00:00 Imported blocks                            blockNumber=20860161 slot=10069622 blocks=860160 txs=136168750 mgas=13025603 bps=30.85 tps=4775 mgps=466.8 avgBps=29.50 avgTps=4669 avgMGps=446.7 elapsed=8h5m58s
+Apr 16 20:40:34 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:40:34.178+00:00 Imported blocks                            blockNumber=20868353 slot=10077838 blocks=868352 txs=137550724 mgas=13149742 bps=31.64 tps=5337 mgps=479.5 avgBps=29.52 avgTps=4675 avgMGps=447.0 elapsed=8h10m17s
+Apr 16 20:44:51 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:44:51.697+00:00 Imported blocks                            blockNumber=20876545 slot=10086066 blocks=876544 txs=138954673 mgas=13273457 bps=31.81 tps=5451 mgps=480.4 avgBps=29.54 avgTps=4682 avgMGps=447.3 elapsed=8h14m35s
+Apr 16 20:49:04 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:49:04.512+00:00 Imported blocks                            blockNumber=20884737 slot=10094286 blocks=884736 txs=140256178 mgas=13397479 bps=32.40 tps=5148 mgps=490.6 avgBps=29.56 avgTps=4686 avgMGps=447.7 elapsed=8h18m48s
+Apr 16 20:53:07 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:53:07.316+00:00 Imported blocks                            blockNumber=20892929 slot=10102512 blocks=892928 txs=141581868 mgas=13521575 bps=33.74 tps=5459 mgps=511.1 avgBps=29.60 avgTps=4692 avgMGps=448.2 elapsed=8h22m50s
+Apr 16 20:57:07 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 20:57:07.248+00:00 Imported blocks                            blockNumber=20901121 slot=10110732 blocks=901120 txs=142875889 mgas=13645572 bps=34.14 tps=5393 mgps=516.8 avgBps=29.63 avgTps=4698 avgMGps=448.7 elapsed=8h26m50s
+Apr 16 21:01:12 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:01:12.551+00:00 Imported blocks                            blockNumber=20909313 slot=10118953 blocks=909312 txs=144102308 mgas=13769390 bps=33.40 tps=4999 mgps=504.7 avgBps=29.66 avgTps=4700 avgMGps=449.2 elapsed=8h30m56s
+Apr 16 21:05:13 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:05:13.215+00:00 Imported blocks                            blockNumber=20917505 slot=10127176 blocks=917504 txs=145406349 mgas=13893087 bps=34.04 tps=5418 mgps=514.0 avgBps=29.70 avgTps=4706 avgMGps=449.7 elapsed=8h34m56s
+Apr 16 21:09:07 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:09:07.839+00:00 Imported blocks                            blockNumber=20925697 slot=10135394 blocks=925696 txs=146718394 mgas=14016820 bps=34.92 tps=5592 mgps=527.4 avgBps=29.74 avgTps=4712 avgMGps=450.2 elapsed=8h38m51s
+Apr 16 21:13:19 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:13:19.914+00:00 Imported blocks                            blockNumber=20933889 slot=10143614 blocks=933888 txs=148049109 mgas=14140625 bps=32.50 tps=5279 mgps=491.1 avgBps=29.76 avgTps=4717 avgMGps=450.6 elapsed=8h43m3s
+Apr 16 21:17:23 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:17:23.178+00:00 Imported blocks                            blockNumber=20942081 slot=10151840 blocks=942080 txs=149397364 mgas=14264352 bps=33.68 tps=5542 mgps=508.6 avgBps=29.79 avgTps=4723 avgMGps=451.0 elapsed=8h47m6s
+Apr 16 21:21:23 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:21:23.833+00:00 Imported blocks                            blockNumber=20950273 slot=10160098 blocks=950272 txs=150765507 mgas=14388237 bps=34.04 tps=5685 mgps=514.8 avgBps=29.82 avgTps=4731 avgMGps=451.5 elapsed=8h51m7s
+Apr 16 21:25:45 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:25:45.208+00:00 Imported blocks                            blockNumber=20958465 slot=10168363 blocks=958464 txs=152044771 mgas=14511987 bps=31.34 tps=4894 mgps=473.5 avgBps=29.83 avgTps=4732 avgMGps=451.7 elapsed=8h55m28s
+Apr 16 21:29:51 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:29:51.988+00:00 Imported blocks                            blockNumber=20966657 slot=10176609 blocks=966656 txs=153365296 mgas=14635804 bps=33.20 tps=5351 mgps=501.7 avgBps=29.86 avgTps=4737 avgMGps=452.1 elapsed=8h59m35s
+Apr 16 21:33:59 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:33:59.775+00:00 Imported blocks                            blockNumber=20974849 slot=10184849 blocks=974848 txs=154744917 mgas=14759580 bps=33.06 tps=5567 mgps=499.5 avgBps=29.88 avgTps=4743 avgMGps=452.4 elapsed=9h3m43s
+Apr 16 21:38:14 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:38:14.699+00:00 Imported blocks                            blockNumber=20983041 slot=10193086 blocks=983040 txs=156055229 mgas=14883451 bps=32.13 tps=5139 mgps=485.9 avgBps=29.90 avgTps=4746 avgMGps=452.7 elapsed=9h7m58s
+Apr 16 21:41:59 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:41:59.583+00:00 Imported blocks                            blockNumber=20991233 slot=10201319 blocks=991232 txs=157563202 mgas=15007557 bps=36.43 tps=6705 mgps=551.9 avgBps=29.94 avgTps=4759 avgMGps=453.4 elapsed=9h11m43s
+Apr 16 21:46:20 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:46:20.614+00:00 Imported blocks                            blockNumber=20999425 slot=10209549 blocks=999424 txs=159003277 mgas=15131383 bps=31.38 tps=5516 mgps=474.4 avgBps=29.95 avgTps=4765 avgMGps=453.5 elapsed=9h16m4s
+Apr 16 21:46:37 nimbus-eth1-mainnet-short-benchmark[1492410]: INF 2025-04-16 21:46:37.610+00:00 Imported blocks                            blockNumber=21000001 slot=10210128 blocks=1000000 txs=159109486 mgas=15140191 bps=33.89 tps=6248 mgps=518.2 avgBps=29.96 avgTps=4766 avgMGps=453.6 elapsed=9h16m21s
+Apr 16 21:46:37 nimbus-eth1-mainnet-short-benchmark[1492410]: NTC 2025-04-16 21:46:37.610+00:00 Import complete                            blockNumber=21000001 slot=10210128 blocks=1000000 txs=159109486 mgas=15140191
+Apr 16 21:46:39 nimbus-eth1-mainnet-short-benchmark[1550315]: >>> starting moveBenchmarkingFileToRepo() inside publish-metrics-github.sh
+Apr 16 21:46:39 nimbus-eth1-mainnet-short-benchmark[1550315]: >>> mkdir -p /home/data/nimbus-eth1-benchmarks/short-benchmark/20250416T214639_9f75c89ca
+Apr 16 21:46:39 nimbus-eth1-mainnet-short-benchmark[1550315]: >>> copying debug-csv generated by nimbus to benchmarks repo
+Apr 16 21:46:39 nimbus-eth1-mainnet-short-benchmark[1550315]: cp /home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20250416T214639_9f75c89ca/blocks-import-benchmark.csv
+Apr 16 21:46:39 nimbus-eth1-mainnet-short-benchmark[1550315]: >>> completed moveBenchmarkingFileToRepo()
+Apr 16 21:47:01 nimbus-eth1-mainnet-short-benchmark[1550315]: Warning: Could not extract all required data from /home/data/nimbus-eth1-benchmarks/short-benchmark/20241208T172603_9207eaf/build-environment.log
+Apr 16 21:47:01 nimbus-eth1-mainnet-short-benchmark[1550315]: Warning: Could not extract all required data from /home/data/nimbus-eth1-benchmarks/long-benchmark/20241227T144804_c714fa87/build-environment.log
+Apr 16 21:47:01 nimbus-eth1-mainnet-short-benchmark[1550315]: Benchmarking History updated in /home/data/nimbus-eth1-benchmarks/README.md
+Apr 16 21:47:01 nimbus-eth1-mainnet-short-benchmark[1550315]: SYSTEMD_INVOCATION_ID for this service run is: ea9322989ddb4a37b19ae931b3f2928c
+Apr 16 21:47:01 nimbus-eth1-mainnet-short-benchmark[1550315]: journalctl _SYSTEMD_INVOCATION_ID=ea9322989ddb4a37b19ae931b3f2928c -q --no-hostname >>/home/data/nimbus-eth1-benchmarks/short-benchmark/20250416T214639_9f75c89ca/nimbus-eth1-mainnet-master-short-benchmark-output.log
