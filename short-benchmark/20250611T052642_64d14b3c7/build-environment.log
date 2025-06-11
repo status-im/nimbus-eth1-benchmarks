@@ -1,0 +1,61 @@
+=== System Information Report ===
+>>> Generated on: Wed Jun 11 05:26:42 AM UTC 2025
+==========================
+>>> CPU Architecture: x86_64
+>>> CPU Byte Order: Little Endian
+>>> CPU Cores: 16
+>>> CPU Model: AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
+>>> CPU Cache Information:
+L1d Cache: 256 KiB (8 instances)
+L1i Cache: 256 KiB (8 instances)
+L2 Cache: 8 MiB (8 instances)
+L3 Cache: 16 MiB (1 instance)
+>>> RAM Size: 61Gi
+>>> Hard Disk Information:
+/dev/md2 : 437G total, 196G free
+/dev/md1 : 989M total, 690M free
+/dev/nvme0n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 659G free
+==========================
+=== Nimbus-ETH1 Benchmarking Report ===
+>>> Total time spent in benchmarking (nanoseconds): 32782130629204
+>>> Total time spent in benchmarking (human readable format): 9 hours 6 minutes 22 seconds
+>>> Start block number is 20000001
+>>> End block number is 21000001
+>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --data-dir='/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --log-level=INFO \
+    --debug-rewrite-datadir-id=true \
+    --max-blocks=1000000 \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+==========================
+=== Comparison of last two benchmarks ===
+sort: fflush failed: 'standard output': Broken pipe
+sort: write error
+python -m venv /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats
+source /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/bin/activate
+pip install -r /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/requirements.txt >/dev/null 2>&1
+python /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py /home/data/nimbus-eth1-benchmarks/short-benchmark/20250610T200728_0ef2e8c98/blocks-import-benchmark.csv /home/data/nimbus-eth1-benchmarks/short-benchmark/20250611T052642_64d14b3c7/blocks-import-benchmark.csv 2>&1 || true
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                      bps_x  bps_y     tps_x     tps_y   time_x    time_y     bpsd     tpsd   timed
+block_number                                                                                       
+(20000001, 20111112]  28.21  25.01  4,604.63  4,082.17  1h3m30s  1h11m41s  -11.31%  -11.31%  12.96%
+(20111112, 20222223]  27.73  27.48  4,536.63  4,495.70   1h9m3s   1h9m40s   -0.89%   -0.89%   0.92%
+(20222223, 20333334]  28.89  28.85  4,686.89  4,680.23  1h1m45s   1h1m50s   -0.12%   -0.12%   0.13%
+(20333334, 20444445]  32.05  31.98  5,049.26  5,037.46   59m49s    59m59s   -0.26%   -0.26%   0.27%
+(20444445, 20555556]  31.31  31.41  4,823.17  4,837.26   56m44s    56m34s    0.31%    0.31%  -0.30%
+(20555556, 20666667]  31.88  31.83  4,814.72  4,806.95   59m58s    1h0m4s   -0.17%   -0.17%   0.18%
+(20666667, 20777778]  33.11  33.20  5,209.30  5,223.20   53m40s    53m32s    0.27%    0.27%  -0.26%
+(20777778, 20888889]  34.15  33.97  5,478.47  5,449.62    56m6s    56m26s   -0.55%   -0.55%   0.56%
+(20888889, 21000001]  34.07  33.95  5,619.94  5,598.57   56m31s    56m32s   -0.32%   -0.32%   0.34%
+
+blocks: 991808, baseline: 8h57m11s, contender: 9h6m22s
+Time (total): 9m10s, 1.71%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
+deactivate
+==========================
