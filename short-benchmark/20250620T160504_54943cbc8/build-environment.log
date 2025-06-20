@@ -1,0 +1,60 @@
+=== System Information Report ===
+>>> Generated on: Fri Jun 20 04:05:07 PM UTC 2025
+==========================
+>>> CPU Architecture: x86_64
+>>> CPU Byte Order: Little Endian
+>>> CPU Cores: 16
+>>> CPU Model: AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
+>>> CPU Cache Information:
+L1d Cache: 256 KiB (8 instances)
+L1i Cache: 256 KiB (8 instances)
+L2 Cache: 8 MiB (8 instances)
+L3 Cache: 16 MiB (1 instance)
+>>> RAM Size: 61Gi
+>>> Hard Disk Information:
+/dev/md2 : 437G total, 195G free
+/dev/md1 : 989M total, 690M free
+/dev/nvme0n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 659G free
+==========================
+=== Nimbus-ETH1 Benchmarking Report ===
+>>> Total time spent in benchmarking (nanoseconds): 360908495456739
+>>> Total time spent in benchmarking (human readable format): 4 days 4 hours 15 minutes 8 seconds
+tail: error writing 'standard output': Broken pipe
+>>> Start block number is 20000001
+>>> End block number is 21000001
+>>> Benchmarking was run using /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/build/nimbus_execution_client import \
+    --network=mainnet \
+    --data-dir='/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/data/shared_mainnet_0' \
+    --era1-dir=/data/era1 \
+    --era-dir=/data/era \
+    --log-level=INFO \
+    --debug-rewrite-datadir-id=true \
+    --max-blocks=1000000 \
+    --debug-csv-stats=/home/data/nimbus-eth1-benchmarks/blocks-import-benchmark.csv
+==========================
+=== Comparison of last two benchmarks ===
+python -m venv /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats
+source /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/bin/activate
+pip install -r /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/requirements.txt >/dev/null 2>&1
+python /home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py /tmp/nimbus-benchmark-publish-20250620T160504/nimbus-eth1-benchmarks/short-benchmark/20250620T063324_54943cbc8/blocks-import-benchmark.csv /tmp/nimbus-benchmark-publish-20250620T160504/nimbus-eth1-benchmarks/short-benchmark/20250620T160504_54943cbc8/blocks-import-benchmark.csv 2>&1 || true
+Traceback (most recent call last):
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py", line 198, in <module>
+    main()
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/scripts/block-import-stats.py", line 140, in main
+    baseline = baseline.loc[start:end]
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/lib/python3.10/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/lib/python3.10/site-packages/pandas/core/indexing.py", line 1411, in _getitem_axis
+    return self._get_slice_axis(key, axis=axis)
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/lib/python3.10/site-packages/pandas/core/indexing.py", line 1443, in _get_slice_axis
+    indexer = labels.slice_indexer(slice_obj.start, slice_obj.stop, slice_obj.step)
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6662, in slice_indexer
+    start_slice, end_slice = self.slice_locs(start, end, step=step)
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6879, in slice_locs
+    start_slice = self.get_slice_bound(start, "left")
+  File "/home/data/nimbus-eth1-mainnet-master-short-benchmark/repo/stats/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6812, in get_slice_bound
+    raise KeyError(
+KeyError: 'Cannot get left slice bound for non-unique label: np.int64(20008193)'
+deactivate
+==========================
