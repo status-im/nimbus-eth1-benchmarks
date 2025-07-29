@@ -1,0 +1,202 @@
++ fetchHostInformation
++ echo '=== System Information Report ==='
+=== System Information Report ===
+++ date
++ echo '>>> Generated on: Tue Jul 29 06:15:59 AM UTC 2025'
+>>> Generated on: Tue Jul 29 06:15:59 AM UTC 2025
++ echo ==========================
+==========================
++ echo -n '>>> CPU Architecture: '
+>>> CPU Architecture: + lscpu
++ grep Architecture
++ awk '{print $2}'
+x86_64
++ echo -n '>>> CPU Byte Order: '
+>>> CPU Byte Order: + lscpu
++ grep 'Byte Order'
++ sed 's/Byte Order://'
++ sed 's/^[ \t]*//'
+Little Endian
++ echo -n '>>> CPU Cores: '
+>>> CPU Cores: + nproc
+16
++ echo -n '>>> CPU Model: '
+>>> CPU Model: + lscpu
++ grep 'Model name'
++ sed 's/Model name://'
++ sed 's/^[ \t]*//'
+AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
++ echo '>>> CPU Cache Information:'
+>>> CPU Cache Information:
++ echo -n 'L1d Cache: '
+L1d Cache: + lscpu
++ grep L1d
++ sed 's/L1d cache://'
++ sed 's/^[ \t]*//'
+256 KiB (8 instances)
++ echo -n 'L1i Cache: '
+L1i Cache: + lscpu
++ grep L1i
++ sed 's/L1i cache://'
++ sed 's/^[ \t]*//'
+256 KiB (8 instances)
++ echo -n 'L2 Cache: '
+L2 Cache: + lscpu
++ grep L2
++ sed 's/L2 cache://'
++ sed 's/^[ \t]*//'
+8 MiB (8 instances)
++ echo -n 'L3 Cache: '
+L3 Cache: + lscpu
++ grep L3
++ sed 's/L3 cache://'
++ sed 's/^[ \t]*//'
+16 MiB (1 instance)
++ echo -n '>>> RAM Size: '
+>>> RAM Size: + free -h
++ grep Mem:
++ awk '{print $2}'
+61Gi
++ echo '>>> Hard Disk Information:'
+>>> Hard Disk Information:
++ df -h
++ grep '^/dev/'
++ awk '{print $1 " : " $2 " total, " $4 " free"}'
+/dev/md2 : 437G total, 202G free
+/dev/md1 : 989M total, 690M free
+/dev/nvme0n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 570G free
++ echo ==========================
+==========================
++ fetchBenchmarkingJobSummary
++ local total_time
+++ awk -F, '
+      NR>1 { # Skip header row
+          sum += $6
+      }
+      END {
+          print sum
+      }' /data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d/blocks-import-benchmark.csv
++ total_time=315265502631
++ '[' -z 315265502631 ']'
++ echo '=== Nimbus-ETH1 Benchmarking Report ==='
+=== Nimbus-ETH1 Benchmarking Report ===
++ echo '>>> Total time spent in benchmarking (nanoseconds): 315265502631'
+>>> Total time spent in benchmarking (nanoseconds): 315265502631
+++ convertToHumanReadableTime 315265502631
+++ local total_ns=315265502631
++++ awk 'BEGIN {printf "%.2f", 315265502631/1000000000}'
+++ local total_seconds=315.27
+++ local seconds_int=315
+++ local days=0
+++ local hours=0
+++ local minutes=5
+++ local seconds=15
+++ local result=
+++ [[ 0 -gt 0 ]]
+++ [[ 0 -gt 0 ]]
+++ [[ 5 -gt 0 ]]
+++ result+='5 minutes '
+++ [[ 15 -gt 0 ]]
+++ result+='15 seconds'
+++ result='5 minutes 15 seconds'
+++ [[ -z 5 minutes 15 seconds ]]
+++ echo '5 minutes 15 seconds'
++ echo '>>> Total time spent in benchmarking (human readable format): 5 minutes 15 seconds'
+>>> Total time spent in benchmarking (human readable format): 5 minutes 15 seconds
+++ tail -n +2 /data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d/blocks-import-benchmark.csv
+++ head -1
+++ awk -F, '{print $1 - $2}'
++ local START_BLOCK_NUMBER=20000001
++ echo '>>> Start block number is 20000001'
+>>> Start block number is 20000001
+++ tail -1 /data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d/blocks-import-benchmark.csv
+++ cut -d, -f1
++ local END_BLOCK_NUMBER=20005001
++ echo '>>> End block number is 20005001'
+>>> End block number is 20005001
++ echo ==========================
+==========================
++ compareBenchmarkWithPrevious
++ echo '=== Comparison of last two benchmarks ==='
+=== Comparison of last two benchmarks ===
++ local NIMBUS_ETH1_BLOCKS_IMPORT_SCRIPT_PATH=/data/status-im/nimbus-eth1/scripts/block-import-stats.py
++ local VENV_PATH=/data/status-im/nimbus-eth1/stats
++ '[' '!' -d /data/status-im/nimbus-eth1-benchmarks/short-benchmark ']'
+++ find /data/status-im/nimbus-eth1-benchmarks/short-benchmark -mindepth 1 -maxdepth 1 -type d
+++ wc -l
++ [[ ! 245 -gt 2 ]]
+++ find /data/status-im/nimbus-eth1-benchmarks/short-benchmark -mindepth 1 -maxdepth 1 -type d -printf '%T@ %f\n'
+++ sort -nr
+++ head -n 1
+++ cut '-d ' -f2
+sort: fflush failed: 'standard output': Broken pipe
+sort: write error
++ local CURRENT_BENCHMARK_DIR_NAME=20250729T060139_9a44ea41
+++ find /data/status-im/nimbus-eth1-benchmarks/short-benchmark -mindepth 1 -maxdepth 1 -type d -printf '%T@ %f\n'
+++ sort -nr
+++ head -n 2
+++ tail -n 1
+++ cut '-d ' -f2
+sort: fflush failed: 'standard output': Broken pipe
+sort: write error
++ local PREVIOUS_BENCHMARK_DIR_NAME=20250726T161038_d8ab171c
++ local CURRENT_BENCHMARK_CSV_PATH=/data/status-im/nimbus-eth1-benchmarks/short-benchmark/20250729T060139_9a44ea41/blocks-import-benchmark.csv
++ local PREVIOUS_BENCHMARK_CSV_PATH=/data/status-im/nimbus-eth1-benchmarks/short-benchmark/20250726T161038_d8ab171c/blocks-import-benchmark.csv
++ '[' '!' -d /data/status-im/nimbus-eth1/stats ']'
++ python -m venv /data/status-im/nimbus-eth1/stats
++ source /data/status-im/nimbus-eth1/stats/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ '[' -n /usr/bin/bash -o -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ unset VIRTUAL_ENV_PROMPT
+++ '[' '!' nondestructive = nondestructive ']'
+++ VIRTUAL_ENV=/data/status-im/nimbus-eth1/stats
+++ export VIRTUAL_ENV
+++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ PATH=/data/status-im/nimbus-eth1/stats/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ PS1='(stats) '
+++ export PS1
+++ VIRTUAL_ENV_PROMPT='(stats) '
+++ export VIRTUAL_ENV_PROMPT
+++ '[' -n /usr/bin/bash -o -n '' ']'
+++ hash -r
++ '[' -f /data/status-im/nimbus-eth1/scripts/requirements.txt ']'
++ pip install -r /data/status-im/nimbus-eth1/scripts/requirements.txt
++ python /data/status-im/nimbus-eth1/scripts/block-import-stats.py /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20250726T161038_d8ab171c/blocks-import-benchmark.csv /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20250729T060139_9a44ea41/blocks-import-benchmark.csv
+Traceback (most recent call last):
+  File "/data/status-im/nimbus-eth1/scripts/block-import-stats.py", line 198, in <module>
+    main()
+  File "/data/status-im/nimbus-eth1/scripts/block-import-stats.py", line 149, in main
+    if df.block_number.iloc[-1] > min_block_number + df.block_number.iloc[0]:
+  File "/data/status-im/nimbus-eth1/stats/lib/python3.10/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+  File "/data/status-im/nimbus-eth1/stats/lib/python3.10/site-packages/pandas/core/indexing.py", line 1752, in _getitem_axis
+    self._validate_integer(key, axis)
+  File "/data/status-im/nimbus-eth1/stats/lib/python3.10/site-packages/pandas/core/indexing.py", line 1685, in _validate_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+IndexError: single positional indexer is out-of-bounds
++ true
++ deactivate
++ '[' -n /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin ']'
++ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ export PATH
++ unset _OLD_VIRTUAL_PATH
++ '[' -n '' ']'
++ '[' -n /usr/bin/bash -o -n '' ']'
++ hash -r
++ '[' -n '' ']'
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ '[' '!' '' = nondestructive ']'
++ unset -f deactivate
++ echo ==========================
+==========================

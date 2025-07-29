@@ -1,0 +1,110 @@
+Jul 29 06:01:36 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting cleanBenchmarkDir
+Jul 29 06:01:36 nimbus-eth1-mainnet-short-benchmark[194301]: <<< ending cleanBenchmarkDir
+Jul 29 06:01:36 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting cloneOrFetchBenchmarksRepo
+Jul 29 06:01:36 nimbus-eth1-mainnet-short-benchmark[194301]: >>> Fetching latest benchmarks from github
+Jul 29 06:01:38 nimbus-eth1-mainnet-short-benchmark[194311]: HEAD is now at 782d4af short-benchmark: publish metrics and report
+Jul 29 06:01:38 nimbus-eth1-mainnet-short-benchmark[194301]: <<< ending cloneOrFetchBenchmarksRepo
+Jul 29 06:01:38 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting cloneOrFetchNimbusRepo
+Jul 29 06:01:39 nimbus-eth1-mainnet-short-benchmark[194301]: >>> Fetching latest changes...
+Jul 29 06:01:39 nimbus-eth1-mainnet-short-benchmark[194613]: HEAD is now at 9a44ea41a chronicles: bump and logging updates (#3504)
+Jul 29 06:01:39 nimbus-eth1-mainnet-short-benchmark[194301]: >>> Current commit: 9a44ea41a
+Jul 29 06:01:39 nimbus-eth1-mainnet-short-benchmark[194301]: <<< ending cloneOrFetchNimbusRepo
+Jul 29 06:01:39 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting buildBinaries
+Jul 29 06:01:39 nimbus-eth1-mainnet-short-benchmark[194301]: >>> Building binaries for commit 9a44ea41...
+Jul 29 06:01:44 nimbus-eth1-mainnet-short-benchmark[195916]: Submodule path 'vendor/nim-chronicles': checked out 'e5ff43c964fec4a66091ebe5f8973ff012228b0e'
+Jul 29 06:01:44 nimbus-eth1-mainnet-short-benchmark[195916]: Submodule path 'vendor/nim-eth': checked out 'd814a62ee81be988c23e6558a1becd4f42481a5f'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196489]: From https://github.com/status-im/nim-stew
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196489]:  * branch            9741506260f4165c2c622bfef54b5b9d895b5368 -> FETCH_HEAD
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[195916]: Submodule path 'vendor/nim-stew': checked out '9741506260f4165c2c622bfef54b5b9d895b5368'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[195916]: Submodule path 'vendor/nimbus-eth2': checked out 'aa88cd4c0cee906324e921cd8ab2477574463d49'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196684]: Submodule path 'vendor/nimbus-eth2/vendor/nim-chronicles': checked out 'e5ff43c964fec4a66091ebe5f8973ff012228b0e'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196684]: Submodule path 'vendor/nimbus-eth2/vendor/nim-eth': checked out 'd814a62ee81be988c23e6558a1becd4f42481a5f'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196684]: Submodule path 'vendor/nimbus-eth2/vendor/nim-eth2-scenarios': checked out 'dbdf898961ad8895398cec5756f6f452c060e685'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196684]: Submodule path 'vendor/nimbus-eth2/vendor/nim-faststreams': checked out '6b3fea903ea0ee058ac7698c5e6af63b3a43fed5'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196684]: Submodule path 'vendor/nimbus-eth2/vendor/nim-libp2p': checked out 'd803352bd63fe2215e149a5f72de98229cfb7867'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196684]: Submodule path 'vendor/nimbus-eth2/vendor/nim-ssz-serialization': checked out '3ad8102750e6dd24323b2c114189ece79fd605c0'
+Jul 29 06:01:46 nimbus-eth1-mainnet-short-benchmark[196684]: Submodule path 'vendor/nimbus-eth2/vendor/nim-stew': checked out '9cc65bbf9d42d11efe3c3dcc687f6f69f4951627'
+Jul 29 06:01:47 nimbus-eth1-mainnet-short-benchmark[196684]: Submodule path 'vendor/nimbus-eth2/vendor/nim-testutils': checked out 'e4d37dc1652d5c63afb89907efb5a5e812261797'
+Jul 29 06:02:11 nimbus-eth1-mainnet-short-benchmark[199901]: Building: Nim compiler
+Jul 29 06:03:17 nimbus-eth1-mainnet-short-benchmark[202722]: Building: install/usr/lib/libbacktrace.a
+Jul 29 06:03:17 nimbus-eth1-mainnet-short-benchmark[202868]: make[1]: Entering directory '/data/status-im/nimbus-eth1/vendor/nim-rocksdb/vendor/rocksdb'
+Jul 29 06:03:17 nimbus-eth1-mainnet-short-benchmark[202868]: $DEBUG_LEVEL is 0, $LIB_MODE is static
+Jul 29 06:03:18 nimbus-eth1-mainnet-short-benchmark[202868]: make[1]: Leaving directory '/data/status-im/nimbus-eth1/vendor/nim-rocksdb/vendor/rocksdb'
+Jul 29 06:03:18 nimbus-eth1-mainnet-short-benchmark[203882]: Cleaning up RocksDb build artifacts.
+Jul 29 06:03:19 nimbus-eth1-mainnet-short-benchmark[204634]: /bin/sh: 1: javac: not found
+Jul 29 06:03:19 nimbus-eth1-mainnet-short-benchmark[202692]: Building RocksDb static libraries.
+Jul 29 06:03:21 nimbus-eth1-mainnet-short-benchmark[206483]: Building: install/usr/lib/libbacktracenim.a
+Jul 29 06:06:13 nimbus-eth1-mainnet-short-benchmark[208925]: Building: build/nimbus_execution_client
+Jul 29 06:06:41 nimbus-eth1-mainnet-short-benchmark[209026]: /data/status-im/nimbus-eth1/execution_chain/sync/wire_protocol/broadcast.nim(299, 32) template/generic instantiation of `async` from here
+Jul 29 06:06:41 nimbus-eth1-mainnet-short-benchmark[209026]: /data/status-im/nimbus-eth1/execution_chain/sync/wire_protocol/broadcast.nim(309, 5) template/generic instantiation of `trace` from here
+Jul 29 06:06:41 nimbus-eth1-mainnet-short-benchmark[209026]: /data/status-im/nimbus-eth1/vendor/nim-chronicles/chronicles.nim(364, 10) template/generic instantiation of `log` from here
+Jul 29 06:06:41 nimbus-eth1-mainnet-short-benchmark[209026]: /data/status-im/nimbus-eth1/execution_chain/sync/wire_protocol/broadcast.nim(310, 35) template/generic instantiation of `filterIt` from here
+Jul 29 06:06:41 nimbus-eth1-mainnet-short-benchmark[209026]: /data/status-im/nimbus-eth1/vendor/nim-chronos/chronos/internal/raisesfutures.nim(241, 12) Warning: No exceptions possible with this operation, `error` always returns nil [User]
+Jul 29 06:07:14 nimbus-eth1-mainnet-short-benchmark[209026]: /data/status-im/nimbus-eth1/execution_chain/nimbus_execution_client.nim(14, 20) Warning: imported and not used: 'strutils' [UnusedImport]
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: >>> renaming binaries to match commit they were built from
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: >>> creating a symbolic link to the latest version
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: >>> deleting copies that are older than N days
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: <<< ending buildBinaries
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting skipOrContinueBenchmark
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[213864]: ++ cd /data/status-im/nimbus-eth1
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[213864]: ++ git rev-parse --short=8 HEAD
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + local NIMBUS_ETH1_GIT_HASH=9a44ea41
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[213866]: ++ find /data/status-im/nimbus-eth1-benchmarks -type d -name '*9a44ea41*'
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[213867]: ++ wc -l
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + local BENCHMARK_EXISTS=0
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + '[' 0 -gt 0 ']'
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '<<< ending skipOrContinueBenchmark'
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: <<< ending skipOrContinueBenchmark
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + [[ short == \s\h\o\r\t ]]
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + callAndLogFunc copyTemplateDatabase
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '>>> starting copyTemplateDatabase'
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting copyTemplateDatabase
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + copyTemplateDatabase
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + mkdir -p /data/status-im/nimbus-eth1/data/shared_mainnet_0
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '>>> Copying template db into nimbus data directory'
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: >>> Copying template db into nimbus data directory
+Jul 29 06:08:50 nimbus-eth1-mainnet-short-benchmark[194301]: + cp -r /data/template-db/. /data/status-im/nimbus-eth1/data/shared_mainnet_0/
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '>>> Template db copied'
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: >>> Template db copied
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '>>> making nimbus the owner of the copied files'
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: >>> making nimbus the owner of the copied files
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[213952]: ++ id -u -n
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[213953]: ++ id -g -n
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + chown -R nimbus:staff /data/status-im/nimbus-eth1/data/shared_mainnet_0
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '<<< ending copyTemplateDatabase'
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: <<< ending copyTemplateDatabase
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + callAndLogFunc startNimbusWithImport
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '>>> starting startNimbusWithImport'
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting startNimbusWithImport
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + startNimbusWithImport
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + mkdir -p /data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + args=('--network=mainnet' '--data-dir=/data/status-im/nimbus-eth1/data/shared_mainnet_0' '--era1-dir=/data/era1' '--era-dir=/data/era' '--log-level=INFO' '--debug-rewrite-datadir-id=true' '--debug-csv-stats=/data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d/blocks-import-benchmark.csv')
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + local args
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + [[ short == \s\h\o\r\t ]]
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + args+=(--max-blocks=${MAX_BLOCKS_TO_IMPORT})
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[194301]: + /data/status-im/nimbus-eth1/build/nimbus_execution_client import --network=mainnet --data-dir=/data/status-im/nimbus-eth1/data/shared_mainnet_0 --era1-dir=/data/era1 --era-dir=/data/era --log-level=INFO --debug-rewrite-datadir-id=true --debug-csv-stats=/data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d/blocks-import-benchmark.csv --max-blocks=5000
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[213956]: INF 2025-07-29 06:10:43.259+00:00 Launching execution client                 version=v0.1.0-9a44ea41 conf="(dataDir: /data/status-im/nimbus-eth1/data/shared_mainnet_0, era1DirOpt: some(/data/era1), eraDirOpt: some(/data/era), keyStore: /data/status-im/nimbus-eth1/data/shared_mainnet_0/keystore, importKey: , trustedSetupFile: none(string), extraData: nimbus-eth1/v0.1.0-9a44ea41, gasLimit: 45000000, network: mainnet, customNetwork: none(NetworkParams), networkId: 1, networkParams: (config: ..., genesis: ...), logLevel: INFO, logStdout: auto, logMetricsEnabled: false, logMetricsInterval: 10, metricsEnabled: false, metricsPort: 9093, metricsAddress: 127.0.0.1, bootstrapNodes: [], bootstrapFile: , bootstrapEnrs: [], staticPeers: [], staticPeersFile: , staticPeersEnrs: [], reconnectMaxRetry: 0, reconnectInterval: 15, listenAddress: ::, tcpPort: 30303, udpPort: 0, maxPeers: 25, nat: (hasExtIp: false, nat: NatAny), discovery: [V4, V5], netKey: random, agentString: nimbus-eth1/v0.1.0-9a44ea41/linux-amd64/Nim-2.2.4, numThreads: 0, persistBatchSize: 4, beaconSyncTargetFile: none(InputFile), rocksdbMaxOpenFiles: 2048, rocksdbWriteBufferSize: 67108864, rocksdbRowCacheSize: 0, rocksdbBlockCacheSize: 2147483648, rdbVtxCacheSize: 536870912, rdbKeyCacheSize: 1342177280, rdbBranchCacheSize: 1073741824, rdbPrintStats: false, rewriteDatadirId: true, eagerStateRootCheck: false, statelessProviderEnabled: false, cmd: import, maxBlocks: 5000, chunkSize: 8192, csvStats: some("/data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d/blocks-import-benchmark.csv"), fullValidation: false, noValidation: true, storeBodies: false, storeReceipts: false, storeSlotHashes: false)"
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[213956]: INF 2025-07-29 06:10:43.439+00:00 Writing data dir ID                        ID=0x0a036d6f6dfe59156bb6359f0243c93d5a421ed688de5aa85a62d15dca8dbd5c
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[213956]: INF 2025-07-29 06:10:43.495+00:00 Threadpool started                         numThreads=16
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[213956]: INF 2025-07-29 06:10:43.623+00:00 Database initialized                       base="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" finalized="(0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183, 20000000)" head="(0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3, 0)"
+Jul 29 06:10:43 nimbus-eth1-mainnet-short-benchmark[213956]: NTC 2025-07-29 06:10:43.623+00:00 Importing era archive                      blockNumber=20000001 dataDir=/data/status-im/nimbus-eth1/data/shared_mainnet_0 eraDir=/data/era
+Jul 29 06:10:45 nimbus-eth1-mainnet-short-benchmark[213956]: NTC 2025-07-29 06:10:45.871+00:00 Matched block to slot number               blockNumber=20000001 slot=9204783
+Jul 29 06:15:58 nimbus-eth1-mainnet-short-benchmark[213956]: INF 2025-07-29 06:15:58.891+00:00 Imported blocks                            blockNumber=20005001 slot=9209812 blocks=5000 txs=736412 mgas=75927 bps=15.86 tps=2335 mgps=240.8 avgBps=15.86 avgTps=2335 avgMGps=240.8 elapsed=5m15s265ms
+Jul 29 06:15:58 nimbus-eth1-mainnet-short-benchmark[213956]: NTC 2025-07-29 06:15:58.891+00:00 Import complete                            blockNumber=20005001 slot=9209812 blocks=5000 txs=736412 mgas=75927
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '<<< ending startNimbusWithImport'
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: <<< ending startNimbusWithImport
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + callAndLogFunc moveBenchmarkingFileToRepo
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '>>> starting moveBenchmarkingFileToRepo'
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting moveBenchmarkingFileToRepo
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + moveBenchmarkingFileToRepo
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + [[ ! -f /data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d/blocks-import-benchmark.csv ]]
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + mkdir -p /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20250729T060139_9a44ea41
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '>>> copying debug-csv generated by nimbus to benchmarks repo'
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: >>> copying debug-csv generated by nimbus to benchmarks repo
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + cp /data/host-benchmarks/short/120ac52204d04f1f9d684de49db4c17d/blocks-import-benchmark.csv /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20250729T060139_9a44ea41/blocks-import-benchmark.csv
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '<<< ending moveBenchmarkingFileToRepo'
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: <<< ending moveBenchmarkingFileToRepo
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + callAndLogFunc generateBuildEnvironmentLogFile
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + echo '>>> starting generateBuildEnvironmentLogFile'
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: >>> starting generateBuildEnvironmentLogFile
+Jul 29 06:15:59 nimbus-eth1-mainnet-short-benchmark[194301]: + generateBuildEnvironmentLogFile
