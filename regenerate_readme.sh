@@ -25,13 +25,16 @@ generateBenchmarkRepoReadme() {
 
   local LONG_BENCHMARK_TABLE="$TABLE_HEADER"
   local SHORT_BENCHMARK_TABLE="$TABLE_HEADER"
-  local HIGH_IMPACT_ENTRIES=""
+  local REGRESSIONS=""
+  local IMPROVEMENTS=""
+  local LATEST_ENTRIES=""
+  local entry_count=0
 
   # Loop variables
   local dir_path dir_name raw_timestamp timestamp contender_git_sha
   local benchmark_type_dir baseline_git_sha prev_dir found_current
   local baseline_time contender_time time_delta benchmark_type
-  local entry percentage is_improvement all_dirs d_name
+  local entry percentage abs_percentage is_significant all_dirs d_name
 
   while read -r file; do
     dir_path=$(dirname "$file")
@@ -98,11 +101,22 @@ generateBenchmarkRepoReadme() {
       entry="| $timestamp | $baseline_git_sha | $contender_git_sha | $baseline_time | $contender_time | $time_delta |"
       if [[ "$benchmark_type" == "short" ]]; then
         SHORT_BENCHMARK_TABLE+=$'\n'"$entry"
+
+        if [[ $entry_count -lt 5 ]]; then
+          LATEST_ENTRIES+="${entry}"$'\n'
+          ((entry_count++)) || true
+        fi
+
         percentage=$(echo "$time_delta" | grep -oE '[-]?[0-9]+\.[0-9]+%' | tr -d '%')
         if [[ -n "$percentage" ]]; then
-          is_improvement=$(awk -v pct="$percentage" 'BEGIN { print (pct < -1) ? "yes" : "no" }')
-          if [[ "$is_improvement" == "yes" ]]; then
-            HIGH_IMPACT_ENTRIES+="${percentage}|${entry}"$'\n'
+          abs_percentage=$(awk -v pct="$percentage" 'BEGIN { print (pct < 0) ? -pct : pct }')
+          is_significant=$(awk -v pct="$abs_percentage" 'BEGIN { print (pct > 1) ? "yes" : "no" }')
+          if [[ "$is_significant" == "yes" ]]; then
+            if awk -v pct="$percentage" 'BEGIN { exit (pct > 0) ? 0 : 1 }'; then
+              REGRESSIONS+="${raw_timestamp}|${percentage}|${entry}"$'\n'
+            else
+              IMPROVEMENTS+="${raw_timestamp}|${percentage}|${entry}"$'\n'
+            fi
           fi
         fi
       else
@@ -119,13 +133,22 @@ generateBenchmarkRepoReadme() {
     fi
   done < <(find "${NIMBUS_ETH1_BENCHMARKS_REPO}" -name "build-environment.log" | sort -t'/' -k3 -r)
 
-  # Build top 5 improvements table
-  local HIGH_IMPACT_SHORT_BENCHMARK_TABLE="$TABLE_HEADER"
+  local LATEST_SHORT_BENCHMARK_TABLE="$TABLE_HEADER"
   while IFS= read -r line; do
-    [[ -n "$line" ]] && HIGH_IMPACT_SHORT_BENCHMARK_TABLE+=$'\n'"$line"
-  done < <(echo -n "$HIGH_IMPACT_ENTRIES" | sort -t'|' -k1 -n | head -5 | cut -d'|' -f2-)
+    [[ -n "$line" ]] && LATEST_SHORT_BENCHMARK_TABLE+=$'\n'"$line"
+  done < <(echo -n "$LATEST_ENTRIES")
 
-  export LONG_BENCHMARK_TABLE SHORT_BENCHMARK_TABLE HIGH_IMPACT_SHORT_BENCHMARK_TABLE
+  local REGRESSIONS_TABLE="$TABLE_HEADER"
+  while IFS= read -r line; do
+    [[ -n "$line" ]] && REGRESSIONS_TABLE+=$'\n'"$line"
+  done < <(echo -n "$REGRESSIONS" | sort -t'|' -k2 -rn | cut -d'|' -f3-)
+
+  local IMPROVEMENTS_TABLE="$TABLE_HEADER"
+  while IFS= read -r line; do
+    [[ -n "$line" ]] && IMPROVEMENTS_TABLE+=$'\n'"$line"
+  done < <(echo -n "$IMPROVEMENTS" | sort -t'|' -k2 -n | cut -d'|' -f3-)
+
+  export LONG_BENCHMARK_TABLE SHORT_BENCHMARK_TABLE LATEST_SHORT_BENCHMARK_TABLE REGRESSIONS_TABLE IMPROVEMENTS_TABLE
   envsubst <"${README_TEMPLATE_PATH}" >"${README_FILE_PATH}"
   echo "Benchmarking History updated in ${README_FILE_PATH}"
 }
