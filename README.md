@@ -8,7 +8,7 @@ This repository contains various eth1 import benchmark metrics.
 
 | Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
 |--------------|--------------|---------------|---------------|----------------|------------|
-| 2026-01-03 11:57:07 | latest | fe3abfe4 | 8h8m46s | 8h6m44s | -2m2s, -0.42% |
+| 2026-01-03 11:57:07 | 6bf89c42 | fe3abfe4 | 8h8m46s | 8h6m44s | -2m2s, -0.42% |
 | 2026-01-03 03:34:51 | fe3abfe4 | 6bf89c42 | 8h8m25s | 8h8m46s | 21s, 0.07% |
 | 2026-01-02 19:13:20 | 6bf89c42 | 2bd04338 | 8h10m16s | 8h8m25s | -1m50s, -0.38% |
 | 2026-01-02 10:49:55 | 2bd04338 | 887abf9f | 8h9m46s | 8h10m16s | 29s, 0.10% |
@@ -20,7 +20,7 @@ This repository contains various eth1 import benchmark metrics.
 
 | Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
 |--------------|--------------|---------------|---------------|----------------|------------|
-| 2025-12-16 04:06:31 | latest | ee411adc | 97h13m44s | 98h12m19s | 58m35s, 1.00% |
+| 2025-12-16 04:06:31 | e12873ce | ee411adc | 97h13m44s | 98h12m19s | 58m35s, 1.00% |
 | 2025-12-12 02:42:40 | ee411adc | e12873ce | 98h30m28s | 97h13m44s | -1h16m44s, -1.30% |
 | 2025-12-08 00:02:01 | e12873ce | cbc93369 | 97h43m58s | 98h30m28s | 46m30s, 0.79% |
 | 2025-12-03 22:07:55 | cbc93369 | 670e6893 | 96h3m33s | 97h43m58s | 1h40m25s, 1.74% |

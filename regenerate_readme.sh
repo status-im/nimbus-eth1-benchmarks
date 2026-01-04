@@ -72,6 +72,8 @@ generateBenchmarkData() {
     found_current=false
     for d in "$benchmark_type_dir"/*/; do
       d_name=$(basename "$d")
+      # Skip symlinks (like "latest")
+      [[ -L "${d%/}" ]] && continue
       if [[ "$found_current" == "true" ]]; then
         prev_dir="$d_name"
         break
