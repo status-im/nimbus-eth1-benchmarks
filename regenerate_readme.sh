@@ -7,6 +7,17 @@ NIMBUS_ETH1_BENCHMARKS_REPO="${SCRIPT_DIR}"
 README_FILE_PATH="${NIMBUS_ETH1_BENCHMARKS_REPO}/README.md"
 README_TEMPLATE_PATH="${NIMBUS_ETH1_BENCHMARKS_REPO}/README-TEMPLATE.md"
 
+# CSV file paths
+CSV_DIR="${NIMBUS_ETH1_BENCHMARKS_REPO}"
+REGRESSIONS_CSV="${CSV_DIR}/regressions.csv"
+IMPROVEMENTS_CSV="${CSV_DIR}/improvements.csv"
+SHORT_HISTORY_CSV="${CSV_DIR}/short-benchmark-history.csv"
+LONG_HISTORY_CSV="${CSV_DIR}/long-benchmark-history.csv"
+
+CSV_HEADER="Generated At,Baseline SHA,Contender SHA,Baseline Time,Contender Time,Time Delta"
+MD_TABLE_HEADER="| Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
+|--------------|--------------|---------------|---------------|----------------|------------|"
+
 format_timestamp_date() {
   echo "$1" | awk '{
       year=substr($0,1,4)
@@ -19,16 +30,26 @@ format_timestamp_date() {
   }'
 }
 
-generateBenchmarkRepoReadme() {
-  local TABLE_HEADER="| Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
-|--------------|--------------|---------------|---------------|----------------|------------|"
+# Convert CSV content to markdown table row
+csv_to_md_row() {
+  local csv_line="$1"
+  # Handle quoted fields (Time Delta contains comma), then convert unquoted commas to pipes
+  # First extract the quoted part, process the rest, then reassemble
+  local quoted_field=$(echo "$csv_line" | grep -o '"[^"]*"' | tr -d '"')
+  local before_quote=$(echo "$csv_line" | sed 's/,"[^"]*"$//')
+  echo "$before_quote" | sed 's/^/| /; s/,/ | /g' | tr -d '\n'
+  echo " | $quoted_field |"
+}
 
-  local LONG_BENCHMARK_TABLE="$TABLE_HEADER"
-  local SHORT_BENCHMARK_TABLE="$TABLE_HEADER"
+generateBenchmarkData() {
+  local SHORT_ENTRIES=""
+  local LONG_ENTRIES=""
   local REGRESSIONS=""
   local IMPROVEMENTS=""
-  local LATEST_ENTRIES=""
-  local entry_count=0
+  local LATEST_SHORT_ENTRIES=""
+  local LATEST_LONG_ENTRIES=""
+  local short_entry_count=0
+  local long_entry_count=0
 
   # Loop variables
   local dir_path dir_name raw_timestamp timestamp contender_git_sha
@@ -98,13 +119,15 @@ generateBenchmarkRepoReadme() {
     contender_time=$(echo "$contender_time" | tr -d '"')
 
     if [[ -n "$baseline_git_sha" && -n "$contender_git_sha" && -n "$time_delta" && -n "$baseline_time" && -n "$contender_time" ]]; then
-      entry="| $timestamp | $baseline_git_sha | $contender_git_sha | $baseline_time | $contender_time | $time_delta |"
-      if [[ "$benchmark_type" == "short" ]]; then
-        SHORT_BENCHMARK_TABLE+=$'\n'"$entry"
+      # CSV entry (quote fields that might contain commas)
+      entry="$timestamp,$baseline_git_sha,$contender_git_sha,$baseline_time,$contender_time,\"$time_delta\""
 
-        if [[ $entry_count -lt 5 ]]; then
-          LATEST_ENTRIES+="${entry}"$'\n'
-          ((entry_count++)) || true
+      if [[ "$benchmark_type" == "short" ]]; then
+        SHORT_ENTRIES+="${entry}"$'\n'
+
+        if [[ $short_entry_count -lt 5 ]]; then
+          LATEST_SHORT_ENTRIES+="${entry}"$'\n'
+          ((short_entry_count++)) || true
         fi
 
         percentage=$(echo "$time_delta" | grep -oE '[-]?[0-9]+\.[0-9]+%' | tr -d '%')
@@ -113,14 +136,19 @@ generateBenchmarkRepoReadme() {
           is_significant=$(awk -v pct="$abs_percentage" 'BEGIN { print (pct > 1) ? "yes" : "no" }')
           if [[ "$is_significant" == "yes" ]]; then
             if awk -v pct="$percentage" 'BEGIN { exit (pct > 0) ? 0 : 1 }'; then
-              REGRESSIONS+="${raw_timestamp}|${percentage}|${entry}"$'\n'
+              REGRESSIONS+="${percentage}|${entry}"$'\n'
             else
-              IMPROVEMENTS+="${raw_timestamp}|${percentage}|${entry}"$'\n'
+              IMPROVEMENTS+="${percentage}|${entry}"$'\n'
             fi
           fi
         fi
       else
-        LONG_BENCHMARK_TABLE+=$'\n'"$entry"
+        LONG_ENTRIES+="${entry}"$'\n'
+
+        if [[ $long_entry_count -lt 5 ]]; then
+          LATEST_LONG_ENTRIES+="${entry}"$'\n'
+          ((long_entry_count++)) || true
+        fi
       fi
     else
       echo "Warning: Could not extract all required data from $file" >&2
@@ -133,27 +161,54 @@ generateBenchmarkRepoReadme() {
     fi
   done < <(find "${NIMBUS_ETH1_BENCHMARKS_REPO}" -name "build-environment.log" | sort -t'/' -k3 -r)
 
-  local LATEST_SHORT_BENCHMARK_TABLE="$TABLE_HEADER"
-  while IFS= read -r line; do
-    [[ -n "$line" ]] && LATEST_SHORT_BENCHMARK_TABLE+=$'\n'"$line"
-  done < <(echo -n "$LATEST_ENTRIES")
+  # Write regressions CSV (sorted by percentage, highest first)
+  echo "$CSV_HEADER" > "$REGRESSIONS_CSV"
+  echo -n "$REGRESSIONS" | sort -t'|' -k1 -rn | cut -d'|' -f2- >> "$REGRESSIONS_CSV"
+  echo "Generated: $REGRESSIONS_CSV"
 
-  local REGRESSIONS_TABLE="$TABLE_HEADER"
-  while IFS= read -r line; do
-    [[ -n "$line" ]] && REGRESSIONS_TABLE+=$'\n'"$line"
-  done < <(echo -n "$REGRESSIONS" | sort -t'|' -k2 -rn | cut -d'|' -f3-)
+  # Write improvements CSV (sorted by percentage, most negative first)
+  echo "$CSV_HEADER" > "$IMPROVEMENTS_CSV"
+  echo -n "$IMPROVEMENTS" | sort -t'|' -k1 -n | cut -d'|' -f2- >> "$IMPROVEMENTS_CSV"
+  echo "Generated: $IMPROVEMENTS_CSV"
 
-  local IMPROVEMENTS_TABLE="$TABLE_HEADER"
-  while IFS= read -r line; do
-    [[ -n "$line" ]] && IMPROVEMENTS_TABLE+=$'\n'"$line"
-  done < <(echo -n "$IMPROVEMENTS" | sort -t'|' -k2 -n | cut -d'|' -f3-)
+  # Write short benchmark history CSV
+  echo "$CSV_HEADER" > "$SHORT_HISTORY_CSV"
+  echo -n "$SHORT_ENTRIES" >> "$SHORT_HISTORY_CSV"
+  echo "Generated: $SHORT_HISTORY_CSV"
 
-  export LONG_BENCHMARK_TABLE SHORT_BENCHMARK_TABLE LATEST_SHORT_BENCHMARK_TABLE REGRESSIONS_TABLE IMPROVEMENTS_TABLE
-  envsubst <"${README_TEMPLATE_PATH}" >"${README_FILE_PATH}"
-  echo "Benchmarking History updated in ${README_FILE_PATH}"
+  # Write long benchmark history CSV
+  echo "$CSV_HEADER" > "$LONG_HISTORY_CSV"
+  echo -n "$LONG_ENTRIES" >> "$LONG_HISTORY_CSV"
+  echo "Generated: $LONG_HISTORY_CSV"
+
+  # Build markdown tables for README
+  local LATEST_SHORT_TABLE="$MD_TABLE_HEADER"
+  while IFS= read -r line; do
+    [[ -n "$line" ]] && LATEST_SHORT_TABLE+=$'\n'"$(csv_to_md_row "$line")"
+  done < <(echo -n "$LATEST_SHORT_ENTRIES")
+
+  local LATEST_LONG_TABLE="$MD_TABLE_HEADER"
+  while IFS= read -r line; do
+    [[ -n "$line" ]] && LATEST_LONG_TABLE+=$'\n'"$(csv_to_md_row "$line")"
+  done < <(echo -n "$LATEST_LONG_ENTRIES")
+
+  local REGRESSIONS_TABLE="$MD_TABLE_HEADER"
+  while IFS= read -r line; do
+    [[ -n "$line" ]] && REGRESSIONS_TABLE+=$'\n'"$(csv_to_md_row "$line")"
+  done < <(echo -n "$REGRESSIONS" | sort -t'|' -k1 -rn | cut -d'|' -f2-)
+
+  local IMPROVEMENTS_TABLE="$MD_TABLE_HEADER"
+  while IFS= read -r line; do
+    [[ -n "$line" ]] && IMPROVEMENTS_TABLE+=$'\n'"$(csv_to_md_row "$line")"
+  done < <(echo -n "$IMPROVEMENTS" | sort -t'|' -k1 -n | cut -d'|' -f2-)
+
+  # Export for envsubst and generate README
+  export LATEST_SHORT_TABLE LATEST_LONG_TABLE REGRESSIONS_TABLE IMPROVEMENTS_TABLE
+  envsubst < "${README_TEMPLATE_PATH}" > "${README_FILE_PATH}"
+  echo "Generated: ${README_FILE_PATH}"
 }
 
 echo "Starting README regeneration..."
 echo "Running from: ${NIMBUS_ETH1_BENCHMARKS_REPO}"
-generateBenchmarkRepoReadme
+generateBenchmarkData
 echo "Done!"
