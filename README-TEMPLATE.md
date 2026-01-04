@@ -2,6 +2,10 @@
 
 This repository contains various eth1 import benchmark metrics.
 
+## Performance Trend
+
+![Benchmark Trend](./assets/benchmark-trend.png)
+
 ## Latest 5 Short Benchmarks (24 Hour Run)
 
 [View full history](./short-benchmark-history.csv)

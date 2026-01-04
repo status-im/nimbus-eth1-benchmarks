@@ -6,8 +6,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NIMBUS_ETH1_BENCHMARKS_REPO="${SCRIPT_DIR}"
 README_FILE_PATH="${NIMBUS_ETH1_BENCHMARKS_REPO}/README.md"
 README_TEMPLATE_PATH="${NIMBUS_ETH1_BENCHMARKS_REPO}/README-TEMPLATE.md"
-
-# CSV file paths
+VENV_DIR="${NIMBUS_ETH1_BENCHMARKS_REPO}/.venv"
+NIMBUS_ETH1_REPO_URL="https://github.com/status-im/nimbus-eth1/commit"
 CSV_DIR="${NIMBUS_ETH1_BENCHMARKS_REPO}"
 REGRESSIONS_CSV="${CSV_DIR}/regressions.csv"
 IMPROVEMENTS_CSV="${CSV_DIR}/improvements.csv"
@@ -30,15 +30,47 @@ format_timestamp_date() {
   }'
 }
 
-# Convert CSV content to markdown table row
+sha_to_link() {
+  local sha="$1"
+  echo "[${sha}](${NIMBUS_ETH1_REPO_URL}/${sha})"
+}
+
+# Convert CSV content to markdown table row with clickable SHA links
 csv_to_md_row() {
   local csv_line="$1"
-  # Handle quoted fields (Time Delta contains comma), then convert unquoted commas to pipes
-  # First extract the quoted part, process the rest, then reassemble
-  local quoted_field=$(echo "$csv_line" | grep -o '"[^"]*"' | tr -d '"')
-  local before_quote=$(echo "$csv_line" | sed 's/,"[^"]*"$//')
-  echo "$before_quote" | sed 's/^/| /; s/,/ | /g' | tr -d '\n'
-  echo " | $quoted_field |"
+  # Parse CSV fields: timestamp,baseline_sha,contender_sha,baseline_time,contender_time,"time_delta"
+  local timestamp=$(echo "$csv_line" | cut -d',' -f1)
+  local baseline_sha=$(echo "$csv_line" | cut -d',' -f2)
+  local contender_sha=$(echo "$csv_line" | cut -d',' -f3)
+  local baseline_time=$(echo "$csv_line" | cut -d',' -f4)
+  local contender_time=$(echo "$csv_line" | cut -d',' -f5)
+  local time_delta=$(echo "$csv_line" | grep -o '"[^"]*"' | tr -d '"')
+  local baseline_link=$(sha_to_link "$baseline_sha")
+  local contender_link=$(sha_to_link "$contender_sha")
+
+  echo "| $timestamp | $baseline_link | $contender_link | $baseline_time | $contender_time | $time_delta |"
+}
+
+setup_python_venv() {
+  echo "Setting up Python virtual environment..."
+
+  if [[ ! -d "$VENV_DIR" ]]; then
+    echo "Creating virtual environment at $VENV_DIR"
+    python3 -m venv "$VENV_DIR"
+  fi
+
+  source "$VENV_DIR/bin/activate"
+
+  echo "Installing Python dependencies..."
+  pip install --quiet --upgrade pip
+  pip install --quiet -r "${NIMBUS_ETH1_BENCHMARKS_REPO}/requirements.txt"
+
+  deactivate
+}
+
+generate_graphs() {
+  echo "Generating graphs..."
+  "${VENV_DIR}/bin/python" "${NIMBUS_ETH1_BENCHMARKS_REPO}/generate_graphs.py"
 }
 
 generateBenchmarkData() {
@@ -163,27 +195,22 @@ generateBenchmarkData() {
     fi
   done < <(find "${NIMBUS_ETH1_BENCHMARKS_REPO}" -name "build-environment.log" | sort -t'/' -k3 -r)
 
-  # Write regressions CSV (sorted by percentage, highest first)
   echo "$CSV_HEADER" > "$REGRESSIONS_CSV"
   echo -n "$REGRESSIONS" | sort -t'|' -k1 -rn | cut -d'|' -f2- >> "$REGRESSIONS_CSV"
   echo "Generated: $REGRESSIONS_CSV"
 
-  # Write improvements CSV (sorted by percentage, most negative first)
   echo "$CSV_HEADER" > "$IMPROVEMENTS_CSV"
   echo -n "$IMPROVEMENTS" | sort -t'|' -k1 -n | cut -d'|' -f2- >> "$IMPROVEMENTS_CSV"
   echo "Generated: $IMPROVEMENTS_CSV"
 
-  # Write short benchmark history CSV
   echo "$CSV_HEADER" > "$SHORT_HISTORY_CSV"
   echo -n "$SHORT_ENTRIES" >> "$SHORT_HISTORY_CSV"
   echo "Generated: $SHORT_HISTORY_CSV"
 
-  # Write long benchmark history CSV
   echo "$CSV_HEADER" > "$LONG_HISTORY_CSV"
   echo -n "$LONG_ENTRIES" >> "$LONG_HISTORY_CSV"
   echo "Generated: $LONG_HISTORY_CSV"
 
-  # Build markdown tables for README
   local LATEST_SHORT_TABLE="$MD_TABLE_HEADER"
   while IFS= read -r line; do
     [[ -n "$line" ]] && LATEST_SHORT_TABLE+=$'\n'"$(csv_to_md_row "$line")"
@@ -212,5 +239,9 @@ generateBenchmarkData() {
 
 echo "Starting README regeneration..."
 echo "Running from: ${NIMBUS_ETH1_BENCHMARKS_REPO}"
+
 generateBenchmarkData
+setup_python_venv
+generate_graphs
+
 echo "Done!"
