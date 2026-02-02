@@ -12,11 +12,11 @@ This repository contains various eth1 import benchmark metrics.
 
 | Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
 |--------------|--------------|---------------|---------------|----------------|------------|
+| 2026-02-02 00:06:21 | [150ffaa1](https://github.com/status-im/nimbus-eth1/commit/150ffaa1) | [67d61541](https://github.com/status-im/nimbus-eth1/commit/67d61541) | 8h8m13s | 7h57m23s | -10m50s, -2.22% |
 | 2026-02-01 15:44:30 | [a4e9ac36](https://github.com/status-im/nimbus-eth1/commit/a4e9ac36) | [150ffaa1](https://github.com/status-im/nimbus-eth1/commit/150ffaa1) | 8h4m44s | 8h8m13s | 3m29s, 0.72% |
 | 2026-02-01 07:26:02 | [1b3a3349](https://github.com/status-im/nimbus-eth1/commit/1b3a3349) | [a4e9ac36](https://github.com/status-im/nimbus-eth1/commit/a4e9ac36) | 8h4m53s | 8h4m44s | -9s, -0.03% |
 | 2026-01-31 23:07:35 | [a07ac78d](https://github.com/status-im/nimbus-eth1/commit/a07ac78d) | [1b3a3349](https://github.com/status-im/nimbus-eth1/commit/1b3a3349) | 8h6m24s | 8h4m53s | -1m30s, -0.31% |
 | 2026-01-31 14:47:36 | [84408c93](https://github.com/status-im/nimbus-eth1/commit/84408c93) | [a07ac78d](https://github.com/status-im/nimbus-eth1/commit/a07ac78d) | 8h5m14s | 8h6m24s | 1m10s, 0.24% |
-| 2026-01-31 06:28:50 | [1bf5ca30](https://github.com/status-im/nimbus-eth1/commit/1bf5ca30) | [84408c93](https://github.com/status-im/nimbus-eth1/commit/84408c93) | 8h10m59s | 8h5m14s | -5m45s, -1.17% |
 
 ## Latest 5 Long Benchmarks (1 Week Run)
 
@@ -79,6 +79,7 @@ Commits with performance improvements greater than 1% (faster), sorted by magnit
 | 2025-07-23 00:16:18 | [deb11b56a](https://github.com/status-im/nimbus-eth1/commit/deb11b56a) | [969db723e](https://github.com/status-im/nimbus-eth1/commit/969db723e) | 9h22m0s | 8h53m8s | -28m52s, -5.14% |
 | 2025-08-11 05:57:43 | [5286def0](https://github.com/status-im/nimbus-eth1/commit/5286def0) | [71959d49](https://github.com/status-im/nimbus-eth1/commit/71959d49) | 9h17m23s | 8h51m48s | -25m34s, -4.59% |
 | 2024-12-18 23:50:21 | [48aa410f](https://github.com/status-im/nimbus-eth1/commit/48aa410f) | [7bbb0f44](https://github.com/status-im/nimbus-eth1/commit/7bbb0f44) | 9h39m26s | 9h22m27s | -16m58s, -2.93% |
+| 2026-02-02 00:06:21 | [150ffaa1](https://github.com/status-im/nimbus-eth1/commit/150ffaa1) | [67d61541](https://github.com/status-im/nimbus-eth1/commit/67d61541) | 8h8m13s | 7h57m23s | -10m50s, -2.22% |
 | 2025-02-10 12:17:31 | [577e3559](https://github.com/status-im/nimbus-eth1/commit/577e3559) | [f033a404](https://github.com/status-im/nimbus-eth1/commit/f033a404) | 9h22m40s | 9h10m25s | -12m15s, -2.18% |
 | 2024-12-29 15:39:34 | [fc9077b1](https://github.com/status-im/nimbus-eth1/commit/fc9077b1) | [7c0c507f](https://github.com/status-im/nimbus-eth1/commit/7c0c507f) | 9h29m48s | 9h17m26s | -12m21s, -2.17% |
 | 2025-06-03 00:26:00 | [f5db4e4b5](https://github.com/status-im/nimbus-eth1/commit/f5db4e4b5) | [af07a5366](https://github.com/status-im/nimbus-eth1/commit/af07a5366) | 9h18m53s | 9h7m15s | -11m38s, -2.08% |
