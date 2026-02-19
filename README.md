@@ -12,11 +12,11 @@ This repository contains various eth1 import benchmark metrics.
 
 | Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
 |--------------|--------------|---------------|---------------|----------------|------------|
+| 2026-02-19 14:10:28 | [11142db9](https://github.com/status-im/nimbus-eth1/commit/11142db9) | [e6492bc1](https://github.com/status-im/nimbus-eth1/commit/e6492bc1) | 8h21m44s | 8h21m20s | -23s, -0.08% |
 | 2026-02-19 05:35:15 | [3e3a8cad](https://github.com/status-im/nimbus-eth1/commit/3e3a8cad) | [11142db9](https://github.com/status-im/nimbus-eth1/commit/11142db9) | 8h21m53s | 8h21m44s | -9s, -0.03% |
 | 2026-02-18 20:59:56 | [bea79e86](https://github.com/status-im/nimbus-eth1/commit/bea79e86) | [3e3a8cad](https://github.com/status-im/nimbus-eth1/commit/3e3a8cad) | 8h21m45s | 8h21m53s | 7s, 0.03% |
 | 2026-02-18 12:24:46 | [e880d05b](https://github.com/status-im/nimbus-eth1/commit/e880d05b) | [bea79e86](https://github.com/status-im/nimbus-eth1/commit/bea79e86) | 8h19m45s | 8h21m45s | 2m0s, 0.40% |
 | 2026-02-18 03:51:36 | [aa786b14](https://github.com/status-im/nimbus-eth1/commit/aa786b14) | [e880d05b](https://github.com/status-im/nimbus-eth1/commit/e880d05b) | 8h20m36s | 8h19m45s | -50s, -0.17% |
-| 2026-02-17 19:17:40 | [a1db929e](https://github.com/status-im/nimbus-eth1/commit/a1db929e) | [aa786b14](https://github.com/status-im/nimbus-eth1/commit/aa786b14) | 8h21m10s | 8h20m36s | -33s, -0.11% |
 
 ## Latest 5 Long Benchmarks (1 Week Run)
 
