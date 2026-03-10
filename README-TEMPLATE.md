@@ -18,14 +18,8 @@ ${LATEST_SHORT_TABLE}
 
 ${LATEST_LONG_TABLE}
 
-## Regressions
+## Performance Changes >1%
 
-Commits with performance regressions greater than 1% (slower), sorted by severity. [View full data](./regressions.csv)
+All commits with performance changes greater than 1%, sorted chronologically (most recent first). [View regressions](./regressions.csv) | [View improvements](./improvements.csv)
 
-${REGRESSIONS_TABLE}
-
-## Improvements
-
-Commits with performance improvements greater than 1% (faster), sorted by magnitude. [View full data](./improvements.csv)
-
-${IMPROVEMENTS_TABLE}
+${PERFORMANCE_CHANGES_TABLE}

@@ -217,8 +217,10 @@ regenerate_derived_files() {
   echo "$CSV_HEADER" > "$REGRESSIONS_CSV"
   echo "$CSV_HEADER" > "$IMPROVEMENTS_CSV"
 
-  if [[ -f "$SHORT_HISTORY_CSV" ]]; then
-    tail -n +2 "$SHORT_HISTORY_CSV" | while IFS= read -r line; do
+  filter_significant_changes() {
+    local csv_file="$1"
+    [[ -f "$csv_file" ]] || return 0
+    tail -n +2 "$csv_file" | while IFS= read -r line; do
       time_delta=$(echo "$line" | grep -o '"[^"]*"' | tr -d '"')
       percentage=$(echo "$time_delta" | grep -oE '[-]?[0-9]+\.[0-9]+%' | tr -d '%')
 
@@ -235,7 +237,10 @@ regenerate_derived_files() {
         fi
       fi
     done
-  fi
+  }
+
+  filter_significant_changes "$SHORT_HISTORY_CSV"
+  filter_significant_changes "$LONG_HISTORY_CSV"
 
   # Sort and finalize regressions/improvements
   if [[ -f "${REGRESSIONS_CSV}.tmp" ]]; then
@@ -262,21 +267,33 @@ regenerate_derived_files() {
     done < <(tail -n +2 "$LONG_HISTORY_CSV" | head -5)
   fi
 
-  local REGRESSIONS_TABLE="$MD_TABLE_HEADER"
-  if [[ -f "$REGRESSIONS_CSV" ]]; then
-    while IFS= read -r line; do
-      [[ -n "$line" ]] && REGRESSIONS_TABLE+=$'\n'"$(csv_to_md_row "$line")"
-    done < <(tail -n +2 "$REGRESSIONS_CSV")
-  fi
+  # Combined performance changes table: both short and long, merged and sorted chronologically
+  local perf_tmp
+  perf_tmp=$(mktemp)
+  for csv_file in "$SHORT_HISTORY_CSV" "$LONG_HISTORY_CSV"; do
+    [[ -f "$csv_file" ]] || continue
+    tail -n +2 "$csv_file" | while IFS= read -r line; do
+      time_delta=$(echo "$line" | grep -o '"[^"]*"' | tr -d '"')
+      percentage=$(echo "$time_delta" | grep -oE '[-]?[0-9]+\.[0-9]+%' | tr -d '%')
 
-  local IMPROVEMENTS_TABLE="$MD_TABLE_HEADER"
-  if [[ -f "$IMPROVEMENTS_CSV" ]]; then
-    while IFS= read -r line; do
-      [[ -n "$line" ]] && IMPROVEMENTS_TABLE+=$'\n'"$(csv_to_md_row "$line")"
-    done < <(tail -n +2 "$IMPROVEMENTS_CSV")
-  fi
+      if [[ -n "$percentage" ]]; then
+        abs_pct=$(awk -v p="$percentage" 'BEGIN { print (p<0) ? -p : p }')
+        is_sig=$(awk -v p="$abs_pct" 'BEGIN { print (p>1) ? 1 : 0 }')
 
-  export LATEST_SHORT_TABLE LATEST_LONG_TABLE REGRESSIONS_TABLE IMPROVEMENTS_TABLE
+        if [[ "$is_sig" == "1" ]]; then
+          echo "$line" >> "$perf_tmp"
+        fi
+      fi
+    done
+  done
+
+  local PERFORMANCE_CHANGES_TABLE="$MD_TABLE_HEADER"
+  while IFS= read -r line; do
+    [[ -n "$line" ]] && PERFORMANCE_CHANGES_TABLE+=$'\n'"$(csv_to_md_row "$line")"
+  done < <(sort -t',' -k1 -r "$perf_tmp")
+  rm -f "$perf_tmp"
+
+  export LATEST_SHORT_TABLE LATEST_LONG_TABLE PERFORMANCE_CHANGES_TABLE
   envsubst < "${README_TEMPLATE_PATH}" > "${README_FILE_PATH}"
   echo "Generated: ${README_FILE_PATH}"
 }

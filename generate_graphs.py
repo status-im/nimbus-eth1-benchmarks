@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Optional
 
 import matplotlib.pyplot as plt
+from matplotlib.axes import Axes
 import pandas as pd
 from scipy.ndimage import uniform_filter1d
 
@@ -44,6 +45,16 @@ def load_data(csv_path: Path) -> pd.DataFrame:
     return df.dropna(subset=['Hours'])
 
 
+def set_commit_sha_xticks(ax: Axes, df: pd.DataFrame, max_labels: int = 15) -> None:
+    """Label x-axis ticks with short commit SHAs at evenly-spaced intervals."""
+    n = len(df)
+    step = max(1, n // max_labels)
+    positions = list(range(0, n, step))
+    labels = [df['Contender SHA'].iloc[i][:8] for i in positions]
+    ax.set_xticks(positions)
+    ax.set_xticklabels(labels, rotation=45, ha='right', fontsize=7)
+
+
 def generate_trend_graph(
     short_df: pd.DataFrame,
     long_df: pd.DataFrame,
@@ -55,21 +66,22 @@ def generate_trend_graph(
     # Short benchmarks
     if len(short_df) >= 7:
         smoothed = uniform_filter1d(short_df['Hours'].values, size=7)
-        ax1.plot(short_df['Date'], smoothed, 'b-', linewidth=2)
+        ax1.plot(range(len(short_df)), smoothed, 'b-', linewidth=2)
 
     ax1.set_ylabel('Hours')
     ax1.set_title('Short Benchmark (24h run) - lower is better')
     ax1.grid(True, alpha=0.3)
+    set_commit_sha_xticks(ax1, short_df)
 
     # Long benchmarks
     if len(long_df) >= 3:
         smoothed = uniform_filter1d(long_df['Hours'].values, size=3)
-        ax2.plot(long_df['Date'], smoothed, 'g-', linewidth=2)
+        ax2.plot(range(len(long_df)), smoothed, 'g-', linewidth=2)
 
     ax2.set_ylabel('Hours')
-    ax2.set_xlabel('Date')
     ax2.set_title('Long Benchmark (1 week run) - lower is better')
     ax2.grid(True, alpha=0.3)
+    set_commit_sha_xticks(ax2, long_df)
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
