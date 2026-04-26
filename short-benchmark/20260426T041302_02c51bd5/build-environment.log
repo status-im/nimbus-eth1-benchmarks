@@ -1,0 +1,50 @@
+=== System Information Report ===
+>>> Generated on: Sun Apr 26 12:30:13 PM UTC 2026
+==========================
+>>> CPU Architecture: x86_64
+>>> CPU Byte Order: Little Endian
+>>> CPU Cores: 16
+>>> CPU Model: AMD Ryzen 7 PRO 8700GE w/ Radeon 780M Graphics
+>>> CPU Cache Information:
+L1d Cache: 256 KiB (8 instances)
+L1i Cache: 256 KiB (8 instances)
+L2 Cache: 8 MiB (8 instances)
+L3 Cache: 16 MiB (1 instance)
+>>> RAM Size: 61Gi
+>>> Hard Disk Information:
+/dev/md2 : 437G total, 200G free
+/dev/md1 : 989M total, 690M free
+/dev/nvme0n1p1 : 256M total, 256M free
+/dev/nvme1n1 : 1.9T total, 483G free
+==========================
+=== Nimbus-ETH1 Benchmarking Report ===
+>>> Total time spent in benchmarking (nanoseconds): 29091237053481
+>>> Total time spent in benchmarking (human readable format): 8 hours 4 minutes 51 seconds
+>>> Start block number is 20000001
+>>> End block number is 21000001
+==========================
+=== Comparison of last two benchmarks ===
+sort: write failed: 'standard output': Broken pipe
+sort: write error
+sort: write failed: 'standard output': Broken pipe
+sort: write error
+python /data/status-im/nimbus-eth1/scripts/block-import-stats.py /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20260425T195206_becb5a78/blocks-import-benchmark.csv /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20260426T041302_02c51bd5/blocks-import-benchmark.csv
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                      bps_x  bps_y     tps_x     tps_y   time_x   time_y    bpsd    tpsd   timed
+block_number                                                                                    
+(20000001, 20111112]  27.88  27.95  4,553.84  4,565.60  1h4m54s  1h4m43s   0.27%   0.27%  -0.26%
+(20111112, 20222223]  32.06  32.16  5,243.46  5,259.91   59m48s   59m37s   0.31%   0.31%  -0.31%
+(20222223, 20333334]  34.04  34.00  5,518.12  5,512.50   52m22s   52m26s  -0.10%  -0.10%   0.11%
+(20333334, 20444445]  35.58  35.73  5,607.14  5,629.30   53m56s   53m44s   0.39%   0.39%  -0.38%
+(20444445, 20555556]  34.93  35.19  5,381.61  5,423.12   50m54s   50m32s   0.74%   0.74%  -0.72%
+(20555556, 20666667]  34.81  34.88  5,256.04  5,267.58   54m56s   54m49s   0.20%   0.20%  -0.20%
+(20666667, 20777778]  36.78  36.74  5,788.30  5,781.24   48m20s   48m24s  -0.13%  -0.13%   0.13%
+(20777778, 20888889]  37.95  38.07  6,087.73  6,106.27   50m32s   50m23s   0.31%   0.31%  -0.30%
+(20888889, 21000001]  38.19  38.16  6,298.28  6,292.24   50m10s    50m9s  -0.08%  -0.08%   0.09%
+
+blocks: 991808, baseline: 8h5m56s, contender: 8h4m51s
+Time (total): -1m5s, -0.23%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
+==========================
