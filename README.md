@@ -24,11 +24,11 @@ This repository contains various eth1 import benchmark metrics.
 
 | Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
 |--------------|--------------|---------------|---------------|----------------|------------|
+| 2026-04-22 18:18:39 | [9fe12d1b](https://github.com/status-im/nimbus-eth1/commit/9fe12d1b) | [2d77b23a](https://github.com/status-im/nimbus-eth1/commit/2d77b23a) | 98h6m53s | 98h7m11s | 17s, 0.01% |
 | 2026-04-18 16:00:52 | [bbefd408](https://github.com/status-im/nimbus-eth1/commit/bbefd408) | [9fe12d1b](https://github.com/status-im/nimbus-eth1/commit/9fe12d1b) | 98h2m3s | 98h6m53s | 4m49s, 0.08% |
 | 2026-04-14 13:47:24 | [5286def0](https://github.com/status-im/nimbus-eth1/commit/5286def0) | [bbefd408](https://github.com/status-im/nimbus-eth1/commit/bbefd408) | 96h23m43s | 98h2m3s | 1h38m19s, 1.70% |
 | 2026-04-10 13:12:48 | [71959d49](https://github.com/status-im/nimbus-eth1/commit/71959d49) | [5286def0](https://github.com/status-im/nimbus-eth1/commit/5286def0) | 98h11m35s | 96h23m43s | -1h47m51s, -1.83% |
 | 2026-04-06 10:49:28 | [ee411adc](https://github.com/status-im/nimbus-eth1/commit/ee411adc) | [71959d49](https://github.com/status-im/nimbus-eth1/commit/71959d49) | 98h12m19s | 98h11m35s | -44s, -0.01% |
-| 2025-12-16 04:06:31 | [e12873ce](https://github.com/status-im/nimbus-eth1/commit/e12873ce) | [ee411adc](https://github.com/status-im/nimbus-eth1/commit/ee411adc) | 97h13m44s | 98h12m19s | 58m35s, 1.00% |
 
 ## Performance Changes >1%
 
