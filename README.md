@@ -12,11 +12,11 @@ This repository contains various eth1 import benchmark metrics.
 
 | Generated At | Baseline SHA | Contender SHA | Baseline Time | Contender Time | Time Delta |
 |--------------|--------------|---------------|---------------|----------------|------------|
+| 2026-06-18 16:51:16 | [8b35949d](https://github.com/status-im/nimbus-eth1/commit/8b35949d) | [881d345d](https://github.com/status-im/nimbus-eth1/commit/881d345d) | 8h15m29s | 8h16m58s | 1m28s, 0.30% |
 | 2026-06-18 08:21:59 | [20e8a5d9](https://github.com/status-im/nimbus-eth1/commit/20e8a5d9) | [8b35949d](https://github.com/status-im/nimbus-eth1/commit/8b35949d) | 8h16m57s | 8h15m29s | -1m28s, -0.30% |
 | 2026-06-17 23:51:18 | [39179416](https://github.com/status-im/nimbus-eth1/commit/39179416) | [20e8a5d9](https://github.com/status-im/nimbus-eth1/commit/20e8a5d9) | 8h15m32s | 8h16m57s | 1m25s, 0.29% |
 | 2026-06-17 15:22:06 | [7b3ebff0](https://github.com/status-im/nimbus-eth1/commit/7b3ebff0) | [39179416](https://github.com/status-im/nimbus-eth1/commit/39179416) | 8h14m52s | 8h15m32s | 39s, 0.13% |
 | 2026-06-17 06:53:32 | [acba3074](https://github.com/status-im/nimbus-eth1/commit/acba3074) | [7b3ebff0](https://github.com/status-im/nimbus-eth1/commit/7b3ebff0) | 8h16m28s | 8h14m52s | -1m36s, -0.32% |
-| 2026-06-16 22:23:27 | [60dabc2b](https://github.com/status-im/nimbus-eth1/commit/60dabc2b) | [acba3074](https://github.com/status-im/nimbus-eth1/commit/acba3074) | 8h15m42s | 8h16m28s | 45s, 0.15% |
 
 ## Latest 5 Long Benchmarks (1 Week Run)
 
