@@ -7,6 +7,7 @@ README_FILE_PATH="${NIMBUS_ETH1_BENCHMARKS_REPO}/README.md"
 README_TEMPLATE_PATH="${NIMBUS_ETH1_BENCHMARKS_REPO}/README-TEMPLATE.md"
 VENV_DIR="${NIMBUS_ETH1_BENCHMARKS_REPO}/.venv"
 NIMBUS_ETH1_REPO_URL="https://github.com/status-im/nimbus-eth1/commit"
+NIMBUS_ETH1_COMPARE_URL="https://github.com/status-im/nimbus-eth1/compare"
 
 SHORT_HISTORY_CSV="${NIMBUS_ETH1_BENCHMARKS_REPO}/short-benchmark-history.csv"
 LONG_HISTORY_CSV="${NIMBUS_ETH1_BENCHMARKS_REPO}/long-benchmark-history.csv"
@@ -40,6 +41,16 @@ sha_to_link() {
   echo "[${sha}](${NIMBUS_ETH1_REPO_URL}/${sha})"
 }
 
+contender_to_link() {
+  local baseline_sha="$1"
+  local contender_sha="$2"
+  if [[ -z "$baseline_sha" || "$baseline_sha" == "$contender_sha" ]]; then
+    sha_to_link "$contender_sha"
+  else
+    echo "[${contender_sha}](${NIMBUS_ETH1_COMPARE_URL}/${baseline_sha}...${contender_sha})"
+  fi
+}
+
 csv_to_md_row() {
   local csv_line="$1"
   local timestamp baseline_sha contender_sha baseline_time contender_time time_delta
@@ -52,7 +63,7 @@ csv_to_md_row() {
   contender_time=$(echo "$csv_line" | cut -d',' -f5)
   time_delta=$(echo "$csv_line" | grep -o '"[^"]*"' | tr -d '"')
   baseline_link=$(sha_to_link "$baseline_sha")
-  contender_link=$(sha_to_link "$contender_sha")
+  contender_link=$(contender_to_link "$baseline_sha" "$contender_sha")
 
   echo "| $timestamp | $baseline_link | $contender_link | $baseline_time | $contender_time | $time_delta |"
 }
