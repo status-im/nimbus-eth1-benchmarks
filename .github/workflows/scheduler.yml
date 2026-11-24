@@ -1,0 +1,58 @@
+name: Benchmark scheduler
+
+# Starts a benchmark whenever nimbus-eth1 has a commit without results and the
+# host is free. Enabled per benchmark type through the repository variable
+# BENCHMARK_SCHEDULE_TYPES, a JSON list such as ["short", "long"].
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: benchmark-scheduler
+  cancel-in-progress: false
+
+jobs:
+  schedule:
+    name: Schedule ${{ matrix.type }} benchmark
+    if: vars.BENCHMARK_SCHEDULE_TYPES != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        type: ${{ fromJSON(vars.BENCHMARK_SCHEDULE_TYPES || '[]') }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TYPE: ${{ matrix.type }}
+      NIMBUS_REPO: status-im/nimbus-eth1
+      NIMBUS_BRANCH: master
+    steps:
+      - name: Start a benchmark if there is something to do
+        run: |
+          active=$(gh run list --repo "${GITHUB_REPOSITORY}" --workflow benchmark.yml --limit 50 \
+            --json status,displayTitle \
+            --jq "[.[] | select(.status != \"completed\") | select(.displayTitle | startswith(\"${TYPE} benchmark\"))] | length")
+          if [[ "${active}" -gt 0 ]]; then
+            echo "::notice::A ${TYPE} benchmark is already queued or running"
+            exit 0
+          fi
+
+          head_commit=$(gh api "repos/${NIMBUS_REPO}/commits/${NIMBUS_BRANCH}" --jq '.sha')
+
+          # result directories are named <timestamp>_<short hash>
+          results_tree=$(gh api "repos/${GITHUB_REPOSITORY}/git/trees/${GITHUB_SHA}" \
+            --jq ".tree[] | select(.path == \"${TYPE}-benchmark\") | .sha")
+          if [[ -n "${results_tree}" ]] \
+            && gh api "repos/${GITHUB_REPOSITORY}/git/trees/${results_tree}" --jq '.tree[].path' \
+              | grep -q "_${head_commit:0:8}"; then
+            echo "::notice::${NIMBUS_REPO} ${NIMBUS_BRANCH} at ${head_commit:0:8} already has ${TYPE} results"
+            exit 0
+          fi
+
+          gh workflow run benchmark.yml --repo "${GITHUB_REPOSITORY}" --ref "${GITHUB_REF_NAME}" -f type="${TYPE}"
+          echo "::notice::Started a ${TYPE} benchmark, ${NIMBUS_REPO} ${NIMBUS_BRANCH} is at ${head_commit:0:8}"

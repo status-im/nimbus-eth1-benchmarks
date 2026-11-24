@@ -1,0 +1,47 @@
+name: Benchmark
+run-name: "${{ inputs.type }} benchmark of ${{ inputs.commit || 'next unbenchmarked commit' }}${{ inputs.force && ' (forced)' || '' }}"
+
+# Runs execute on the dedicated benchmark hosts through self-hosted runners.
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Benchmark to run: short takes about 8 hours, long about 4 days'
+        type: choice
+        options: [short, long]
+        default: short
+        required: true
+      commit:
+        description: 'nimbus-eth1 master commit hash, empty picks the next unbenchmarked commit'
+        type: string
+        required: false
+      force:
+        description: 'Run even if results for the commit already exist'
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: nimbus-bench-${{ inputs.type }}
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    name: ${{ inputs.type }} benchmark
+    runs-on: [self-hosted, "nimbus-bench-${{ inputs.type }}"]
+    # self-hosted jobs are cut off after 5 days at the latest
+    timeout-minutes: ${{ inputs.type == 'long' && 7200 || 1440 }}
+    env:
+      BENCHMARK_TYPE: ${{ inputs.type }}
+      BENCHMARK_COMMIT: ${{ inputs.commit }}
+      BENCHMARK_FORCE: ${{ inputs.force }}
+      BENCHMARK_TIMEOUT_MINUTES: ${{ inputs.type == 'long' && 7200 || 1440 }}
+    steps:
+      # exec lets the script receive the signal of a cancelled run directly.
+      - name: Run benchmark
+        run: exec /data/scripts/trigger-benchmark.sh run
+
+      - name: Stop benchmark of a cancelled run
+        if: cancelled()
+        run: /data/scripts/trigger-benchmark.sh cleanup
