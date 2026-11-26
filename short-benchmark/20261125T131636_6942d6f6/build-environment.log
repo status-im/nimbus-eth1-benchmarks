@@ -26,8 +26,22 @@ L3 Cache: 16 MiB (1 instance)
 ==========================
 === Comparison of last two benchmarks ===
 python /data/status-im/nimbus-eth1/scripts/block-import-stats.py /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20261110T023451_8e8f7cbb/blocks-import-benchmark.csv /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20261125T131636_6942d6f6/blocks-import-benchmark.csv
-Traceback (most recent call last):
-  File "/data/status-im/nimbus-eth1/scripts/block-import-stats.py", line 5, in <module>
-    import pandas as pd
-ModuleNotFoundError: No module named 'pandas'
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                     bps_x bps_y    tps_x    tps_y time_x time_y   bpsd   tpsd  timed
+[20000001, 20100000] 29.41 31.88 4,792.97 5,196.15 56m40s 52m16s  8.41%  8.41% -7.76%
+(20100001, 20200000] 33.79 33.64 5,547.48 5,522.57 49m19s 49m32s -0.45% -0.45%  0.45%
+(20200001, 20300000] 34.89 34.62 5,642.01 5,599.23 47m46s  48m8s -0.76% -0.76%  0.76%
+(20300001, 20400000] 36.82 36.58 5,863.31 5,825.92 45m16s 45m33s -0.64% -0.64%  0.64%
+(20400001, 20500000] 37.89 36.70 5,842.32 5,658.74 43m58s 45m24s -3.14% -3.14%  3.24%
+(20500001, 20600000] 37.01 36.00 5,632.30 5,478.52  45m1s 46m17s -2.73% -2.73%  2.81%
+(20600001, 20700000] 37.95 36.37 5,825.08 5,583.15 43m55s 45m49s -4.15% -4.15%  4.33%
+(20700001, 20800000] 39.79 38.15 6,312.69 6,053.13 41m53s 43m41s -4.11% -4.11%  4.29%
+(20800001, 20900000] 39.38 37.39 6,314.05 5,995.06 42m19s 44m34s -5.05% -5.05%  5.32%
+(20900001, 21000000] 40.31 37.85 6,615.07 6,210.97 41m20s  44m2s -6.11% -6.11%  6.51%
+
+blocks: 1000000, baseline: 7h37m31s, contender: 7h45m20s
+Time (total): 7m48s, 1.71%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
 ==========================

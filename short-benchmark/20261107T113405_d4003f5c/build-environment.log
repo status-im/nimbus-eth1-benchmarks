@@ -29,8 +29,22 @@ sort: write error
 sort: write failed: 'standard output': Broken pipe
 sort: write error
 python /data/status-im/nimbus-eth1/scripts/block-import-stats.py /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20261107T034042_3fbc7a9b/blocks-import-benchmark.csv /data/status-im/nimbus-eth1-benchmarks/short-benchmark/20261107T113405_d4003f5c/blocks-import-benchmark.csv
-Traceback (most recent call last):
-  File "/data/status-im/nimbus-eth1/scripts/block-import-stats.py", line 5, in <module>
-    import pandas as pd
-ModuleNotFoundError: No module named 'pandas'
+blocks-import-benchmark.csv vs blocks-import-benchmark.csv
+                     bps_x bps_y    tps_x    tps_y time_x time_y   bpsd   tpsd  timed
+[20000001, 20100000] 29.29 29.43 4,772.66 4,795.50 56m54s 56m38s  0.48%  0.48% -0.48%
+(20100001, 20200000] 33.42 33.64 5,485.90 5,522.47 49m52s 49m32s  0.67%  0.67% -0.66%
+(20200001, 20300000] 34.54 34.69 5,585.94 5,610.43 48m15s  48m2s  0.44%  0.44% -0.44%
+(20300001, 20400000] 36.46 36.51 5,806.21 5,814.42 45m42s 45m39s  0.14%  0.14% -0.14%
+(20400001, 20500000] 37.30 37.29 5,750.55 5,749.70 44m41s 44m41s -0.01% -0.01%  0.01%
+(20500001, 20600000] 36.51 36.41 5,555.98 5,540.72 45m38s 45m46s -0.27% -0.27%  0.28%
+(20600001, 20700000] 37.42 37.50 5,743.19 5,755.59 44m32s 44m26s  0.22%  0.22% -0.22%
+(20700001, 20800000] 39.36 39.30 6,245.66 6,235.91 42m20s 42m24s -0.16% -0.16%  0.16%
+(20800001, 20900000] 39.03 39.09 6,258.59 6,268.52 42m42s 42m38s  0.16%  0.16% -0.16%
+(20900001, 21000000] 40.05 40.01 6,573.17 6,566.13 41m36s 41m39s -0.11% -0.11%  0.11%
+
+blocks: 1000000, baseline: 7h42m17s, contender: 7h41m29s
+Time (total): -47s, -0.17%
+
+bpsd = blocks per sec diff (+), tpsd = txs per sec diff, timed = time to process diff (-)
++ = more is better, - = less is better
 ==========================

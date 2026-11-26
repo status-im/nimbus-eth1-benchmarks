@@ -123,7 +123,6 @@ process_benchmark_file() {
   local dir_path dir_name raw_timestamp timestamp contender_git_sha
   local benchmark_type_dir baseline_git_sha prev_dir d_name
   local baseline_time contender_time time_delta
-  local found_current=false
 
   dir_path=$(dirname "$file")
   dir_name=$(basename "$dir_path")
@@ -134,15 +133,12 @@ process_benchmark_file() {
   baseline_git_sha=""
   prev_dir=""
 
-  # Find previous directory
+  # Find previous directory, they are listed oldest first
   for d in "$benchmark_type_dir"/*/; do
     d_name=$(basename "$d")
     [[ -L "${d%/}" ]] && continue
-    if [[ "$found_current" == "true" ]]; then
-      prev_dir="$d_name"
-      break
-    fi
-    [[ "$d_name" == "$dir_name" ]] && found_current=true
+    [[ "$d_name" == "$dir_name" ]] && break
+    prev_dir="$d_name"
   done
 
   [[ -n "$prev_dir" ]] && baseline_git_sha=$(echo "$prev_dir" | cut -d'_' -f2)
